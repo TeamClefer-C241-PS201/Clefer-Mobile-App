@@ -51,6 +51,9 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
 //  Api Library
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 //  Coroutines Library
 //  Component Library
 //  Android Architecture Components Library

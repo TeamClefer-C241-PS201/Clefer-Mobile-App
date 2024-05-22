@@ -1,6 +1,5 @@
 package com.jimbonlemu.clefer.views
 
-import android.animation.Animator
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint

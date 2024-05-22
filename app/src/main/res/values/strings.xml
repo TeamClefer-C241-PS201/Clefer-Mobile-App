@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">clefer</string>
+    <string name="app_name">CLEFER</string>
+    <string name="app_full_name">Corn Leaf Disease Analyze</string>
+    <string name="register">Register</string>
+    <string name="sign_in">Sign in</string>
 </resources>

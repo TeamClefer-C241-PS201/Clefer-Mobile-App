@@ -1,7 +1,7 @@
 [versions]
-agp = "8.3.0"
-converterGson = "2.9.0"
-kotlin = "1.9.0"
+agp = "8.3.2"
+converterGson = "2.10.0"
+kotlin = "1.9.21"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -9,9 +9,14 @@ espressoCore = "3.5.1"
 appcompat = "1.6.1"
 loggingInterceptor = "4.12.0"
 material = "1.12.0"
-activity = "1.8.0"
+activity = "1.9.0"
 constraintlayout = "2.1.4"
-retrofit = "2.9.0"
+retrofit = "2.10.0"
+koinBom = "3.5.6"
+shimmer = "0.5.0"
+ucrop = "2.2.8"
+googleKsp = "1.9.21-1.0.15"
+roomKtx = "2.5.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -25,8 +30,19 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinBom" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4" }
+koin-test = { module = "io.insert-koin:koin-test" }
+ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }
+shimmer = { module = "com.facebook.shimmer:shimmer", version.ref = "shimmer" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomKtx" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "googleKsp" }
 

@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.ksp)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -56,5 +58,15 @@ dependencies {
     implementation(libs.logging.interceptor)
 //  Coroutines Library
 //  Component Library
+    implementation(libs.ucrop)
 //  Android Architecture Components Library
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    testImplementation(libs.koin.test)
+    testImplementation(libs.koin.test.junit4)
+
+//  Android Room Library
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 }

@@ -31,9 +31,9 @@ class SplashActivity : CoreActivity<ActivitySplashBinding>() {
         }
     }
 
-    override fun getViewBinding(layoutInflater: LayoutInflater): ActivitySplashBinding {
-        return ActivitySplashBinding.inflate(layoutInflater)
-    }
+    override fun getViewBinding(layoutInflater: LayoutInflater): ActivitySplashBinding =
+        ActivitySplashBinding.inflate(layoutInflater)
+
 
     override fun initIntent() {
         // Implement initIntent logic here or leave it empty if not used

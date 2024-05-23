@@ -16,26 +16,8 @@ class RegisterActivity : CoreActivity<ActivityRegisterBinding>() {
         super.onCreate(savedInstanceState)
     }
 
-    override fun getViewBinding(layoutInflater: LayoutInflater): ActivityRegisterBinding =
+    override fun setupBinding(layoutInflater: LayoutInflater): ActivityRegisterBinding =
         ActivityRegisterBinding.inflate(layoutInflater)
 
-    override fun initIntent() {
-        TODO("Not yet implemented")
-    }
 
-    override fun initUI() {
-        TODO("Not yet implemented")
-    }
-
-    override fun initAction() {
-        TODO("Not yet implemented")
-    }
-
-    override fun initProcess() {
-        TODO("Not yet implemented")
-    }
-
-    override fun initObservers() {
-        TODO("Not yet implemented")
-    }
 }

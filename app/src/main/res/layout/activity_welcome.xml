@@ -9,35 +9,24 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sign_in"
+        style="@style/ButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        app:layout_constraintBottom_toTopOf="@id/btn_register"
         android:text="@string/sign_in"
-        android:fontFamily="@font/manrope_semi_bold"
-        />
+        app:layout_constraintBottom_toTopOf="@id/btn_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register"
+        style="@style/ButtonStyle.Secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
         android:layout_marginTop="12dp"
-        app:backgroundTint="@color/white"
+        android:layout_marginBottom="167dp"
+        android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        app:strokeColor="@color/cleferGrey"
-        android:text="@string/register"
-        android:fontFamily="@font/manrope_semi_bold"
-        android:textColor="@color/cleferGreen"
-        android:layout_marginBottom="167dp"
-        app:strokeWidth="1dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

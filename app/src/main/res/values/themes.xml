@@ -4,9 +4,23 @@
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/cleferGreen</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/white</item>
-        <item name="colorOnSecondary">@color/cleferGreen</item>
+        <!--        <item name="colorSecondary">@color/white</item>-->
+        <!--        <item name="colorOnSecondary">@color/cleferGreen</item>-->
     </style>
 
     <style name="Theme.Clefer" parent="Base.Theme.Clefer" />
+
+    <style name="ButtonStyle" parent="ThemeOverlay.Material3.Button">
+        <item name="android:layout_marginEnd">25dp</item>
+        <item name="android:layout_marginStart">25dp</item>
+        <item name="android:padding">15dp</item>
+        <item name="fontFamily">@font/manrope_semi_bold</item>
+    </style>
+
+    <style name="ButtonStyle.Secondary" parent="ButtonStyle">
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/cleferGrey</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/cleferGreen</item>
+    </style>
 </resources>

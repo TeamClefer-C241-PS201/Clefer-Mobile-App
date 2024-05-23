@@ -29,35 +29,21 @@ class SplashActivity : CoreActivity<ActivitySplashBinding>() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        playAnimation()
+        splashScreenTransition()
     }
 
-    override fun getViewBinding(layoutInflater: LayoutInflater): ActivitySplashBinding =
+    override fun setupBinding(layoutInflater: LayoutInflater): ActivitySplashBinding =
         ActivitySplashBinding.inflate(layoutInflater)
 
 
-    override fun initIntent() {
-        // Implement initIntent logic here or leave it empty if not used
-    }
 
-    override fun initUI() {
-        playAnimation()
-    }
-
-    override fun initAction() {
-        // Implement initAction logic here if needed
-    }
-
-    override fun initProcess() {
-        // Implement initAction logic here if needed
+    private fun splashScreenTransition() {
         lifecycleScope.launch {
             delay(Constant.SPLASH_SCREEN_DURATION.seconds)
             startActivity(Intent(this@SplashActivity, WelcomeActivity::class.java))
             finish()
         }
-    }
-
-    override fun initObservers() {
-        // Implement initObservers logic here if needed
     }
 
     private fun playAnimation() {

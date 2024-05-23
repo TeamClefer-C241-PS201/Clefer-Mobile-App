@@ -11,27 +11,9 @@ class WelcomeActivity : CoreActivity<ActivityWelcomeBinding>() {
 
     }
 
-    override fun getViewBinding(layoutInflater: LayoutInflater): ActivityWelcomeBinding =
+    override fun setupBinding(layoutInflater: LayoutInflater): ActivityWelcomeBinding =
         ActivityWelcomeBinding.inflate(layoutInflater)
 
 
-    override fun initIntent() {
 
-    }
-
-    override fun initUI() {
-
-    }
-
-    override fun initAction() {
-
-    }
-
-    override fun initProcess() {
-
-    }
-
-    override fun initObservers() {
-
-    }
 }

@@ -17,27 +17,7 @@ class SignInActivity : CoreActivity<ActivitySignInBinding>() {
 
     }
 
-    override fun getViewBinding(layoutInflater: LayoutInflater): ActivitySignInBinding =
+    override fun setupBinding(layoutInflater: LayoutInflater): ActivitySignInBinding =
         ActivitySignInBinding.inflate(layoutInflater)
 
-
-    override fun initIntent() {
-        TODO("Not yet implemented")
-    }
-
-    override fun initUI() {
-        TODO("Not yet implemented")
-    }
-
-    override fun initAction() {
-        TODO("Not yet implemented")
-    }
-
-    override fun initProcess() {
-        TODO("Not yet implemented")
-    }
-
-    override fun initObservers() {
-        TODO("Not yet implemented")
-    }
 }

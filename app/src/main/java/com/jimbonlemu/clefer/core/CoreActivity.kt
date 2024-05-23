@@ -10,14 +10,8 @@ abstract class CoreActivity<viewBinding:ViewBinding> : AppCompatActivity() {
     protected val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = getViewBinding(layoutInflater)
+        _binding = setupBinding(layoutInflater)
         setContentView(binding.root)
-
-        initIntent()
-        initUI()
-        initAction()
-        initProcess()
-        initObservers()
     }
 
     override fun onDestroy() {
@@ -25,15 +19,7 @@ abstract class CoreActivity<viewBinding:ViewBinding> : AppCompatActivity() {
         _binding = null
     }
 
-    abstract fun getViewBinding(layoutInflater: LayoutInflater): viewBinding
+    abstract fun setupBinding(layoutInflater: LayoutInflater): viewBinding
 
-    abstract fun initIntent()
 
-    abstract fun initUI()
-
-    abstract fun initAction()
-
-    abstract fun initProcess()
-
-    abstract fun initObservers()
 }

@@ -9,7 +9,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityRegisterBinding
-import com.jimbonlemu.clefer.databinding.ActivityWelcomeBinding
 
 class RegisterActivity : CoreActivity<ActivityRegisterBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {

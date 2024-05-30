@@ -9,7 +9,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivitySignInBinding
-import com.jimbonlemu.clefer.databinding.ActivityWelcomeBinding
 
 class SignInActivity : CoreActivity<ActivitySignInBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {

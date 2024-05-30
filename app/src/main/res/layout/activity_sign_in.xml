@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,4 +7,90 @@
     android:layout_height="match_parent"
     tools:context=".views.SignInActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/main_headline"
+            style="@style/BoldHeadlineStyle"
+            android:layout_marginTop="59dp"
+            android:text="@string/sign_in_main_headline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/secondary_headline"
+            style="@style/RegularHeadline"
+            android:text="@string/sign_in_secondary_headline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/main_headline" />
+
+        <ImageView
+            android:id="@+id/iv_sign_in"
+            android:layout_width="278dp"
+            android:layout_height="183.02dp"
+            android:src="@drawable/img_sign_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/secondary_headline" />
+
+
+        <com.jimbonlemu.clefer.components.CustomViewEditText
+            android:id="@+id/edt_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            app:hintText="@string/hint_input_email"
+            app:labelText="@string/title_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_sign_in" />
+
+        <com.jimbonlemu.clefer.components.CustomViewEditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:hintText="@string/hint_input_password"
+            app:isPasswordTypeInput="true"
+            app:labelText="@string/title_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edt_email" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_in"
+            style="@style/ButtonStyle"
+            android:layout_marginTop="40dp"
+            android:text="@string/title_sign_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edt_password" />
+
+        <TextView
+            android:id="@+id/tv_sub_headline"
+            style="@style/RegularSubHeadline"
+            android:text="@string/sign_in_sub_headline_1"
+            app:layout_constraintTop_toBottomOf="@id/btn_sign_in"
+            app:layout_constraintEnd_toStartOf="@+id/tv_btn_register"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:layout_marginTop="13dp" />
+
+        <TextView
+            android:id="@+id/tv_btn_register"
+            style="@style/SemiBoldSubHeadline"
+            android:text="@string/sign_in_sub_headline_2"
+            app:layout_constraintStart_toEndOf="@+id/tv_sub_headline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_sub_headline"
+            android:layout_marginStart="4dp"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

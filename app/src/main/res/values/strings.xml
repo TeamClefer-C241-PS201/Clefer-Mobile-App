@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">CLEFER</string>
     <string name="app_full_name">Corn Leaf Disease Analyze</string>
-    <string name="register">Register</string>
-    <string name="sign_in">Sign in</string>
+    <string name="sign_in_main_headline">Masuk ke Akun Anda</string>
+    <string name="sign_in_secondary_headline">Silahkan masukkan detail Anda.</string>
+    <string name="title_email">Email</string>
+    <string name="hint_input_email">Masukkan Alamat Email..</string>
+    <string name="hint_input_password">Masukkan kata sandi...</string>
+    <string name="title_password">Password</string>
+    <string name="title_sign_in">Masuk</string>
+    <string name="sign_in_sub_headline_1">Belum punya akun? </string>
+    <string name="sign_in_sub_headline_2"> Daftar Sekarang</string>
 </resources>

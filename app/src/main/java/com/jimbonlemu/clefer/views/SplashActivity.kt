@@ -41,7 +41,7 @@ class SplashActivity : CoreActivity<ActivitySplashBinding>() {
     private fun splashScreenTransition() {
         lifecycleScope.launch {
             delay(Constant.SPLASH_SCREEN_DURATION.seconds)
-            startActivity(Intent(this@SplashActivity, SignInActivity::class.java))
+            startActivity(Intent(this@SplashActivity, RegisterActivity::class.java))
             finish()
         }
     }

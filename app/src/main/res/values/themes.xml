@@ -23,6 +23,11 @@
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="DefinedEditTextLayoutSize">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
     
     <style name="RegularSubHeadline" parent="Base.Theme.Clefer">
         <item name="android:textColor">@color/cleferGrey</item>

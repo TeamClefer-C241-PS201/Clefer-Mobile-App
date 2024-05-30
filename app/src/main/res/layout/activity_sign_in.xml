@@ -87,8 +87,7 @@
             app:layout_constraintStart_toEndOf="@+id/tv_sub_headline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_sub_headline"
-            android:layout_marginStart="4dp"
-            />
+            android:layout_marginStart="4dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

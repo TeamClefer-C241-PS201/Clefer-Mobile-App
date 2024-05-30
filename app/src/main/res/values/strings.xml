@@ -5,9 +5,12 @@
     <string name="sign_in_secondary_headline">Silahkan masukkan detail Anda.</string>
     <string name="title_email">Email</string>
     <string name="hint_input_email">Masukkan Alamat Email..</string>
-    <string name="hint_input_password">Masukkan kata sandi...</string>
-    <string name="title_password">Password</string>
+    <string name="hint_input_password">Masukkan Kata Sandi...</string>
+    <string name="title_password">Kata Sandi</string>
     <string name="title_sign_in">Masuk</string>
     <string name="sign_in_sub_headline_1">Belum punya akun? </string>
     <string name="sign_in_sub_headline_2"> Daftar Sekarang</string>
+    <string name="title_register">Daftar</string>
+    <string name="register_sub_headline_1">Sudah punya akun?</string>
+    <string name="register_sub_headline_2">Masuk Sekarang</string>
 </resources>

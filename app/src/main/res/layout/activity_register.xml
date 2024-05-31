@@ -6,42 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.RegisterActivity">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <ImageButton
-            android:id="@+id/btn_back_sign_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:layout_marginTop="18dp"
-            android:background="@color/white"
-            android:src="@drawable/arrow_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/small_headline_register"
-            style="@style/SemiBoldSubHeadline"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:text="@string/title_register"
-            android:textColor="#475569"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_back_sign_in"
-            app:layout_constraintStart_toEndOf="@id/btn_back_sign_in"
-            app:layout_constraintTop_toTopOf="@id/btn_back_sign_in" />
-
         <TextView
             android:id="@+id/main_headline"
             style="@style/BoldHeadlineStyle"
-            android:layout_marginTop="5dp"
-            android:text="Buat Akun"
+            android:layout_marginTop="59dp"
+            android:text="@string/title_create_account"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/small_headline_register" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/secondary_headline"
@@ -55,8 +32,8 @@
             android:id="@+id/edt_first_name"
             style="@style/DefinedEditTextLayoutSize"
             android:layout_marginTop="18dp"
-            app:hintText="Masukkan Nama Depan..."
-            app:labelText="Nama Depan"
+            app:hintText="@string/hint_input_first_name"
+            app:labelText="@string/title_first_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/secondary_headline" />
@@ -65,18 +42,18 @@
             android:id="@+id/edt_last_name"
             style="@style/DefinedEditTextLayoutSize"
             android:layout_marginTop="16dp"
-            app:hintText="Masukkan Nama Belakang..."
-            app:labelText="Nama Belakang"
+            app:hintText="@string/hint_input_last_name"
+            app:labelText="@string/title_last_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edt_first_name" />
 
         <com.jimbonlemu.clefer.components.CustomViewEditText
-            android:id="@+id/edt_user_name"
+            android:id="@+id/edt_username"
             style="@style/DefinedEditTextLayoutSize"
             android:layout_marginTop="16dp"
-            app:hintText="Masukkan Nama Pengguna..."
-            app:labelText="Nama Pengguna"
+            app:hintText="@string/hint_input_username"
+            app:labelText="@string/title_username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edt_last_name" />
@@ -86,16 +63,17 @@
             style="@style/DefinedEditTextLayoutSize"
             android:layout_marginTop="16dp"
             app:hintText="@string/hint_input_email"
-            app:labelText="Email"
+            app:labelText="@string/title_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edt_user_name" />
+            app:layout_constraintTop_toBottomOf="@id/edt_username" />
 
         <com.jimbonlemu.clefer.components.CustomViewEditText
             android:id="@+id/edt_password"
             style="@style/DefinedEditTextLayoutSize"
             android:layout_marginTop="16dp"
             app:hintText="@string/hint_input_password"
+            app:isPasswordTypeInput="true"
             app:labelText="@string/title_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,7 +83,7 @@
             android:id="@+id/btn_sign_in"
             style="@style/ButtonStyle"
             android:layout_marginTop="25dp"
-            android:text="@string/title_sign_in"
+            android:text="@string/title_register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/edt_password" />
@@ -113,20 +91,20 @@
         <TextView
             android:id="@+id/tv_sub_headline"
             style="@style/RegularSubHeadline"
+            android:layout_marginTop="13dp"
             android:text="@string/register_sub_headline_1"
-            app:layout_constraintTop_toBottomOf="@id/btn_sign_in"
-            app:layout_constraintEnd_toStartOf="@+id/tv_btn_register"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_btn_sign_in"
             app:layout_constraintHorizontal_chainStyle="packed"
-            android:layout_marginTop="13dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_sign_in" />
 
         <TextView
-            android:id="@+id/tv_btn_register"
+            android:id="@+id/tv_btn_sign_in"
             style="@style/SemiBoldSubHeadline"
+            android:layout_marginStart="4dp"
             android:text="@string/register_sub_headline_2"
-            app:layout_constraintStart_toEndOf="@+id/tv_sub_headline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_sub_headline"
-            android:layout_marginStart="4dp" />
+            app:layout_constraintStart_toEndOf="@+id/tv_sub_headline"
+            app:layout_constraintTop_toTopOf="@id/tv_sub_headline" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

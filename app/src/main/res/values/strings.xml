@@ -13,4 +13,11 @@
     <string name="title_register">Daftar</string>
     <string name="register_sub_headline_1">Sudah punya akun?</string>
     <string name="register_sub_headline_2">Masuk Sekarang</string>
+    <string name="title_create_account">Buat Akun</string>
+    <string name="title_first_name">Nama Depan</string>
+    <string name="hint_input_first_name">Masukkan Nama Depan...</string>
+    <string name="hint_input_last_name">Masukkan Nama Belakang...</string>
+    <string name="title_last_name">Nama Belakang</string>
+    <string name="hint_input_username">Masukkan Nama Pengguna...</string>
+    <string name="title_username">Nama Pengguna</string>
 </resources>

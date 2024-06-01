@@ -20,4 +20,6 @@
     <string name="title_last_name">Nama Belakang</string>
     <string name="hint_input_username">Masukkan Nama Pengguna...</string>
     <string name="title_username">Nama Pengguna</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

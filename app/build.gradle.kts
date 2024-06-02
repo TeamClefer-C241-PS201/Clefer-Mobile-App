@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.ucrop)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.circleimageview)
 //  Android Architecture Components Library
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)

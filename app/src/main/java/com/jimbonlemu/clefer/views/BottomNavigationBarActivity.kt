@@ -2,8 +2,7 @@ package com.jimbonlemu.clefer.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -16,6 +15,7 @@ class BottomNavigationBarActivity : CoreActivity<ActivityBottomNavigationBarBind
         super.onCreate(savedInstanceState)
         binding.apply {
             setupBottomNavigationBar()
+
         }
     }
 
@@ -25,8 +25,9 @@ class BottomNavigationBarActivity : CoreActivity<ActivityBottomNavigationBarBind
     private fun ActivityBottomNavigationBarBinding.setupBottomNavigationBar() {
         setSupportActionBar(toolbar)
         supportActionBar?.hide()
-        val navController =
-            findNavController(R.id.navigation_host_fragment_activity_bottom_navigation_bar)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navigation_host_fragment_activity_bottom_navigation_bar) as NavHostFragment
+        val navController = navHostFragment.navController
         val appBarConfiguration = AppBarConfiguration(
             setOf(R.id.navigation_article, R.id.navigation_dashboard, R.id.navigation_profile)
         )

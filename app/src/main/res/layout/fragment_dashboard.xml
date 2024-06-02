@@ -1,16 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.navbar.DashboardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="THIS IS FRAGMENT DASHBOARD" />
+        android:layout_height="0dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_user_profile"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/clefer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_greeting"
+            style="@style/MediumHeadline"
+            android:layout_marginStart="10dp"
+            android:text="@string/title_greetings"
+            app:layout_constraintStart_toEndOf="@id/iv_user_profile"
+            app:layout_constraintTop_toTopOf="@id/iv_user_profile" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            style="@style/SemiBoldSubHeadline"
+            android:text="@string/jgrp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_user_profile"
+            app:layout_constraintStart_toStartOf="@id/tv_greeting"
+            app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="34dp"
+            android:layout_marginEnd="22dp"
+            app:cardBackgroundColor="@color/cleferGreen"
+            app:cardCornerRadius="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_user_name">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_card_plant"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="27dp"
+                    android:layout_marginBottom="15dp"
+                    android:src="@drawable/img_corn_plant"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_card_main_headline"
+                    style="@style/BoldHeadlineStyle"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="38dp"
+                    android:text="Corn Leaf"
+                    android:textColor="@color/white"
+                    android:textSize="25sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/iv_card_plant" />
+
+                <TextView
+                    android:id="@+id/tv_card_sub_headline"
+                    style="@style/LightHeadline"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginBottom="38dp"
+                    android:text="Disease Analyze"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_card_plant"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_card_main_headline" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_headline_1"
+            style="@style/RegularHeadline"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="15dp"
+            android:text="Mulai Pemindaian Tanaman Anda"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_layout" />
+
+        <com.jimbonlemu.clefer.components.CustomCardDashboard
+            android:id="@+id/card_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            app:headlineText="Ambil Gambar"
+            app:iconSrc="@drawable/ic_camera"
+            app:layout_constraintEnd_toStartOf="@id/card_gallery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_headline_1"
+            app:subHeadlineText="Dari Kamera" />
+
+        <com.jimbonlemu.clefer.components.CustomCardDashboard
+            android:id="@+id/card_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:headlineText="Sisipkan Gambar"
+            app:iconSrc="@drawable/ic_gallery"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/card_camera"
+            app:layout_constraintTop_toTopOf="@+id/card_camera"
+            app:subHeadlineText="Dari Galeri" />
+
+        <TextView
+            android:id="@+id/tv_headline_2"
+            style="@style/RegularHeadline"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="22dp"
+            android:text="Pilihan Lanjutan"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_camera" />
+
+        <com.jimbonlemu.clefer.components.CustomCardDashboard
+            android:id="@+id/card_community"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:headlineText="Ambil Gambar"
+            app:iconSrc="@drawable/ic_community"
+            app:layout_constraintBottom_toBottomOf="@id/card_history"
+            app:layout_constraintEnd_toStartOf="@id/card_history"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_headline_2"
+            app:subHeadlineText="Dari Kamera" />
 
 
-</FrameLayout>
+        <com.jimbonlemu.clefer.components.CustomCardDashboard
+            android:id="@+id/card_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="55dp"
+            app:headlineText="Ambil Gambar"
+            app:iconSrc="@drawable/ic_history"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/card_community"
+            app:layout_constraintTop_toTopOf="@id/card_community"
+            app:subHeadlineText="Dari Kamera" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

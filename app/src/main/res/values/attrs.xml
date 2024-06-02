@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CustomViewEditText">
-        <attr name="labelText" format="string"/>
-        <attr name="hintText" format="string"/>
-        <attr name="isPasswordTypeInput" format="boolean"/>
+        <attr name="labelText" format="string" />
+        <attr name="hintText" format="string" />
+        <attr name="isPasswordTypeInput" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="CustomCardDashboard">
+        <attr name="iconSrc" format="reference" />
+        <attr name="headlineText" format="string" />
+        <attr name="subHeadlineText" format="string" />
+    </declare-styleable>
+
 </resources>

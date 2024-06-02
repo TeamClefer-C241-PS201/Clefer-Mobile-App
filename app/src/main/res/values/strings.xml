@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">CLEFER</string>
+    <string name="jgrp">Christian Malik</string>
     <string name="app_full_name">Corn Leaf Disease Analyze</string>
     <string name="sign_in_main_headline">Masuk ke Akun Anda</string>
     <string name="sign_in_secondary_headline">Silahkan masukkan detail Anda.</string>
@@ -22,4 +23,5 @@
     <string name="title_username">Nama Pengguna</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_greetings">Selamat Datang</string>
 </resources>

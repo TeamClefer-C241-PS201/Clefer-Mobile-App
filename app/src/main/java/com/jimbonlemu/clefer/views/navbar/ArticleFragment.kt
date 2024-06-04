@@ -11,27 +11,16 @@ import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.databinding.FragmentArticleBinding
 
 class ArticleFragment : Fragment() {
-    private var _binding: FragmentArticleBinding? = null
-    private val binding get() = _binding!!
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentArticleBinding.inflate(inflater, container, false)
-        return binding.root
+    ): View? {
+        return inflater.inflate(R.layout.fragment_article, container, false)
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
-
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
 }

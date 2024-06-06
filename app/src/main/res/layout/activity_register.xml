@@ -29,34 +29,14 @@
             app:layout_constraintTop_toBottomOf="@id/main_headline" />
 
         <com.jimbonlemu.clefer.components.CustomViewEditText
-            android:id="@+id/edt_first_name"
-            style="@style/DefinedEditTextLayoutSize"
-            android:layout_marginTop="18dp"
-            app:hintText="@string/hint_input_first_name"
-            app:labelText="@string/title_first_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/secondary_headline" />
-
-        <com.jimbonlemu.clefer.components.CustomViewEditText
-            android:id="@+id/edt_last_name"
-            style="@style/DefinedEditTextLayoutSize"
-            android:layout_marginTop="16dp"
-            app:hintText="@string/hint_input_last_name"
-            app:labelText="@string/title_last_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edt_first_name" />
-
-        <com.jimbonlemu.clefer.components.CustomViewEditText
             android:id="@+id/edt_username"
             style="@style/DefinedEditTextLayoutSize"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="30dp"
             app:hintText="@string/hint_input_username"
             app:labelText="@string/title_username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edt_last_name" />
+            app:layout_constraintTop_toBottomOf="@id/secondary_headline" />
 
         <com.jimbonlemu.clefer.components.CustomViewEditText
             android:id="@+id/edt_email"
@@ -89,14 +69,32 @@
             app:layout_constraintTop_toBottomOf="@id/edt_password" />
 
         <TextView
+            android:id="@+id/tv_sub_headline_or"
+            style="@style/RegularSubHeadline"
+            android:layout_marginTop="17dp"
+            android:text="@string/sub_headline_or"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_sign_in" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login_google"
+            style="@style/ButtonStyle.Secondary.WithIcon"
+            android:layout_marginTop="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sub_headline_or" />
+
+        <TextView
             android:id="@+id/tv_sub_headline"
             style="@style/RegularSubHeadline"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="6dp"
             android:text="@string/register_sub_headline_1"
             app:layout_constraintEnd_toStartOf="@+id/tv_btn_sign_in"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_sign_in" />
+            app:layout_constraintTop_toBottomOf="@id/btn_login_google" />
+
 
         <TextView
             android:id="@+id/tv_btn_sign_in"

@@ -1,41 +1,85 @@
-    <resources xmlns:tools="http://schemas.android.com/tools">
-        <!-- Base application theme. -->
-        <style name="Base.Theme.Clefer" parent="Theme.Material3.DayNight.NoActionBar">
-            <!-- Customize your light theme here. -->
-            <item name="colorPrimary">@color/cleferGreen</item>
-            <item name="colorOnPrimary">@color/white</item>
-            <item name="android:windowBackground">@color/white</item>
-            <!--        <item name="colorSecondary">@color/white</item>-->
-            <!--        <item name="colorOnSecondary">@color/cleferGreen</item>-->
-        </style>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Clefer" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/cleferGreen</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <!--        <item name="colorSecondary">@color/white</item>-->
+        <!--        <item name="colorOnSecondary">@color/cleferGreen</item>-->
+    </style>
 
-        <style name="Theme.Clefer" parent="Base.Theme.Clefer" />
+    <style name="Theme.Clefer" parent="Base.Theme.Clefer" />
 
-        <style name="BoldHeadlineStyle" parent="Base.Theme.Clefer">
-            <item name="fontFamily">@font/poppins_bold</item>
-            <item name="android:textSize">16sp</item>
-            <item name="android:layout_width">wrap_content</item>
-            <item name="android:layout_height">wrap_content</item>
-            <item name="android:textColor">@color/cleferGreen</item>
-        </style>
+    <style name="BoldHeadlineStyle" parent="Base.Theme.Clefer">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/cleferGreen</item>
+    </style>
 
-        <style name="LightHeadline" parent="BoldHeadlineStyle">
-            <item name="fontFamily">@font/poppins_light</item>
-            <item name="android:textSize">12sp</item>
-            <item name="android:textColor">@color/white</item>
-        </style>
+    <style name="LightHeadline" parent="BoldHeadlineStyle">
+        <item name="fontFamily">@font/poppins_light</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="RegularHeadline" parent="BoldHeadlineStyle">
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MediumHeadline" parent="BoldHeadlineStyle">
+        <item name="fontFamily">@font/poppins_medium</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="DefinedEditTextLayoutSize">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="RegularSubHeadline" parent="Base.Theme.Clefer">
+        <item name="android:textColor">@color/cleferGrey</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="SemiBoldSubHeadline" parent="RegularSubHeadline">
+        <item name="android:textColor">@color/cleferGreen</item>
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ToolbarTextAppearance">
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
 
-        <style name="RegularHeadline" parent="BoldHeadlineStyle">
-            <item name="fontFamily">@font/poppins_regular</item>
-            <item name="android:textSize">14sp</item>
-        </style>
+    <!--Button style-->
+    <style name="ButtonStyle" parent="ThemeOverlay.Material3.Button">
+        <item name="android:layout_marginEnd">38dp</item>
+        <item name="android:layout_marginStart">38dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">15dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="fontFamily">@font/poppins_semi_bold</item>
+    </style>
 
-        <style name="MediumHeadline" parent="BoldHeadlineStyle">
-            <item name="fontFamily">@font/poppins_medium</item>
-            <item name="android:textColor">@color/black</item>
-            <item name="android:textSize">14sp</item>
-        </style>
+    <style name="ButtonStyle.Secondary" parent="ButtonStyle">
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/cleferGrey</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="android:textColor">@color/cleferGreen</item>
+    </style>
 
         <style name="DefinedEditTextLayoutSize">
             <item name="android:layout_width">match_parent</item>
@@ -84,5 +128,14 @@
             <item name="chipIconTint"> @color/white</item>
 
         </style>
-
+    <style name="ButtonStyle.Secondary.WithIcon" parent="ButtonStyle.Secondary">
+        <item name="icon">@drawable/ic_google</item>
+        <item name="android:text">Masuk dengan Google</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconSize">24dp</item>
+        <item name="iconTint">@null</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/cleferButtonTextColor</item>
+    </style>
     </resources>
+

@@ -29,4 +29,12 @@
     <string name="tentang_aplikasi_title">Tentang Aplikasi</string>
     <string name="toolbar_artikel">Artikel</string>
     <string name="detail_artikel_title">Detail Artikel</string>
+    <string name="sub_headline_or">Atau lanjutkan dengan</string>
+    <string name="title_image_result">📸 Hasil Gambar Anda</string>
+    <string name="desc_image_result">Periksa kembali foto daun jagung yang Anda ambil untuk memastikan sudah sesuai dengan panduan yang disarankan. Pastikan gambar jelas, fokus, dan menunjukkan gejala penyakit dengan baik.</string>
+    <string name="title_your_image_result">Hasil Gambar Anda</string>
+    <string name="title_start_analyze">Mulai Analisis</string>
+    <string name="title_article">Artikel</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_profile">Profile</string>
 </resources>

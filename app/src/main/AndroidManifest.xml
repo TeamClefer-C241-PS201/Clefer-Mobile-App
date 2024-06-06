@@ -27,7 +27,9 @@
         android:theme="@style/Theme.Clefer"
         tools:targetApi="31">
         <activity
+
             android:name=".views.article.DetailArticleActivity"
+            android:name=".views.PreviewImageActivity"
             android:exported="false" />
         <activity
             android:name=".views.BottomNavigationBarActivity"

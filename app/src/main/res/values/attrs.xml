@@ -12,6 +12,11 @@
         <attr name="subHeadlineText" format="string" />
     </declare-styleable>
 
+    <style name="RoundedSquare">
+        <item name="cornerSize">10%</item>
+    </style>
+
+
 
 
 

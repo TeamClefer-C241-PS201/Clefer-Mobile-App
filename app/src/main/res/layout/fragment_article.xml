@@ -6,11 +6,53 @@
     android:orientation="vertical"
     tools:context=".views.navbar.ArticleFragment">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.jimbonlemu.clefer.components.ToolbarComponent
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         />
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_navigation_bar_background"
+            android:hint="Search"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/iv_search"
+            android:minHeight="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/ic_search"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/iv_bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:minHeight="48dp"
+            android:src="@drawable/ic_bookmarks"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +60,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_article"
                 android:layout_width="match_parent"
@@ -27,7 +70,7 @@
                 android:paddingHorizontal="5dp"
                 android:visibility="visible"
                 tools:listitem="@layout/item_article" />
-        </RelativeLayout>
 
-</LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
+</LinearLayout>

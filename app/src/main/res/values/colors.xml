@@ -5,4 +5,9 @@
     <color name="cleferGreen">#015D3A</color>
     <color name="cleferGrey">#9E9E9E</color>
     <color name="cleferLightGreen">#C9EBDF</color>
+     <color name="cleferLightYellow">#FFFEE0</color>
+    <color name="cleferRed">#F54336</color>
+    <color name="cleferGreenSecond">#0EA068</color>
+
+
 </resources>

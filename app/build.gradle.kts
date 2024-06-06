@@ -18,6 +18,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "BASE_URL", "\"${project.findProperty("BASE_URL")}\"")
+        buildConfigField("String", "ARTICLE_API_URL", "\"${project.findProperty("ARTICLE_API_URL")}\"")
     }
 
     buildTypes {
@@ -76,4 +77,9 @@ dependencies {
 
     // shared preferences by kotpref
     implementation (libs.kotpref)
+    //paging
+    implementation (libs.androidx.paging.runtime.ktx)
+    //others
+    implementation(libs.glide)
+
 }

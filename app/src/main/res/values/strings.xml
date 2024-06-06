@@ -27,4 +27,6 @@
     <string name="logout_title">Keluar</string>
     <string name="data_pengguna_title">Data Pengguna</string>
     <string name="tentang_aplikasi_title">Tentang Aplikasi</string>
+    <string name="toolbar_artikel">Artikel</string>
+    <string name="detail_artikel_title">Detail Artikel</string>
 </resources>

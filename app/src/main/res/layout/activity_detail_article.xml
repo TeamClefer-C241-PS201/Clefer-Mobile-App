@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.article.DetailArticleActivity">
+
+    <com.jimbonlemu.clefer.components.ToolbarComponent
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="72dp"> <!-- This padding is to avoid overlap with the FloatingActionButton -->
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_item_photo_detail"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:shapeAppearanceOverlay="@style/RoundedSquare"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tv_title_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Penyakit Bulai Jagung"
+                style="@style/BoldHeadlineStyle"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/iv_item_photo_detail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_desc_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                style="@style/LightHeadline"
+                android:textColor="@color/black"
+                android:text="Penyakit bulai jagung adalah salah satu penyakit yang dapat menimbulkan kerugian signifikan pada tanaman jagung. Penyakit ini disebabkan oleh jamur Peronosclerospora maydis yang dapat menyebar dengan cepat melalui spora yang terbawa angin. Gejala awal seringkali terlihat pada daun muda yang menguning dengan pola belang atau garis-garis kuning memanjang sejajar dengan tulang daun. Selain itu, tanaman yang terinfeksi seringkali menunjukkan pertumbuhan yang terhambat dan kerdil. Pada pagi hari, Anda mungkin melihat lapisan putih seperti tepung pada permukaan bawah daun, yang merupakan spora jamur. Tunas muda seringkali mati jika infeksi terjadi pada tahap awal pertumbuhan tanaman. Untuk mencegah penyakit bulai jagung, pilihlah varietas jagung yang tahan terhadap penyakit ini. Benih yang tahan penyakit dapat mengurangi risiko infeksi."
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_detail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_save_bookmarks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_bookmarks"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:backgroundTint="@color/cleferRed"
+        app:tint="@android:color/white" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

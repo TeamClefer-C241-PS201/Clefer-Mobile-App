@@ -26,9 +26,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Clefer"
         tools:targetApi="31">
-        <activity
+        <activity android:name=".views.article.DetailArticleActivity"
+            android:exported="false" />
 
-            android:name=".views.article.DetailArticleActivity"
+        <activity
             android:name=".views.PreviewImageActivity"
             android:exported="false" />
         <activity

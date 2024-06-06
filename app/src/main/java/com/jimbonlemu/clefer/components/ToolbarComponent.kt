@@ -22,7 +22,7 @@ class ToolbarComponent @JvmOverloads constructor(
         toolbarTitle.setTextColor(context.getColor(R.color.black))
 
         if (showBackButton) {
-            this.setNavigationIcon(R.drawable.arrow_back)
+            this.setNavigationIcon(R.drawable.ic_arrow_back)
             this.setNavigationOnClickListener {
                 backAction?.invoke()
             }

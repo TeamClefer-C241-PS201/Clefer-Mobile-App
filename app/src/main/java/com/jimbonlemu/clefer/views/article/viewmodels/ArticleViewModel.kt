@@ -10,5 +10,4 @@ import com.jimbonlemu.clefer.source.remote.response.ArticlesItem
 
 class ArticleViewModel(repository: AppRepository): ViewModel() {
     val getAllArticles : LiveData<PagingData<ArticlesItem>> = repository.getAllArticles().cachedIn(viewModelScope)
-
 }

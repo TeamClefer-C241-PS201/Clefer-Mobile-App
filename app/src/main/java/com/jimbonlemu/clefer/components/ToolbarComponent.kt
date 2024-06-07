@@ -2,6 +2,8 @@ package com.jimbonlemu.clefer.components
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import com.jimbonlemu.clefer.R
@@ -19,15 +21,19 @@ class ToolbarComponent @JvmOverloads constructor(
     fun setupToolbar(title: String, showBackButton: Boolean = false, backAction: (() -> Unit)? = null) {
         val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
         toolbarTitle.text = title
-        toolbarTitle.setTextColor(context.getColor(R.color.black))
+        toolbarTitle.setTextColor(context.getColor(R.color.white))
+
+        val toolbarBackIcon = findViewById<ImageView>(R.id.toolbar_back_icon)
 
         if (showBackButton) {
-            this.setNavigationIcon(R.drawable.ic_arrow_back)
-            this.setNavigationOnClickListener {
+            toolbarBackIcon.visibility = View.VISIBLE
+            this.setContentInsetsAbsolute(0, 0)
+            toolbarBackIcon.setOnClickListener {
                 backAction?.invoke()
             }
         } else {
-            this.navigationIcon = null
+            toolbarBackIcon.visibility = View.GONE
         }
     }
 }
+

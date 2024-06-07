@@ -15,7 +15,7 @@ class ArticlePaging(private val remoteDataSource: RemoteDataSource) : PagingSour
         return try {
             val page = params.key ?: INITIAL_PAGE_INDEX
             Log.d(TAG, "Loading page: $page")
-            val response = remoteDataSource.getAllArticles("tesla", "2024-05-06", "publishedAt", "1ca5ed5918da44b2a0d1b414ef3901ca", page, params.loadSize)
+            val response = remoteDataSource.getAllArticles("apple", "2024-05-07", "publishedAt", "1ca5ed5918da44b2a0d1b414ef3901ca", page, params.loadSize)
 
             if (response.isSuccessful) {
                 val listArticles = response.body()?.articles ?: emptyList()

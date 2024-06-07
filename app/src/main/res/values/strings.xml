@@ -37,4 +37,10 @@
     <string name="title_article">Artikel</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_profile">Profile</string>
+    <string name="title_save_article">📑 Bookmarks Artikel CLEFER</string>
+    <string name="desc_save_article">Selamat datang di halaman Penanda Artikel! Di sini, Anda dapat melihat semua artikel yang telah Anda tandai sebagai favorit terkait penyakit daun jagung.</string>
+    <string name="judul_artikel">Judul Artikel :</string>
+    <string name="save_article">Bookmarks</string>
+    <string name="toolbar_profile">Profile</string>
+    <string name="about_app">Tentang Aplikasi</string>
 </resources>

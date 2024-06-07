@@ -1,5 +1,6 @@
 package com.jimbonlemu.clefer.views.navbar
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.databinding.FragmentArticleBinding
+import com.jimbonlemu.clefer.views.article.SaveArticleActivity
 import com.jimbonlemu.clefer.views.article.adapter.ArticleAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.jimbonlemu.clefer.views.article.viewmodels.ArticleViewModel
@@ -32,13 +34,20 @@ class ArticleFragment : Fragment() {
             title = getString(R.string.toolbar_artikel),
             showBackButton = false,
         )
+
+        mainButton()
         getDataAllArticle()
         return root
 
     }
 
 
-
+private  fun mainButton(){
+    binding.btnBookmark.setOnClickListener {
+        val intent = Intent(requireContext(), SaveArticleActivity::class.java)
+        startActivity(intent)
+    }
+}
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

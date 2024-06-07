@@ -26,7 +26,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="72dp"> <!-- This padding is to avoid overlap with the FloatingActionButton -->
+            android:paddingBottom="72dp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_item_photo_detail"

@@ -9,14 +9,18 @@ import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.databinding.ItemArticleBinding
 import com.jimbonlemu.clefer.source.remote.response.ArticlesItem
 
-class ArticleAdapter : PagingDataAdapter<ArticlesItem, ArticleAdapter.ArticleViewHolder>(LIST_ARTICLE_DIFF_CALLBACK) {
-    inner class ArticleViewHolder(private val binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root) {
+class ArticleAdapter :
+    PagingDataAdapter<ArticlesItem, ArticleAdapter.ArticleViewHolder>(LIST_ARTICLE_DIFF_CALLBACK) {
+    inner class ArticleViewHolder(private val binding: ItemArticleBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(articleItem: ArticlesItem) {
-            binding.tvTitle.text = articleItem.title
-            binding.tvItemDesc.text = articleItem.description
-            Glide.with(binding.ivItemPhoto)
-                .load(articleItem.urlToImage)
-                .into(binding.ivItemPhoto)
+            binding.apply {
+                tvTitle.text = articleItem.title
+                tvItemDesc.text = articleItem.description
+                Glide.with(root)
+                    .load(articleItem.urlToImage)
+                    .into(ivItemPhoto)
+            }
 //            binding.ItemStory.setOnClickListener {
 //                val intent = Intent(it.context, DetailArticleActivity::class.java)
 //                intent.putExtra(DetailArticleActivity.EXTRA_ARTICLE, articleItem)
@@ -26,8 +30,7 @@ class ArticleAdapter : PagingDataAdapter<ArticlesItem, ArticleAdapter.ArticleVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
-        val binding = ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ArticleViewHolder(binding)
+        return ArticleViewHolder(ItemArticleBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {

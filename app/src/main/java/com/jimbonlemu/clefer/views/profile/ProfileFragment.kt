@@ -14,10 +14,6 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.toolbar.setupToolbar(
-            title = getString(R.string.toolbar_profile),
-            showBackButton = false,
-        )
         mainButton()
     }
 
@@ -29,13 +25,14 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
 
 
     private fun mainButton() {
-        binding.btnInfoApp.setOnClickListener {
-            val intent = Intent(requireContext(), AboutActivity::class.java)
-            startActivity(intent)
-        }
-        binding.btnUpdateProfile.setOnClickListener {
-            val intent = Intent(requireContext(), UpdateProfileActivity::class.java)
-            startActivity(intent)
+        binding.apply {
+            btnInfoApp.setOnClickListener {
+                startActivity(Intent(requireContext(), AboutActivity::class.java))
+            }
+            btnUpdateProfile.setOnClickListener {
+                startActivity(Intent(requireContext(), UpdateProfileActivity::class.java))
+            }
         }
     }
+
 }

@@ -138,13 +138,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            app:headlineText="Ambil Gambar"
+            app:headlineText="Komunitas"
             app:iconSrc="@drawable/ic_community"
             app:layout_constraintBottom_toBottomOf="@id/card_history"
             app:layout_constraintEnd_toStartOf="@id/card_history"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_headline_2"
-            app:subHeadlineText="Dari Kamera" />
+            app:subHeadlineText="Jagung" />
 
 
         <com.jimbonlemu.clefer.components.CustomCardDashboard
@@ -152,13 +152,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="55dp"
-            app:headlineText="Ambil Gambar"
+            app:headlineText="Riwayat"
             app:iconSrc="@drawable/ic_history"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/card_community"
             app:layout_constraintTop_toTopOf="@id/card_community"
-            app:subHeadlineText="Dari Kamera" />
+            app:subHeadlineText="Pemindaian" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

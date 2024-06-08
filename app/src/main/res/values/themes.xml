@@ -56,6 +56,8 @@
     </style>
 
     <style name="ToolbarTextAppearance">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">24sp</item>
         <item name="fontFamily">@font/roboto_bold</item>
         <item name="android:textColor">@color/black</item>
@@ -85,8 +87,8 @@
         <item name="android:gravity">start</item>
         <item name="fontFamily">@font/poppins_bold</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="chipIconTint">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="chipIconTint">@color/cleferGreen</item>
     </style>
 
     <style name="ButtonStyle.Secondary.WithIcon" parent="ButtonStyle.Secondary">

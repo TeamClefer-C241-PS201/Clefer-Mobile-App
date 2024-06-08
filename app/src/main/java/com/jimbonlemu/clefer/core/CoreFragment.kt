@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract  class CoreFragment<VB : ViewBinding> : Fragment() {
+abstract class CoreFragment<VB : ViewBinding> : Fragment() {
 
     private var _binding: VB? = null
     val binding get() = _binding!!

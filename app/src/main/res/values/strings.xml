@@ -27,7 +27,7 @@
     <string name="logout_title">Keluar</string>
     <string name="data_pengguna_title">Data Pengguna</string>
     <string name="tentang_aplikasi_title">Tentang Aplikasi</string>
-    <string name="toolbar_artikel">Artikel</string>
+    <string name="title_artikel">Artikel</string>
     <string name="detail_artikel_title">Detail Artikel</string>
     <string name="sub_headline_or">Atau lanjutkan dengan</string>
     <string name="title_image_result">📸 Hasil Gambar Anda</string>
@@ -41,8 +41,7 @@
     <string name="desc_save_article">Selamat datang di halaman Penanda Artikel! Di sini, Anda dapat melihat semua artikel yang telah Anda tandai sebagai favorit terkait penyakit daun jagung.</string>
     <string name="judul_artikel">Judul Artikel :</string>
     <string name="save_article">Bookmarks</string>
-    <string name="toolbar_profile">Profile</string>
-    <string name="about_app">Tentang Aplikasi</string>
+    <string name="title_about_app">Tentang Aplikasi</string>
     <string name="simpan">Simpan</string>
     <string name="update_profile">Data Pengguna</string>
 </resources>

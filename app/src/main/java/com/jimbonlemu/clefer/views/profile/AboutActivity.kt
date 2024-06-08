@@ -12,13 +12,22 @@ class AboutActivity : CoreActivity<ActivityAboutBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //add toolbar
-        binding.toolbar.setupToolbar(
-            title = getString(R.string.about_app),
-            showBackButton = true,
-            backAction = { onBackPressedDispatcher.onBackPressed() }
-        )
+        binding.apply {
+            setupToolbar()
+        }
     }
 
-    override fun setupBinding(layoutInflater: LayoutInflater): ActivityAboutBinding = ActivityAboutBinding.inflate(layoutInflater)
+    override fun setupBinding(layoutInflater: LayoutInflater): ActivityAboutBinding =
+        ActivityAboutBinding.inflate(layoutInflater)
+
+    private fun ActivityAboutBinding.setupToolbar() {
+        setSupportActionBar(mToolbar);
+        mToolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back);
+            setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
+    }
 
 }

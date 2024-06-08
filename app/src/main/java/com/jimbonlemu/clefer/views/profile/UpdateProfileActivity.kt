@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
+import com.jimbonlemu.clefer.databinding.ActivityPreviewImageBinding
 import com.jimbonlemu.clefer.databinding.ActivityUpdateProfileBinding
 
 class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
@@ -14,14 +15,20 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
         binding.apply {
             setContentView(root)
             // Set up Toolbar
-            toolbar.setupToolbar(
-                title = getString(R.string.update_profile),
-                showBackButton = true,
-                backAction = { onBackPressedDispatcher.onBackPressed() }
-            )
+            setupToolbar()
         }
     }
 
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityUpdateProfileBinding =
         ActivityUpdateProfileBinding.inflate(layoutInflater)
+
+    private fun ActivityUpdateProfileBinding.setupToolbar() {
+        setSupportActionBar(mToolbar);
+        mToolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back);
+            setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
+    }
 }

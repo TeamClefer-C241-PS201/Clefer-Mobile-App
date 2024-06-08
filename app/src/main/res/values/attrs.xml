@@ -12,13 +12,13 @@
         <attr name="subHeadlineText" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="CustomToolbar">
+        <attr name="title" format="string" />
+    </declare-styleable>
+
     <style name="RoundedSquare">
         <item name="cornerSize">10%</item>
     </style>
-
-
-
-
 
 
 </resources>

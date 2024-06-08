@@ -26,7 +26,7 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
             rvArticle.adapter = articleAdapter
             // Set up Toolbar
             toolbar.setupToolbar(
-                title = getString(R.string.toolbar_artikel),
+                title = getString(R.string.title_article),
                 showBackButton = false,
             )
         }
@@ -44,8 +44,7 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
 
     private fun mainButton() {
         binding.btnBookmark.setOnClickListener {
-            val intent = Intent(requireContext(), SaveArticleActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(requireContext(), SaveArticleActivity::class.java))
         }
     }
 

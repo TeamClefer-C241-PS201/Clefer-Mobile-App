@@ -8,7 +8,6 @@ import com.jimbonlemu.clefer.databinding.ActivitySaveArticleBinding
 
 class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //add toolbar
@@ -20,6 +19,5 @@ class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
     }
 
     override fun setupBinding(layoutInflater: LayoutInflater): ActivitySaveArticleBinding = ActivitySaveArticleBinding.inflate(layoutInflater)
-
 
 }

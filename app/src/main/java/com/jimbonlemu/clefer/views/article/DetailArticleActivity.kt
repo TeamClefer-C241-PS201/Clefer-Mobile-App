@@ -2,11 +2,9 @@ package com.jimbonlemu.clefer.views.article
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.appcompat.app.AppCompatActivity
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityDetailArticleBinding
-
 
 class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
 

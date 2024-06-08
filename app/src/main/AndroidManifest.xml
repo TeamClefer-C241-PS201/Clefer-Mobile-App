@@ -27,6 +27,9 @@
         android:theme="@style/Theme.Clefer"
         tools:targetApi="31">
         <activity
+            android:name=".views.dashboard.CameraActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.profile.AboutActivity"
             android:exported="false" />
         <activity

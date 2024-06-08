@@ -21,7 +21,7 @@ class AboutActivity : AppCompatActivity() {
         binding.toolbar.setupToolbar(
             title = getString(R.string.about_app),
             showBackButton = true,
-            backAction = { onBackPressed() }
+            backAction = { onBackPressedDispatcher.onBackPressed() }
         )
     }
 

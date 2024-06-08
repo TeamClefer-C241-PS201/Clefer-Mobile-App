@@ -17,7 +17,7 @@ class DetailArticleActivity : AppCompatActivity() {
         binding.toolbar.setupToolbar(
             title = getString(R.string.detail_artikel_title),
             showBackButton = true,
-            backAction = { onBackPressed() }
+            backAction = { onBackPressedDispatcher.onBackPressed() }
         )
     }
 

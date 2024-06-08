@@ -20,7 +20,7 @@ class SaveArticleActivity : AppCompatActivity() {
         binding.toolbar.setupToolbar(
             title = getString(R.string.save_article),
             showBackButton = true,
-            backAction = { onBackPressed() }
+            backAction = { onBackPressedDispatcher.onBackPressed() }
         )
     }
 

@@ -22,7 +22,7 @@ class UpdateProfileActivity : AppCompatActivity() {
         binding.toolbar.setupToolbar(
             title = getString(R.string.update_profile),
             showBackButton = true,
-            backAction = { onBackPressed() }
+            backAction = { onBackPressedDispatcher.onBackPressed() }
         )
 
 

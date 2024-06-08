@@ -1,15 +1,15 @@
 package com.jimbonlemu.clefer.views.article
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.jimbonlemu.clefer.R
+import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityDetailArticleBinding
 
-class DetailArticleActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityDetailArticleBinding
+
+class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +20,9 @@ class DetailArticleActivity : AppCompatActivity() {
             backAction = { onBackPressedDispatcher.onBackPressed() }
         )
     }
+
+    override fun setupBinding(layoutInflater: LayoutInflater): ActivityDetailArticleBinding =
+        ActivityDetailArticleBinding.inflate(layoutInflater)
 
     companion object {
         const val EXTRA_ARTICLE = "extra_article"

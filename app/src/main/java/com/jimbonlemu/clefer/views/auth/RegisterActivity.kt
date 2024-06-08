@@ -1,4 +1,4 @@
-package com.jimbonlemu.clefer.views
+package com.jimbonlemu.clefer.views.auth
 
 import android.content.Intent
 import android.os.Bundle

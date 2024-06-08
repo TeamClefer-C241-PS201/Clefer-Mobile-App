@@ -1,4 +1,4 @@
-package com.jimbonlemu.clefer.views
+package com.jimbonlemu.clefer.views.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.jimbonlemu.clefer.views
+package com.jimbonlemu.clefer.views.auth
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
@@ -15,6 +15,7 @@ import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivitySplashBinding
 import com.jimbonlemu.clefer.utils.Constant
+import com.jimbonlemu.clefer.views.BottomNavigationBarActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds

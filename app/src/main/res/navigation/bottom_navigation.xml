@@ -6,17 +6,17 @@
     app:startDestination="@id/navigation_dashboard">
     <fragment
         android:id="@+id/navigation_article"
-        android:name="com.jimbonlemu.clefer.views.navbar.ArticleFragment"
+        android:name="com.jimbonlemu.clefer.views.article.ArticleFragment"
         android:label="fragment_article"
         tools:layout="@layout/fragment_article" />
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.jimbonlemu.clefer.views.navbar.DashboardFragment"
+        android:name="com.jimbonlemu.clefer.views.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.jimbonlemu.clefer.views.navbar.ProfileFragment"
+        android:name="com.jimbonlemu.clefer.views.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

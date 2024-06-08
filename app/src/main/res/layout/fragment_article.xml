@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".views.navbar.ArticleFragment">
+    tools:context=".views.article.ArticleFragment">
 
     <com.jimbonlemu.clefer.components.ToolbarComponent
         android:id="@+id/toolbar"

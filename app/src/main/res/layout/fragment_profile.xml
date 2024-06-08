@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.navbar.ProfileFragment">
+    tools:context=".views.profile.ProfileFragment">
 
     <com.jimbonlemu.clefer.components.ToolbarComponent
         android:id="@+id/toolbar"
@@ -61,7 +61,7 @@
         android:backgroundTint="@color/cleferLightGreen"
         android:textColor="@color/cleferGreen"
         android:drawableLeft="@drawable/ic_profile"
-        android:drawableRight="@drawable/arrow_next"
+        android:drawableRight="@drawable/ic_arrow_next"
         android:drawableTint="@color/cleferGreen"
         android:layout_marginBottom="8dp"
         android:layout_marginHorizontal="22dp"
@@ -83,7 +83,7 @@
         android:backgroundTint="@color/cleferLightGreen"
         android:textColor="@color/cleferGreen"
         android:drawableLeft="@drawable/ic_info_app"
-        android:drawableRight="@drawable/arrow_next"
+        android:drawableRight="@drawable/ic_arrow_next"
         android:drawableTint="@color/cleferGreen"
         android:layout_marginBottom="8dp"
         android:padding="16dp"

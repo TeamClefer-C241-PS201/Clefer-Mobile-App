@@ -39,19 +39,19 @@
             android:name=".views.article.DetailArticleActivity"
             android:exported="false" />
         <activity
-            android:name=".views.PreviewImageActivity"
+            android:name=".views.dashboard.PreviewImageActivity"
             android:exported="false" />
         <activity
             android:name=".views.BottomNavigationBarActivity"
             android:exported="false" />
         <activity
-            android:name=".views.RegisterActivity"
+            android:name=".views.auth.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".views.SignInActivity"
+            android:name=".views.auth.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".views.SplashActivity"
+            android:name=".views.auth.SplashActivity"
             android:exported="false" />
         <activity
             android:name=".core.CoreActivity"

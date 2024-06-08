@@ -43,4 +43,6 @@
     <string name="save_article">Bookmarks</string>
     <string name="toolbar_profile">Profile</string>
     <string name="about_app">Tentang Aplikasi</string>
+    <string name="simpan">Simpan</string>
+    <string name="update_profile">Data Pengguna</string>
 </resources>

@@ -18,6 +18,13 @@ class UpdateProfileActivity : AppCompatActivity() {
         binding = ActivityUpdateProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Set up Toolbar
+        binding.toolbar.setupToolbar(
+            title = getString(R.string.update_profile),
+            showBackButton = true,
+            backAction = { onBackPressed() }
+        )
+
 
     }
 }

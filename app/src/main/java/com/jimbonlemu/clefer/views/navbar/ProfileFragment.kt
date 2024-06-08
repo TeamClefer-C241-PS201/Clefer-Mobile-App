@@ -11,6 +11,7 @@ import com.jimbonlemu.clefer.databinding.FragmentArticleBinding
 import com.jimbonlemu.clefer.databinding.FragmentProfileBinding
 import com.jimbonlemu.clefer.views.article.SaveArticleActivity
 import com.jimbonlemu.clefer.views.profile.AboutActivity
+import com.jimbonlemu.clefer.views.profile.UpdateProfileActivity
 
 
 class ProfileFragment : Fragment() {
@@ -41,6 +42,10 @@ class ProfileFragment : Fragment() {
     private fun mainButton() {
         binding.btnInfoApp.setOnClickListener {
             val intent = Intent(requireContext(), AboutActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnUpdateProfile.setOnClickListener {
+            val intent = Intent(requireContext(), UpdateProfileActivity::class.java)
             startActivity(intent)
         }
     }

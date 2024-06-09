@@ -27,6 +27,15 @@
         android:theme="@style/Theme.Clefer"
         tools:targetApi="31">
         <activity
+            android:name=".views.community.DetailCommentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.community.QuestionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".views.community.CommunityActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.dashboard.CameraActivity"
             android:exported="false" />
         <activity

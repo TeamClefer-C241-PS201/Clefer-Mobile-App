@@ -44,4 +44,11 @@
     <string name="title_about_app">Tentang Aplikasi</string>
     <string name="simpan">Simpan</string>
     <string name="update_profile">Data Pengguna</string>
+    <string name="title_community">👋 Halo Komunitas CLEFER!</string>
+    <string name="desc_community">"Selamat datang di ruang tanya jawab kami! Di sini, Anda dapat berbagi pengetahuan, mengajukan pertanyaan, dan menemukan solusi untuk berbagai masalah terkait penyakit daun jagung. "</string>
+    <string name="ajukan_post">Ajukan Pertanyaan</string>
+    <string name="title_question">Judul</string>
+    <string name="hint_input_title_question">Masukkan Judul</string>
+    <string name="hint_input_description_question">Masukkan Deskripsi</string>
+    <string name="title_description_question">Deskripsi</string>
 </resources>

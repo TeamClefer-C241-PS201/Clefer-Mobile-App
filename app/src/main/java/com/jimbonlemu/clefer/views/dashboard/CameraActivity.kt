@@ -92,13 +92,12 @@ class CameraActivity : CoreActivity<ActivityCameraBinding>() {
                     val savedUri = outputFileResults.savedUri ?: Uri.fromFile(photoFile)
                     val message = "Photo capture succeeded: $savedUri"
                     Snackbar.make(viewFinder, message, Snackbar.LENGTH_LONG).show()
-
-                    startActivity(Intent(
-                        this@CameraActivity,
-                        PreviewImageActivity::class.java
-                    ).apply {
-                        putExtra(PreviewImageActivity.IMAGE_URI_VALUE, savedUri.toString())
-                    })
+                    startActivity(
+                        Intent(
+                            this@CameraActivity,
+                            PreviewImageActivity::class.java
+                        ).putExtra(PreviewImageActivity.IMAGE_URI_VALUE, savedUri.toString())
+                    )
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -124,6 +123,7 @@ class CameraActivity : CoreActivity<ActivityCameraBinding>() {
         val storageDirectory = externalMediaDirs.firstOrNull()
         return File.createTempFile("IMG_${timestamp}_", ".jpg", storageDirectory)
     }
+
 
     companion object {
         private const val TAG = "CameraActivity"

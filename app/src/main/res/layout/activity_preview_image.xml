@@ -23,7 +23,7 @@
         android:layout_marginStart="23dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="23dp"
-        app:cardBackgroundColor="#FFF5F5"
+        app:cardBackgroundColor="@color/cleferCardBackgroundColor"
         app:cardCornerRadius="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

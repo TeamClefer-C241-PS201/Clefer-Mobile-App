@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="17dp"
+    android:layout_marginEnd="17dp"
+    android:layout_marginBottom="21dp"
+    app:cardCornerRadius="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_history"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:scaleType="fitXY"
+                tools:src="@tools:sample/backgrounds/scenic" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/tv_headline_result"
+            style="@style/RegularSubHeadline"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="15dp"
+            android:text="Hasil :"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/card_iv"
+            app:layout_constraintTop_toTopOf="@id/card_iv" />
+
+        <TextView
+            android:id="@+id/tv_disease_result"
+            style="@style/BoldHeadlineStyle"
+            android:text="Nama Penyakit"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_headline_result"
+            app:layout_constraintTop_toBottomOf="@id/tv_headline_result" />
+
+        <TextView
+            android:id="@+id/tv_date_scanned"
+            style="@style/ToolbarTextAppearance"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Nama Penyakit"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/card_iv"
+            app:layout_constraintStart_toStartOf="@id/tv_disease_result"
+            app:layout_constraintTop_toBottomOf="@id/tv_disease_result" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_delete_history"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="17dp"
+            app:cardBackgroundColor="#F54336"
+            app:layout_constraintBottom_toBottomOf="@id/card_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/card_iv">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="9dp"
+                android:src="@drawable/ic_remove" />
+        </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

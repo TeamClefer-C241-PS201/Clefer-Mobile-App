@@ -51,4 +51,6 @@
     <string name="hint_input_title_question">Masukkan Judul</string>
     <string name="hint_input_description_question">Masukkan Deskripsi</string>
     <string name="title_description_question">Deskripsi</string>
+    <string name="title_history_scan">📜 Riwayat Pemindaian CLEFER</string>
+    <string name="desc_history">Selamat datang di halaman Riwayat Pemindaian! Di sini, Anda dapat melihat semua pemindaian yang telah Anda lakukan dan hasil analisis terkait penyakit daun jagung.</string>
 </resources>

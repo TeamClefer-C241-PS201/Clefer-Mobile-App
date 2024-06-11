@@ -12,4 +12,5 @@
 
     <color name="cleferGreyStrokeButtonq">#DADADA</color>
     <color name="cleferButtonTextColor">#434343</color>
+    <color name="cleferCardBackgroundColor">#FFF5F5</color>
 </resources>

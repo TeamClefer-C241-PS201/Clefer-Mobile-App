@@ -11,12 +11,8 @@ import retrofit2.http.Part
 import retrofit2.http.Query
 
 interface ApiService {
-    @GET("everything")
+    @GET("articles")
     suspend fun getAllArticles(
-        @Query("q") query: String,
-        @Query("from") fromDate: String,
-        @Query("sortBy") sortBy: String,
-        @Query("apiKey") apiKey: String,
         @Query("page") page: Int,
         @Query("size") size: Int,
     ): Response<AllArticleResponse>

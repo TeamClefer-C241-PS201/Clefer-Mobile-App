@@ -2,7 +2,6 @@ package com.jimbonlemu.clefer.repository
 
 import android.net.Uri
 import androidx.core.net.toFile
-import com.jimbonlemu.clefer.views.article.paging.ArticlePaging
 import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -12,8 +11,9 @@ import com.jimbonlemu.clefer.source.local.LocalDataSource
 import com.jimbonlemu.clefer.source.remote.RemoteDataSource
 import com.jimbonlemu.clefer.source.remote.network.ApiService
 import com.jimbonlemu.clefer.source.remote.response.AnalyzeResultResponse
-import com.jimbonlemu.clefer.source.remote.response.ArticlesItem
+import com.jimbonlemu.clefer.source.remote.response.DataItemItem
 import com.jimbonlemu.clefer.utils.ResponseState
+import com.jimbonlemu.clefer.views.article.paging.ArticlePaging
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MediaType.Companion.toMediaType
@@ -26,10 +26,10 @@ class AppRepository(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource,
 ) {
-    fun getAllArticles(): LiveData<PagingData<ArticlesItem>> {
+    fun getAllArticles(): LiveData<PagingData<DataItemItem>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 5
+                pageSize = 4
             ),
             pagingSourceFactory = {
                 ArticlePaging(remoteDataSource)

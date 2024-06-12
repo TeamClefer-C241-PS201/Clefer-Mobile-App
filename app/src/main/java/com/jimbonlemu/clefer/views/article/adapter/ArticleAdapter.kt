@@ -1,24 +1,28 @@
 package com.jimbonlemu.clefer.views.article.adapter
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.databinding.ItemArticleBinding
-import com.jimbonlemu.clefer.source.remote.response.ArticlesItem
+import com.jimbonlemu.clefer.source.remote.response.DataItemItem
+import com.jimbonlemu.clefer.views.article.DetailArticleActivity
 
 class ArticleAdapter :
-    PagingDataAdapter<ArticlesItem, ArticleAdapter.ArticleViewHolder>(LIST_ARTICLE_DIFF_CALLBACK) {
+    PagingDataAdapter<DataItemItem, ArticleAdapter.ArticleViewHolder>(LIST_ARTICLE_DIFF_CALLBACK) {
     inner class ArticleViewHolder(private val binding: ItemArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(articleItem: ArticlesItem) {
+        fun bind(articleItem: DataItemItem) {
             binding.apply {
-                tvTitle.text = articleItem.title
-                tvItemDesc.text = articleItem.description
+                tvTitle.text = articleItem.articleTitle
+                tvItemDesc.text = articleItem.articleDesc
                 Glide.with(root)
-                    .load(articleItem.urlToImage)
+                    .load(articleItem.articleImg)
                     .into(ivItemPhoto)
             }
 //            binding.ItemStory.setOnClickListener {
@@ -35,18 +39,18 @@ class ArticleAdapter :
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = getItem(position)
-        if (article != null) {
+        if (article?.articleId != null) {
             holder.bind(article)
         }
     }
 
     companion object {
-        val LIST_ARTICLE_DIFF_CALLBACK = object : DiffUtil.ItemCallback<ArticlesItem>() {
-            override fun areItemsTheSame(oldItem: ArticlesItem, newItem: ArticlesItem): Boolean {
+        val LIST_ARTICLE_DIFF_CALLBACK = object : DiffUtil.ItemCallback<DataItemItem>() {
+            override fun areItemsTheSame(oldItem: DataItemItem, newItem: DataItemItem): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: ArticlesItem, newItem: ArticlesItem): Boolean {
+            override fun areContentsTheSame(oldItem: DataItemItem, newItem: DataItemItem): Boolean {
                 return oldItem == newItem
             }
         }

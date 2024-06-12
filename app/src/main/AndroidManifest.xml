@@ -27,6 +27,9 @@
         android:theme="@style/Theme.Clefer"
         tools:targetApi="31">
         <activity
+            android:name=".views.dashboard.AnalyzeActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.dashboard.HistoryActivity"
             android:exported="false" />
         <activity

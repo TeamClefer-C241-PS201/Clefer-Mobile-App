@@ -10,8 +10,8 @@ import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentArticleBinding
 import com.jimbonlemu.clefer.views.article.adapter.ArticleAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.jimbonlemu.clefer.views.article.viewmodels.ArticleViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
     private val articleViewModel: ArticleViewModel by viewModel()
@@ -26,27 +26,27 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
             // Set up Toolbar
             toolbar.setupToolbar(
                 title = getString(R.string.title_article),
-                showBackButton = false,
+                showBackButton = false
             )
         }
 
-        mainButton()
-        getDataAllArticle()
+        setupMainButton()
+        fetchData()
     }
 
     override fun setupFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): FragmentArticleBinding = FragmentArticleBinding.inflate(inflater, container, false)
 
-    private fun mainButton() {
+    private fun setupMainButton() {
         binding.btnBookmark.setOnClickListener {
             startActivity(Intent(requireContext(), SaveArticleActivity::class.java))
         }
     }
 
-    private fun getDataAllArticle() {
+    private fun fetchData() {
         articleViewModel.getAllArticles.observe(viewLifecycleOwner) { pagingData ->
             articleAdapter.submitData(lifecycle, pagingData)
         }

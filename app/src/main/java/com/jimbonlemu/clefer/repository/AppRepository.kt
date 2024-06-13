@@ -2,6 +2,7 @@ package com.jimbonlemu.clefer.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -10,11 +11,13 @@ import com.google.gson.Gson
 import com.jimbonlemu.clefer.source.local.LocalDataSource
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.source.remote.RemoteDataSource
+import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
+import com.jimbonlemu.clefer.source.remote.request.LoginRequest
+import com.jimbonlemu.clefer.source.remote.request.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
+import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.DataItemItem
-import com.jimbonlemu.clefer.source.remote.response.LoginRequest
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
-import com.jimbonlemu.clefer.source.remote.response.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
 import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.utils.ResponseState
@@ -94,6 +97,25 @@ class AppRepository(
         }
     }
 
+    fun getAllDiscussion() = liveData {
+        emit(ResponseState.Loading)
+        try {
+            val response = remoteDataSource.getAllDiscussion()
+            emit(ResponseState.Success(response))
+        } catch (e: Exception) {
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
+    fun createDiscussion(discussionRequest : DiscussionRequest) = liveData {
+        emit(ResponseState.Loading)
+        try {
+            val response = remoteDataSource.createDiscussion(discussionRequest)
+            emit(ResponseState.Success(response))
+        } catch (e: Exception) {
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
+
     fun logout(): Boolean {
         return try {
             Prefs.clearAllPreferences()
@@ -113,7 +135,6 @@ class AppRepository(
                 response: Response<AllArticleResponse>,
             ) {
                 if (response.isSuccessful) {
-                    // Flatten the nested list and get the first DataItemItem
                     val articleItem = response.body()?.data?.flatten()?.firstOrNull()
                     _detail.value = articleItem
                 } else {

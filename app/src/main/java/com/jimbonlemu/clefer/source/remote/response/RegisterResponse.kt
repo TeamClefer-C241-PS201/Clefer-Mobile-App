@@ -2,12 +2,6 @@ package com.jimbonlemu.clefer.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class RegisterRequest(
-	val name: String,
-	val email: String,
-	val username: String,
-	val password: String
-)
 
 data class RegisterResponse(
 

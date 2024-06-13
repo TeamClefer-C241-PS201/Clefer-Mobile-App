@@ -3,10 +3,7 @@ package com.jimbonlemu.clefer.source.remote.response
 import com.google.gson.annotations.SerializedName
 
 
-data class LoginRequest(
-	val email: String,
-	val password: String
-)
+
 data class LoginResponse(
 
 	@field:SerializedName("message")

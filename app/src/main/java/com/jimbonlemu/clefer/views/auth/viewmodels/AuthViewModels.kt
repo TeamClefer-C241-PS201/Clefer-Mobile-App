@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jimbonlemu.clefer.repository.AppRepository
-import com.jimbonlemu.clefer.source.remote.response.LoginRequest
+import com.jimbonlemu.clefer.source.remote.request.LoginRequest
+import com.jimbonlemu.clefer.source.remote.request.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
-import com.jimbonlemu.clefer.source.remote.response.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
 import com.jimbonlemu.clefer.utils.ResponseState
 import kotlinx.coroutines.launch

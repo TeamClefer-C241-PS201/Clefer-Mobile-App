@@ -1,9 +1,11 @@
 package com.jimbonlemu.clefer.source.remote.network
 
+import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
+import com.jimbonlemu.clefer.source.remote.request.LoginRequest
+import com.jimbonlemu.clefer.source.remote.request.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
-import com.jimbonlemu.clefer.source.remote.response.LoginRequest
+import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
-import com.jimbonlemu.clefer.source.remote.response.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.Response
@@ -31,6 +33,14 @@ interface ApiService {
      fun getArticleById(
         @Path("id") id: Int
     ): Call<AllArticleResponse>
+
+     @GET("posts")
+     suspend fun getAllDiscussion(): Response<AllDiscussionResponse>
+
+     @POST("posts")
+     suspend fun createDiscussion(@Body discussionRequest: DiscussionRequest): Response<AllDiscussionResponse>
+
+
 
 
 

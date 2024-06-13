@@ -6,6 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
+import com.google.gson.Gson
 import com.jimbonlemu.clefer.source.local.LocalDataSource
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.source.remote.RemoteDataSource
@@ -20,6 +21,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.HttpException
 import retrofit2.Response
 
 
@@ -46,16 +48,20 @@ class AppRepository(
         try {
             emit(ResponseState.Loading)
             val response = remoteDataSource.login(loginDto)
-            if (response.message.toBoolean()) {
-                emit(ResponseState.Error(response.message.toString()))
-            } else {
-                val loginResult = response.user
-                if (loginResult != null) {
-                    Prefs.setLoginPrefs(loginResult)
-                }
-
-                emit(ResponseState.Success(response))
+            val loginResult = response.user
+            if (loginResult != null) {
+                Prefs.setLoginPrefs(loginResult)
             }
+            emit(ResponseState.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = if (!errorBody.isNullOrEmpty()) {
+                val errorResponse = Gson().fromJson(errorBody, LoginResponse::class.java)
+                errorResponse.message
+            } else {
+                e.message()
+            }
+            emit(ResponseState.Error(errorMessage.toString()))
         } catch (e: Exception) {
             e.printStackTrace()
             emit(ResponseState.Error(e.message.toString()))

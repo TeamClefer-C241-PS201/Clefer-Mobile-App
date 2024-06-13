@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentProfileBinding
+import com.jimbonlemu.clefer.utils.Prefs
+import com.jimbonlemu.clefer.views.auth.SignInActivity
 
 
 class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
@@ -31,6 +32,13 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
             }
             btnUpdateProfile.setOnClickListener {
                 startActivity(Intent(requireContext(), UpdateProfileActivity::class.java))
+            }
+            btnLogout.setOnClickListener {
+                Prefs.clearAllPreferences()
+                startActivity(Intent(requireActivity(), SignInActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                })
+                requireActivity().finish()
             }
         }
     }

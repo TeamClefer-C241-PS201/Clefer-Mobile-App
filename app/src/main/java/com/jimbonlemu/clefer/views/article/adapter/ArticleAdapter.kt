@@ -24,12 +24,12 @@ class ArticleAdapter :
                 Glide.with(root)
                     .load(articleItem.articleImg)
                     .into(ivItemPhoto)
+                ItemStory.setOnClickListener {
+                    val intent = Intent(it.context, DetailArticleActivity::class.java)
+                    intent.putExtra(DetailArticleActivity.EXTRA_ARTICLE, articleItem.articleId)
+                    itemView.context.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(itemView.context as Activity).toBundle())
+                }
             }
-//            binding.ItemStory.setOnClickListener {
-//                val intent = Intent(it.context, DetailArticleActivity::class.java)
-//                intent.putExtra(DetailArticleActivity.EXTRA_ARTICLE, articleItem)
-//                itemView.context.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(itemView.context as Activity).toBundle())
-//            }
         }
     }
 
@@ -47,7 +47,7 @@ class ArticleAdapter :
     companion object {
         val LIST_ARTICLE_DIFF_CALLBACK = object : DiffUtil.ItemCallback<DataItemItem>() {
             override fun areItemsTheSame(oldItem: DataItemItem, newItem: DataItemItem): Boolean {
-                return oldItem == newItem
+                return oldItem.articleId == newItem.articleId
             }
 
             override fun areContentsTheSame(oldItem: DataItemItem, newItem: DataItemItem): Boolean {
@@ -55,5 +55,4 @@ class ArticleAdapter :
             }
         }
     }
-
 }

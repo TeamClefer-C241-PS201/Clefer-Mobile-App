@@ -20,13 +20,13 @@ class ArticlePaging(private val remoteDataSource: RemoteDataSource) : PagingSour
 
             if (response.isSuccessful) {
                 val nestedListArticles = response.body()?.data ?: emptyList()
-                // Flattening the list of lists
                 val listArticles = nestedListArticles.flatten()
-                Log.d(TAG, "Data size: ${listArticles.size}")
+                val filteredArticles = listArticles.filter { it.articleId in listOf(1, 2, 3, 4) }
+                val nextKey = if (filteredArticles.isEmpty() || filteredArticles.size < params.loadSize) null else page + 1
                 LoadResult.Page(
-                    data = listArticles,
+                    data = filteredArticles,
                     prevKey = if (page == INITIAL_PAGE_INDEX) null else page - 1,
-                    nextKey = if (listArticles.isEmpty()) null else page + 1
+                    nextKey = nextKey
                 )
             } else {
                 LoadResult.Error(Throwable("Failed to load data"))

@@ -14,14 +14,14 @@ data class AllArticleResponse(
 data class DataItemItem(
 
 	@field:SerializedName("articleTitle")
-	val articleTitle: String? = null,
+	val articleTitle: String,
 
 	@field:SerializedName("articleId")
-	val articleId: Int? = null,
+	val articleId: Int,
 
 	@field:SerializedName("articleImg")
-	val articleImg: String? = null,
+	val articleImg: String,
 
 	@field:SerializedName("articleDesc")
-	val articleDesc: String? = null
+	val articleDesc: String
 )

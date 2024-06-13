@@ -7,4 +7,7 @@ class RemoteDataSource (private val api: ApiService) {
         page: Int,
         size: Int
     ) = api.getAllArticles(page, size)
+    fun getArticle(id: Int) = api.getArticleById(id)
+
+
 }

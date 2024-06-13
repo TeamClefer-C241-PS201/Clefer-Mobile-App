@@ -17,7 +17,6 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
     private val articleViewModel: ArticleViewModel by viewModel()
     private val articleAdapter = ArticleAdapter()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -41,7 +40,6 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
         savedInstanceState: Bundle?,
     ): FragmentArticleBinding = FragmentArticleBinding.inflate(inflater, container, false)
 
-
     private fun mainButton() {
         binding.btnBookmark.setOnClickListener {
             startActivity(Intent(requireContext(), SaveArticleActivity::class.java))
@@ -54,4 +52,3 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
         }
     }
 }
-

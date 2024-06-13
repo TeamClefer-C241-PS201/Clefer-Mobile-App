@@ -1,8 +1,9 @@
-package com.jimbonlemu.clefer.source.local
+package com.jimbonlemu.clefer.source.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Insert
 import androidx.room.Query
+import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 
 interface FavoriteArticleDao {
     @Insert
@@ -12,7 +13,7 @@ interface FavoriteArticleDao {
     fun getAllFavoriteArticles(): LiveData<List<FavoriteArticle>>
 
     @Query("SELECT count(*) from favorite_article WHERE favorite_article.id = :id")
-    suspend fun checkFavoriteByUsername(id : Int) : Int
+    suspend fun checkFavoriteById(id : Int) : Int
 
     @Query("DELETE FROM favorite_article WHERE favorite_article.id = :id")
     suspend fun deleteFavorite(id: Int) : Int

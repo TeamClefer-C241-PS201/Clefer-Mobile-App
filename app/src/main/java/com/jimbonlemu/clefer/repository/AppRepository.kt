@@ -9,6 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.jimbonlemu.clefer.source.local.LocalDataSource
+import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.source.remote.RemoteDataSource
 import com.jimbonlemu.clefer.source.remote.network.ApiService
 import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
@@ -35,7 +36,7 @@ class AppRepository(
     private val _detail = MutableLiveData<DataItemItem?>()
     val detail: LiveData<DataItemItem?> = _detail
 
-
+//REMOTE
     fun getAllArticles(): LiveData<PagingData<DataItemItem>> {
         return Pager(
             config = PagingConfig(
@@ -92,5 +93,23 @@ class AppRepository(
             }
         })
     }
+
+    //LOCAL
+    suspend fun insertFavoriteArticle(favoriteArticle: FavoriteArticle) {
+        localDataSource.insertFavoriteArticle(favoriteArticle)
+    }
+
+    fun getAllFavoriteArticles(): LiveData<List<FavoriteArticle>> {
+        return localDataSource.getAllFavoriteArticles()
+    }
+
+    suspend fun checkFavoriteById(id: Int): Int {
+        return localDataSource.checkFavoriteById(id)
+    }
+
+    suspend fun deleteFavorite(id: Int) {
+        localDataSource.deleteFavorite(id)
+    }
+
 
 }

@@ -14,70 +14,54 @@
         android:id="@+id/ItemStory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="15dp"
-        >
+        android:padding="15dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_item_photo"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:shapeAppearanceOverlay="@style/RoundedSquare"
             android:scaleType="centerCrop"
-            tools:src="@tools:sample/avatars"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            app:shapeAppearanceOverlay="@style/RoundedSquare"
+            tools:ignore="ContentDescription"
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tv_title_desc"
+            style="@style/RegularHeadline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            style="@style/RegularHeadline"
-            android:textColor="@android:color/black"
-            android:text="@string/judul_artikel"
-            android:textStyle="bold"
             android:ellipsize="end"
             android:maxLines="2"
+            android:text="@string/judul_artikel"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_item_photo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
             style="@style/RegularSubHeadline"
-            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:textColor="@android:color/black"
-            android:text="lokasi Judul Artikel"
             android:ellipsize="end"
             android:maxLines="3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_delete"
-        app:layout_constraintStart_toEndOf="@id/iv_item_photo"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_desc" />
-
-        <!-- Floating Action Button untuk delete -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="26dp"
-            android:backgroundTint="@color/cleferRed"
-            android:src="@drawable/ic_delete"
-            app:tint="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="lokasi Judul Artikel"
+            android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            app:layout_constraintStart_toEndOf="@id/iv_item_photo"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_desc" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

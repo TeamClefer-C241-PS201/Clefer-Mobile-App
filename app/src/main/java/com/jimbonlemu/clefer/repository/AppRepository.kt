@@ -36,7 +36,7 @@ class AppRepository(
     private val _detail = MutableLiveData<DataItemItem?>()
     val detail: LiveData<DataItemItem?> = _detail
 
-//REMOTE
+    //REMOTE
     fun getAllArticles(): LiveData<PagingData<DataItemItem>> {
         return Pager(
             config = PagingConfig(

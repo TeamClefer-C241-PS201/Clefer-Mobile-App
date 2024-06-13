@@ -49,6 +49,7 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinBom" }
 koin-core = { module = "io.insert-koin:koin-core" }
 koin-android = { module = "io.insert-koin:koin-android" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomKtx" }
 koin-test-junit4 = { module = "io.insert-koin:koin-test-junit4" }
 koin-test = { module = "io.insert-koin:koin-test" }
 ucrop = { module = "com.github.yalantis:ucrop", version.ref = "ucrop" }

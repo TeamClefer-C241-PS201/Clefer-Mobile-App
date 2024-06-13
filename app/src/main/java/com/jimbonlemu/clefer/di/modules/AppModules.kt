@@ -15,10 +15,12 @@ val AppModules = module {
     }
     single { RemoteDataSource(get()) }
     single { LocalDataSource(get()) }
-    single { Room.databaseBuilder(
-        androidContext(),
-        AppDatabase::class.java,
-        Constant.DB_NAME
-    ).allowMainThreadQueries().build()}
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            AppDatabase::class.java,
+            Constant.DB_NAME
+        ).allowMainThreadQueries().build()
+    }
 
 }

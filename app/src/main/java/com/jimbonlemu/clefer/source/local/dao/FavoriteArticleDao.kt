@@ -1,10 +1,11 @@
 package com.jimbonlemu.clefer.source.local.dao
 
 import androidx.lifecycle.LiveData
+import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
-
+@Dao
 interface FavoriteArticleDao {
     @Insert
     suspend fun insertFavoriteArticle(favoriteArticle: FavoriteArticle)

@@ -29,7 +29,7 @@ class ArticlePaging(private val remoteDataSource: RemoteDataSource) : PagingSour
                     nextKey = nextKey
                 )
             } else {
-                LoadResult.Error(Throwable("Failed to load data"))
+                LoadResult.Error(Throwable("Gagal Memuat Data"))
             }
         } catch (exception: Exception) {
             LoadResult.Error(exception)

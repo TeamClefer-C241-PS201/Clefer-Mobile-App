@@ -15,7 +15,7 @@ import com.jimbonlemu.clefer.views.article.viewmodels.ArticleViewModel
 
 class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
     private val articleViewModel: ArticleViewModel by viewModel()
-    private val articleAdapter = ArticleAdapter()
+    private val articleAdapter = ArticleAdapter(ArticleAdapter.AdapterType.PAGING)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

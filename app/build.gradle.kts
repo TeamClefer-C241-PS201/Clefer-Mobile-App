@@ -78,6 +78,7 @@ dependencies {
 
 //  Android Room Library
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
 
     // shared preferences by kotpref

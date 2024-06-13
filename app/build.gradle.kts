@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.ksp)
     id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 android {

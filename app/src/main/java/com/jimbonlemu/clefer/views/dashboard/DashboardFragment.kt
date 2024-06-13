@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentDashboardBinding
+import com.jimbonlemu.clefer.utils.Prefs
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -35,6 +36,7 @@ class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupButtonAction()
+        binding.tvUserName.text = Prefs.getName
 
     }
 

@@ -15,6 +15,7 @@ import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivitySplashBinding
 import com.jimbonlemu.clefer.utils.Constant
+import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.views.BottomNavigationBarActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -38,12 +39,16 @@ class SplashActivity : CoreActivity<ActivitySplashBinding>() {
         ActivitySplashBinding.inflate(layoutInflater)
 
 
-
     private fun splashScreenTransition() {
         lifecycleScope.launch {
             delay(Constant.SPLASH_SCREEN_DURATION.seconds)
-            startActivity(Intent(this@SplashActivity, BottomNavigationBarActivity::class.java))
-            finish()
+            if (Prefs.getToken.isNullOrEmpty()) {
+                startActivity(Intent(this@SplashActivity, SignInActivity::class.java))
+                finish()
+            } else {
+                startActivity(Intent(this@SplashActivity, BottomNavigationBarActivity::class.java))
+                finish()
+            }
         }
     }
 

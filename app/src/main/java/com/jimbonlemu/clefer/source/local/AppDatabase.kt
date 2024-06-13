@@ -9,8 +9,6 @@ import com.jimbonlemu.clefer.source.local.dao.FavoriteArticleDao
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.utils.Constant
 
-
-
 @Database(
     entities = [
         FavoriteArticle::class,

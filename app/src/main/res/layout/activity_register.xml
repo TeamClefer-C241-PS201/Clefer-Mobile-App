@@ -29,6 +29,16 @@
             app:layout_constraintTop_toBottomOf="@id/main_headline" />
 
         <com.jimbonlemu.clefer.components.CustomViewEditText
+            android:id="@+id/edt_user_name"
+            style="@style/DefinedEditTextLayoutSize"
+            android:layout_marginTop="30dp"
+            app:hintText="Masukkan nama lengkap anda..."
+            app:labelText="Nama"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/secondary_headline" />
+
+        <com.jimbonlemu.clefer.components.CustomViewEditText
             android:id="@+id/edt_username"
             style="@style/DefinedEditTextLayoutSize"
             android:layout_marginTop="30dp"
@@ -36,7 +46,7 @@
             app:labelText="@string/title_username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/secondary_headline" />
+            app:layout_constraintTop_toBottomOf="@id/edt_user_name" />
 
         <com.jimbonlemu.clefer.components.CustomViewEditText
             android:id="@+id/edt_email"
@@ -60,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@id/edt_email" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_sign_in"
+            android:id="@+id/btn_register"
             style="@style/ButtonStyle"
             android:layout_marginTop="25dp"
             android:text="@string/title_register"
@@ -75,7 +85,7 @@
             android:text="@string/sub_headline_or"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_sign_in" />
+            app:layout_constraintTop_toBottomOf="@id/btn_register" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_login_google"

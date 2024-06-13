@@ -3,6 +3,8 @@ package com.jimbonlemu.clefer.source.remote.network
 import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
 import com.jimbonlemu.clefer.source.remote.response.LoginRequest
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
+import com.jimbonlemu.clefer.source.remote.response.RegisterRequest
+import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
@@ -21,6 +23,9 @@ interface ApiService {
 
     @POST("login")
     suspend fun login(@Body loginRequest: LoginRequest): LoginResponse
+
+    @POST("register")
+    suspend fun register(@Body registerRequest: RegisterRequest): RegisterResponse
 
     @GET("articles/{id}")
      fun getArticleById(

@@ -14,6 +14,8 @@ import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
 import com.jimbonlemu.clefer.source.remote.response.DataItemItem
 import com.jimbonlemu.clefer.source.remote.response.LoginRequest
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
+import com.jimbonlemu.clefer.source.remote.response.RegisterRequest
+import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
 import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.article.paging.ArticlePaging
@@ -67,6 +69,41 @@ class AppRepository(
             emit(ResponseState.Error(e.message.toString()))
         }
     }
+
+    fun register(registerDTO: RegisterRequest): Flow<ResponseState<RegisterResponse>> = flow {
+        try {
+            emit(ResponseState.Loading)
+            val response = remoteDataSource.register(registerDTO)
+            if (response.message.toBoolean()) {
+                emit(ResponseState.Error(response.message.toString()))
+            } else {
+                emit(ResponseState.Success(response))
+            }
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = if (!errorBody.isNullOrEmpty()) {
+                val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
+                errorResponse.message
+            } else {
+                e.message()
+            }
+            emit(ResponseState.Error(errorMessage.toString()))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
+
+    fun logout(): Boolean {
+        return try {
+            Prefs.clearAllPreferences()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
+
 
     fun getDetailArticle(id: Int) {
         val responseDetail = remoteDataSource.getArticle(id)

@@ -2,6 +2,7 @@ package com.jimbonlemu.clefer.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.LoginResult
 
 object Prefs {
@@ -9,15 +10,17 @@ object Prefs {
     private lateinit var editor: SharedPreferences.Editor
 
     private const val PREFERENCE_NAME = "clefer.pref"
-    private const val KEY_NAME = "key_name"
-    private const val KEY_USERNAME = "key_username"
-    private const val KEY_EMAIL = "key_email"
-    private const val KEY_TOKEN = "key_token"
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
         editor = prefs.edit()
     }
+
+    //Login Result
+    private const val KEY_NAME = "key_name"
+    private const val KEY_USERNAME = "key_username"
+    private const val KEY_EMAIL = "key_email"
+    private const val KEY_TOKEN = "key_token"
 
     val getName: String?
         get() = prefs.getString(KEY_NAME, "")
@@ -43,4 +46,22 @@ object Prefs {
         editor.remove(KEY_TOKEN)
         editor.apply()
     }
+
+    //Community Result
+    private const val KEY_COMMUNITY_ID = "key_community_id"
+
+    val getCommunityId : Int
+        get() = prefs.getInt(KEY_COMMUNITY_ID, 0)
+
+    fun setCommunityId(communityResult: AllDiscussionResponseItem) {
+        editor.putInt(KEY_COMMUNITY_ID, communityResult.postId!!)
+        editor.apply()
+    }
+
+    fun clearCommunityId() {
+        editor.remove(KEY_COMMUNITY_ID)
+        editor.apply()
+    }
+
+
 }

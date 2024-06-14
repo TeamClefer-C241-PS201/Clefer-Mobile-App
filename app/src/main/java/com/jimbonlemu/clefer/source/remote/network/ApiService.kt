@@ -6,6 +6,7 @@ import com.jimbonlemu.clefer.source.remote.request.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
+import com.jimbonlemu.clefer.source.remote.response.CreateDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
 import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
 import retrofit2.Call
@@ -39,11 +40,13 @@ interface ApiService {
      suspend fun getAllDiscussion(): List<AllDiscussionResponseItem>
 
      @POST("posts")
-     suspend fun createDiscussion(@Body discussionRequest: DiscussionRequest): AllDiscussionResponse
+     suspend fun createDiscussion(@Body discussionRequest: DiscussionRequest): CreateDiscussionResponse
 
-
-
-
+     //get detail discussion id for shared preferences
+     @GET("posts/{id}")
+     suspend fun getDiscussionById(
+        @Path("id") id: Int
+    ): AllDiscussionResponseItem
 
 
 

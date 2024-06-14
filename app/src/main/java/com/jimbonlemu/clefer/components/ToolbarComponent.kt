@@ -21,7 +21,6 @@ class ToolbarComponent @JvmOverloads constructor(
     fun setupToolbar(title: String, showBackButton: Boolean = false, backAction: (() -> Unit)? = null) {
         val toolbarTitle = findViewById<TextView>(R.id.toolbar_title)
         toolbarTitle.text = title
-//        toolbarTitle.setTextColor(context.getColor(R.color.white))
 
         val toolbarBackIcon = findViewById<ImageView>(R.id.toolbar_back_icon)
 

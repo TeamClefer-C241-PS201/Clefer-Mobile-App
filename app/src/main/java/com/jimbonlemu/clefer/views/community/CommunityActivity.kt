@@ -1,6 +1,6 @@
 package com.jimbonlemu.clefer.views.community
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
@@ -19,7 +19,8 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
         super.onCreate(savedInstanceState)
         setupViews()
         observeData()
-        communityViewModel.getAllDiscussions() // Panggil fungsi untuk memuat diskusi
+        setupButton()
+
     }
 
     private fun setupViews() {
@@ -35,12 +36,21 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
         )
     }
 
+    private fun setupButton() {
+        binding.apply {
+            btnPost.setOnClickListener {
+                startActivity(Intent(this@CommunityActivity, QuestionActivity::class.java))
+            }
+        }
+    }
+
     private fun setupRecyclerView() {
         binding.rvItems.layoutManager = LinearLayoutManager(this)
         binding.rvItems.adapter = listCommunityAdapter
     }
 
     private fun observeData() {
+        communityViewModel.getAllDiscussions()
         communityViewModel.getAllDiscussions.observe(this) { response ->
             when (response) {
                 is ResponseState.Loading -> {
@@ -48,9 +58,9 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
                 }
                 is ResponseState.Success -> {
                     response.data.forEach { item ->
-                        //comment
 
                     }
+
                     listCommunityAdapter.updateItems(response.data)
                 }
                 is ResponseState.Error -> {

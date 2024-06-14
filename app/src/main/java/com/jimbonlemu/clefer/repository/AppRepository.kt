@@ -16,6 +16,7 @@ import com.jimbonlemu.clefer.source.remote.request.LoginRequest
 import com.jimbonlemu.clefer.source.remote.request.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponse
+import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.DataItemItem
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
 import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
@@ -97,24 +98,30 @@ class AppRepository(
         }
     }
 
-    fun getAllDiscussion() = liveData {
-        emit(ResponseState.Loading)
+    fun getAllDiscussion(): Flow<ResponseState<List<AllDiscussionResponseItem>>> = flow {
         try {
+            emit(ResponseState.Loading)
             val response = remoteDataSource.getAllDiscussion()
             emit(ResponseState.Success(response))
         } catch (e: Exception) {
+            e.printStackTrace()
             emit(ResponseState.Error(e.message.toString()))
         }
     }
-    fun createDiscussion(discussionRequest : DiscussionRequest) = liveData {
-        emit(ResponseState.Loading)
-        try {
-            val response = remoteDataSource.createDiscussion(discussionRequest)
-            emit(ResponseState.Success(response))
-        } catch (e: Exception) {
-            emit(ResponseState.Error(e.message.toString()))
+
+
+
+    fun createDiscussion(discussionRequest: DiscussionRequest): Flow<ResponseState<AllDiscussionResponse>> =
+        flow {
+            try {
+                emit(ResponseState.Loading)
+                val response = remoteDataSource.createDiscussion(discussionRequest)
+                emit(ResponseState.Success(response))
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emit(ResponseState.Error(e.message.toString()))
+            }
         }
-    }
 
     fun logout(): Boolean {
         return try {

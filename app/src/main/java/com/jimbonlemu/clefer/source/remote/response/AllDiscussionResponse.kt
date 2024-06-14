@@ -5,29 +5,29 @@ import com.google.gson.annotations.SerializedName
 data class AllDiscussionResponse(
 
 	@field:SerializedName("AllDiscussionResponse")
-	val allDiscussionResponse: List<AllDiscussionResponseItem>
+	val allDiscussionResponse: List<AllDiscussionResponseItem?>? = null
 )
 
 data class AllDiscussionResponseItem(
 
 	@field:SerializedName("postDesc")
-	val postDesc: String,
+	val postDesc: String? = null,
 
 	@field:SerializedName("postDate")
-	val postDate: String,
+	val postDate: String? = null,
 
 	@field:SerializedName("likerCount")
-	val likerCount: Int,
+	val likerCount: Int? = null,
 
 	@field:SerializedName("postTitle")
-	val postTitle: String,
+	val postTitle: String? = null,
 
 	@field:SerializedName("postId")
-	val postId: Int,
+	val postId: Int? = null,
 
 	@field:SerializedName("postLike")
-	val postLike: Int,
+	val postLike: Int? = null,
 
 	@field:SerializedName("userId")
-	val userId: Int
+	val userId: Int? = null
 )

@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentDashboardBinding
 import com.jimbonlemu.clefer.utils.Prefs
+import com.jimbonlemu.clefer.views.community.CommunityActivity
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -62,7 +63,7 @@ class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
                 galleryLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
             }
             cardCommunity.setOnClickListener {
-
+                startActivity(Intent(requireActivity(), CommunityActivity::class.java))
             }
 
             cardHistory.setOnClickListener {

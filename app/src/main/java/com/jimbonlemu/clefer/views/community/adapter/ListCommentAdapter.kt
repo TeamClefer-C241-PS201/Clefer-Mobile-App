@@ -1,54 +1,51 @@
 package com.jimbonlemu.clefer.views.community.adapter
+
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.jimbonlemu.clefer.databinding.ItemCommunityBinding
-import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
-import com.jimbonlemu.clefer.utils.Prefs
+import com.jimbonlemu.clefer.databinding.ItemCommentBinding
+import com.jimbonlemu.clefer.source.remote.response.CommentDiscussionResponseItem
 import com.jimbonlemu.clefer.utils.toTime
 import com.jimbonlemu.clefer.views.community.DetailCommentActivity
 
-class ListCommunityAdapter : RecyclerView.Adapter<ListCommunityAdapter.ViewHolder>() {
+class ListCommentAdapter : RecyclerView.Adapter<ListCommentAdapter.ViewHolder>()  {
 
-    private var items: List<AllDiscussionResponseItem> = emptyList()
+    private var items: List<CommentDiscussionResponseItem> = emptyList()
 
-    inner class ViewHolder(private val itemBinding: ItemCommunityBinding) :
+    inner class ViewHolder(private val itemBinding: ItemCommentBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: AllDiscussionResponseItem) {
+        fun bind(itemComment: CommentDiscussionResponseItem) {
             itemBinding.apply {
-                tvName.text = item.postTitle
-                tvItemDesc.text = item.postDesc
-                tvDate.text = item.postDate?.toTime()
-                tvLikeCount.text = item.likerCount?.toString()
-                tvCommentCount.text = item.commentCount?.toString()
-                ivLike.setOnClickListener {
+                tvItemDesc.text = itemComment.commentBody
+                tvDate.text = itemComment.commentDate?.toTime()
+                tvLikeCount.text = itemComment.likerCount?.toString()
 
+                ivLike.setOnClickListener {
+                    // Tangani aksi suka
                 }
 
                 root.setOnClickListener {
                     val intent = Intent(itemView.context, DetailCommentActivity::class.java)
-                    intent.putExtra(DetailCommentActivity.POST_ID, item.postId)
+                    intent.putExtra(DetailCommentActivity.POST_ID, itemComment.postId)
                     itemView.context.startActivity(intent)
                 }
-
             }
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateItems(newItems: List<AllDiscussionResponseItem>) {
-        items = newItems.sortedByDescending { it.postDate }
+    fun updateItems(newItems: List<CommentDiscussionResponseItem>) {
+        items = newItems.sortedByDescending { it.commentDate }
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemCommunityBinding.inflate(
+            ItemCommentBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -64,4 +61,3 @@ class ListCommunityAdapter : RecyclerView.Adapter<ListCommunityAdapter.ViewHolde
         holder.bind(items[position])
     }
 }
-

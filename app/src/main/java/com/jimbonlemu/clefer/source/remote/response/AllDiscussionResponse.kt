@@ -29,5 +29,8 @@ data class AllDiscussionResponseItem(
 	val postLike: Int? = null,
 
 	@field:SerializedName("userId")
-	val userId: Int? = null
+	val userId: Int? = null,
+
+	@field:SerializedName("commentCount")
+	val commentCount: Int? = null
 )

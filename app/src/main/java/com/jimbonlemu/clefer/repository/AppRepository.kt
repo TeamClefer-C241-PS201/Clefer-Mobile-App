@@ -17,6 +17,7 @@ import com.jimbonlemu.clefer.source.remote.request.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
+import com.jimbonlemu.clefer.source.remote.response.CommentDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CreateDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.DataItemItem
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
@@ -103,14 +104,12 @@ class AppRepository(
         try {
             emit(ResponseState.Loading)
             val response = remoteDataSource.getAllDiscussion()
-            //fore each save
             emit(ResponseState.Success(response))
         } catch (e: Exception) {
             e.printStackTrace()
             emit(ResponseState.Error(e.message.toString()))
         }
     }
-
 
     fun createDiscussion(discussionRequest: DiscussionRequest): Flow<ResponseState<CreateDiscussionResponse>> =
         flow {
@@ -123,6 +122,28 @@ class AppRepository(
                 emit(ResponseState.Error(e.message.toString()))
             }
         }
+
+    fun getDiscussionById(postId: Int): Flow<ResponseState<AllDiscussionResponseItem>> = flow {
+        try {
+            emit(ResponseState.Loading)
+            val response = remoteDataSource.getDiscussionById(postId)
+            emit(ResponseState.Success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
+
+    fun getCommentById(postId: Int): Flow<ResponseState<List<CommentDiscussionResponseItem>>> = flow {
+        try {
+            emit(ResponseState.Loading)
+            val response = remoteDataSource.getCommentDiscussionById(postId)
+            emit(ResponseState.Success(response))
+        }catch (e: Exception){
+            e.printStackTrace()
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
 
     fun logout(): Boolean {
         return try {

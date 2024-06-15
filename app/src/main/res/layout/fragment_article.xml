@@ -17,30 +17,18 @@
         android:orientation="horizontal"
         android:padding="12dp">
 
-        <EditText
-            android:id="@+id/et_search"
+        <!-- Ganti EditText dan ImageButton menjadi kalimat sambutan -->
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:id="@+id/tv_greeting"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@drawable/bottom_navigation_bar_background"
-            android:hint="Search"
-            android:imeOptions="actionSearch"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:singleLine="true"
+            android:gravity="center_vertical"
+            style="@style/SemiBoldSubHeadline"
+            android:text="Temukan Informasi Terbaru"
             android:textColor="@color/black"
             android:textSize="16sp" />
-
-        <ImageButton
-            android:id="@+id/btn_search"
-            android:minHeight="48dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="8dp"
-            android:src="@drawable/ic_search"
-            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btn_bookmark"

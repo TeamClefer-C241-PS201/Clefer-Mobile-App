@@ -15,6 +15,8 @@ class ArticleViewModel(private val repository: AppRepository) : ViewModel() {
     val getAllArticles: LiveData<PagingData<DataItemItem>> =
         repository.getAllArticles().cachedIn(viewModelScope)
 
+
+
     fun getDetail(id: Int) = repository.getDetailArticle(id)
 
     fun insertFavoriteArticle(favoriteArticle: FavoriteArticle) {

@@ -54,7 +54,7 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
         communityViewModel.getAllDiscussions.observe(this) { response ->
             when (response) {
                 is ResponseState.Loading -> {
-                    //comment
+                    // Handle loading
                 }
                 is ResponseState.Success -> {
                     response.data.forEach { item ->
@@ -64,7 +64,7 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
                     listCommunityAdapter.updateItems(response.data)
                 }
                 is ResponseState.Error -> {
-                    //comment
+                    // Handle error
                 }
             }
         }

@@ -47,21 +47,4 @@ object Prefs {
         editor.apply()
     }
 
-    //Community Result
-    private const val KEY_COMMUNITY_ID = "key_community_id"
-
-    val getCommunityId : Int
-        get() = prefs.getInt(KEY_COMMUNITY_ID, 0)
-
-    fun setCommunityId(communityResult: AllDiscussionResponseItem) {
-        editor.putInt(KEY_COMMUNITY_ID, communityResult.postId!!)
-        editor.apply()
-    }
-
-    fun clearCommunityId() {
-        editor.remove(KEY_COMMUNITY_ID)
-        editor.apply()
-    }
-
-
 }

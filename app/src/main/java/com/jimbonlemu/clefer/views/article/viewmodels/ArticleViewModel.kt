@@ -15,8 +15,6 @@ class ArticleViewModel(private val repository: AppRepository) : ViewModel() {
     val getAllArticles: LiveData<PagingData<DataItemItem>> =
         repository.getAllArticles().cachedIn(viewModelScope)
 
-
-
     fun getDetail(id: Int) = repository.getDetailArticle(id)
 
     fun insertFavoriteArticle(favoriteArticle: FavoriteArticle) {
@@ -24,14 +22,17 @@ class ArticleViewModel(private val repository: AppRepository) : ViewModel() {
             repository.insertFavoriteArticle(favoriteArticle)
         }
     }
+
     suspend fun checkFavoriteById(id: Int): Int {
         return repository.checkFavoriteById(id)
     }
+
     fun deleteFavorite(id: Int) {
         viewModelScope.launch {
             repository.deleteFavorite(id)
         }
     }
+
     fun getAllFavoriteArticles(): LiveData<List<FavoriteArticle>> {
         return repository.getAllFavoriteArticles()
     }

@@ -22,6 +22,7 @@ class QuestionActivity : CoreActivity<ActivityQuestionBinding>() {
             setupToolbar()
         }
     }
+    @Suppress("DEPRECATION")
     private fun setupToolbar(){
         binding.toolbar.setupToolbar(
             title = getString(R.string.question),

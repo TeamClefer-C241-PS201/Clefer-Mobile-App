@@ -3,7 +3,6 @@ package com.jimbonlemu.clefer.views.article
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.lifecycle.Observer
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivitySaveArticleBinding
@@ -18,7 +17,7 @@ class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupViews()
-        setupObservers()
+        observeData()
     }
 
     private fun setupViews() {
@@ -26,6 +25,7 @@ class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
         setupRecyclerView()
     }
 
+    @Suppress("DEPRECATION")
     private fun setupToolbar() {
         binding.toolbar.setupToolbar(
             title = getString(R.string.save_article),
@@ -41,12 +41,12 @@ class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
         }
     }
 
-    private fun setupObservers() {
-        saveArticleViewModel.getAllFavoriteArticles().observe(this, Observer { articles ->
+    private fun observeData() {
+        saveArticleViewModel.getAllFavoriteArticles().observe(this) { articles ->
             articles?.let {
                 articleAdapter.setFavoriteArticles(it)
             }
-        })
+        }
     }
 
     override fun setupBinding(layoutInflater: LayoutInflater): ActivitySaveArticleBinding =

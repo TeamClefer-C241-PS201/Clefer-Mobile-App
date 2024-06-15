@@ -28,6 +28,7 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
         setupRecyclerView()
     }
 
+    @Suppress("DEPRECATION")
     private fun setupToolbar() {
         binding.toolbar.setupToolbar(
             title = getString(R.string.community),
@@ -54,7 +55,7 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
         communityViewModel.getAllDiscussions.observe(this) { response ->
             when (response) {
                 is ResponseState.Loading -> {
-                    // Handle loading
+                    // Response loading
                 }
                 is ResponseState.Success -> {
                     response.data.forEach { item ->
@@ -64,7 +65,7 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
                     listCommunityAdapter.updateItems(response.data)
                 }
                 is ResponseState.Error -> {
-                    // Handle error
+                    // Response error
                 }
             }
         }

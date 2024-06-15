@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jimbonlemu.clefer.repository.AppRepository
 import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
-import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CommentDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CreateDiscussionResponse
@@ -35,7 +34,6 @@ class CommunityViewModel(private val repository: AppRepository) : ViewModel() {
             }
         }
     }
-
 
     fun createDiscussion(discussionRequest: DiscussionRequest) {
         viewModelScope.launch {

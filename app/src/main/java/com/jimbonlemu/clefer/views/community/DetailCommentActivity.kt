@@ -2,9 +2,6 @@ package com.jimbonlemu.clefer.views.community
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.activity.enableEdgeToEdge
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
@@ -25,7 +22,6 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setupViews()
         observeData()
         observeComments()
@@ -55,13 +51,13 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
         detailCommunityViewModel.getCommentById.observe(this) { responseState ->
             when (responseState) {
                 is ResponseState.Loading -> {
-                    // Tangani loading
+                    // Response loading
                 }
                 is ResponseState.Success -> {
                     listCommentAdapter.updateItems(responseState.data)
                 }
                 is ResponseState.Error -> {
-                    // Tangani error
+                    // Response error
                 }
             }
         }
@@ -73,7 +69,7 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
         detailCommunityViewModel.getDiscussionById.observe(this) { responseState ->
             when (responseState) {
                 is ResponseState.Loading -> {
-                    // Tangani loading
+                    // Response loading
                 }
                 is ResponseState.Success -> {
                     val discussion = responseState.data
@@ -84,7 +80,7 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
                     binding.itemCommunity.tvCommentCount.text = discussion.commentCount.toString()
                 }
                 is ResponseState.Error -> {
-                    // Tangani error
+                    // Response error
                 }
             }
         }

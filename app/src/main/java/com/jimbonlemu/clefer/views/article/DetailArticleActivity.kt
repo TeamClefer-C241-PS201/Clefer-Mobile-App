@@ -21,13 +21,16 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        observeData()
+        setupViews()
+        setupFavoriteButton()
+    }
 
-        // Set up Toolbar
-        binding.toolbar.setupToolbar(
-            title = getString(R.string.detail_artikel_title),
-            showBackButton = true,
-            backAction = { onBackPressedDispatcher.onBackPressed() }
-        )
+    private fun setupViews() {
+        setupToolbar()
+    }
+
+    private fun observeData() {
         val extraArticle = intent.getIntExtra(EXTRA_ARTICLE, 0)
         articleId = extraArticle
         detailArticleViewModel.getDetail(extraArticle)
@@ -41,6 +44,10 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
                 checkFavorite(articleId)
             }
         }
+
+    }
+
+    private fun setupFavoriteButton() {
         binding.btnSaveBookmarks.setOnClickListener {
             if (isFavorite) {
                 deleteFavorite(articleId)
@@ -49,6 +56,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
             }
         }
     }
+
     private fun addFavorite(id: Int) {
         val favoriteArticle = FavoriteArticle(
             id = id,
@@ -59,6 +67,14 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
         detailArticleViewModel.insertFavoriteArticle(favoriteArticle)
         isFavorite = true
         updateFavoriteUI()
+    }
+
+    private fun setupToolbar() {
+        binding.toolbar.setupToolbar(
+            title = getString(R.string.detail_artikel_title),
+            showBackButton = true,
+            backAction = { onBackPressedDispatcher.onBackPressed() }
+        )
     }
 
 
@@ -86,6 +102,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
     companion object {
         const val EXTRA_ARTICLE = "extra_article"
     }
+
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityDetailArticleBinding =
         ActivityDetailArticleBinding.inflate(layoutInflater)
 }

@@ -19,19 +19,40 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupView()
+        setupMainButton()
+        observeData()
+    }
 
+    private fun setupToolbar() {
+        binding.toolbar.setupToolbar(
+            title = getString(R.string.title_article),
+            showBackButton = false
+        )
+    }
+
+    private fun setupRecyclerView() {
         binding.apply {
             rvArticle.layoutManager = LinearLayoutManager(requireContext())
             rvArticle.adapter = articleAdapter
-            // Set up Toolbar
-            toolbar.setupToolbar(
-                title = getString(R.string.title_article),
-                showBackButton = false
-            )
         }
+    }
 
-        setupMainButton()
-        fetchData()
+    private fun setupView() {
+        setupToolbar()
+        setupRecyclerView()
+    }
+
+    private fun setupMainButton() {
+        binding.btnBookmark.setOnClickListener {
+            startActivity(Intent(requireContext(), SaveArticleActivity::class.java))
+        }
+    }
+
+    private fun observeData() {
+        articleViewModel.getAllArticles.observe(viewLifecycleOwner) { pagingData ->
+            articleAdapter.submitData(lifecycle, pagingData)
+        }
     }
 
     override fun setupFragmentBinding(
@@ -40,15 +61,4 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
         savedInstanceState: Bundle?
     ): FragmentArticleBinding = FragmentArticleBinding.inflate(inflater, container, false)
 
-    private fun setupMainButton() {
-        binding.btnBookmark.setOnClickListener {
-            startActivity(Intent(requireContext(), SaveArticleActivity::class.java))
-        }
-    }
-
-    private fun fetchData() {
-        articleViewModel.getAllArticles.observe(viewLifecycleOwner) { pagingData ->
-            articleAdapter.submitData(lifecycle, pagingData)
-        }
-    }
 }

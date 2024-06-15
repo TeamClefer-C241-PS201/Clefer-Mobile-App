@@ -18,18 +18,16 @@ class ArticleAdapter(
     private val type: AdapterType,
 ) :
     PagingDataAdapter<DataItemItem, RecyclerView.ViewHolder>(LIST_ARTICLE_DIFF_CALLBACK) {
-
     enum class AdapterType {
         PAGING, FAVORITE
     }
-
     private var favoriteArticles = listOf<FavoriteArticle>()
 
     inner class ArticleViewHolder(private val binding: ItemArticleBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(articleItem: DataItemItem?) {
-            articleItem ?: return // Handle null items if any
+            articleItem ?: return
 
             binding.apply {
                 tvTitle.text = articleItem.articleTitle

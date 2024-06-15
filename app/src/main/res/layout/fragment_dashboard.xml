@@ -65,14 +65,15 @@
                     android:src="@drawable/img_corn_plant"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:id="@+id/tv_card_main_headline"
                     style="@style/BoldHeadlineStyle"
                     android:layout_marginStart="26dp"
                     android:layout_marginTop="38dp"
-                    android:text="Corn Leaf"
+                    android:text="@string/corn_leaf"
                     android:textColor="@color/white"
                     android:textSize="25sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +84,7 @@
                     style="@style/LightHeadline"
                     android:layout_marginStart="28dp"
                     android:layout_marginBottom="38dp"
-                    android:text="Disease Analyze"
+                    android:text="@string/disease_analyze"
                     app:layout_constraintBottom_toBottomOf="@id/iv_card_plant"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_card_main_headline" />
@@ -95,7 +96,7 @@
             style="@style/RegularHeadline"
             android:layout_marginStart="27dp"
             android:layout_marginTop="15dp"
-            android:text="Mulai Pemindaian Tanaman Anda"
+            android:text="@string/mulai_pemindaian_tanaman_anda"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_layout" />
@@ -128,7 +129,7 @@
             style="@style/RegularHeadline"
             android:layout_marginStart="27dp"
             android:layout_marginTop="22dp"
-            android:text="Pilihan Lanjutan"
+            android:text="@string/pilihan_lanjutan"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_camera" />

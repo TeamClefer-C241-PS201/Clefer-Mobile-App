@@ -26,7 +26,7 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             style="@style/SemiBoldSubHeadline"
-            android:text="Temukan Informasi Terbaru"
+            android:text="@string/temukan_informasi_terbaru"
             android:textColor="@color/black"
             android:textSize="16sp" />
 

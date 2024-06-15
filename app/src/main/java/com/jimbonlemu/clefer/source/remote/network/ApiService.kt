@@ -1,12 +1,11 @@
 package com.jimbonlemu.clefer.source.remote.network
 
+import com.jimbonlemu.clefer.source.remote.request.CommentRequest
 import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
 import com.jimbonlemu.clefer.source.remote.request.LoginRequest
 import com.jimbonlemu.clefer.source.remote.request.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
-import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
-import com.jimbonlemu.clefer.source.remote.response.CommentDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.CommentDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CreateDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
@@ -54,6 +53,11 @@ interface ApiService {
         @Path("id") postId: Int
     ): List<CommentDiscussionResponseItem>
 
+    @POST("posts/{id}/comments/create")
+    suspend fun createComment(
+        @Path("id") postId: Int,
+        @Body commentRequest: CommentRequest
+    ): CommentDiscussionResponseItem
 
 
 

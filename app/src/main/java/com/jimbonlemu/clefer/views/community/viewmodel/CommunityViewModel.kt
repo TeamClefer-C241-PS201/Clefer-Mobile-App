@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jimbonlemu.clefer.repository.AppRepository
+import com.jimbonlemu.clefer.source.remote.request.CommentRequest
 import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CommentDiscussionResponseItem
@@ -24,8 +25,12 @@ class CommunityViewModel(private val repository: AppRepository) : ViewModel() {
     private val _getDiscussionById = MutableLiveData<ResponseState<AllDiscussionResponseItem>>()
     val getDiscussionById: LiveData<ResponseState<AllDiscussionResponseItem>> by lazy { _getDiscussionById }
 
-    private val _getCommentById = MutableLiveData<ResponseState<List<CommentDiscussionResponseItem>>>()
+    private val _getCommentById =
+        MutableLiveData<ResponseState<List<CommentDiscussionResponseItem>>>()
     val getCommentById: LiveData<ResponseState<List<CommentDiscussionResponseItem>>> by lazy { _getCommentById }
+
+    private val _createComment = MutableLiveData<ResponseState<CommentDiscussionResponseItem>>()
+    val createComment: LiveData<ResponseState<CommentDiscussionResponseItem>> by lazy { _createComment }
 
     fun getAllDiscussions() {
         viewModelScope.launch {
@@ -55,6 +60,15 @@ class CommunityViewModel(private val repository: AppRepository) : ViewModel() {
         viewModelScope.launch {
             repository.getCommentById(postId).collect {
                 _getCommentById.value = it
+            }
+        }
+    }
+
+    fun createComment(postId: Int, commentBody: String) {
+        viewModelScope.launch {
+            val commentRequest = CommentRequest(commentBody)
+            repository.createCommentById(postId, commentRequest).collect {
+                _createComment.value = it
             }
         }
     }

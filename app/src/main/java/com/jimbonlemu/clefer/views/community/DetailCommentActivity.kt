@@ -2,6 +2,8 @@ package com.jimbonlemu.clefer.views.community
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
+import androidx.core.view.isGone
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
@@ -25,6 +27,7 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
         setupViews()
         observeData()
         observeComments()
+        setupPostCommentButton()
     }
 
     private fun setupViews() {
@@ -47,6 +50,18 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
         detailCommunityViewModel.getCommentByPostId(postId)
     }
 
+    private fun setupPostCommentButton() {
+        binding.btnSendComment.setOnClickListener {
+            val commentBody = binding.commentInput.text.toString().trim()
+            if (commentBody.isNotEmpty()) {
+                detailCommunityViewModel.createComment(postId, commentBody)
+                binding.commentInput.text?.clear()
+            } else {
+                getToast("Please fill in the comment")
+            }
+        }
+    }
+
     private fun observeComments() {
         detailCommunityViewModel.getCommentById.observe(this) { responseState ->
             when (responseState) {
@@ -59,6 +74,24 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
                 is ResponseState.Error -> {
                     // Response error
                 }
+            }
+        }
+
+        detailCommunityViewModel.createComment.observe(this) { responseState ->
+            when (responseState) {
+                is ResponseState.Loading -> {
+                    enabledComponent(false)
+                }
+                is ResponseState.Success -> {
+                    enabledComponent(true)
+                    getToast("Comment posted successfully")
+                    detailCommunityViewModel.getCommentByPostId(postId)
+                }
+                is ResponseState.Error -> {
+                    enabledComponent(true)
+                    getToast(responseState.errorMessage)
+                }
+                else -> binding.main.isGone = true
             }
         }
     }
@@ -84,6 +117,22 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
                 }
             }
         }
+    }
+
+    private fun enabledComponent(isComponentEnabled: Boolean) {
+        binding.apply {
+            if (isComponentEnabled) {
+                commentInput.isEnabled = true
+                btnSendComment.isEnabled = true
+            } else {
+                commentInput.isEnabled = false
+                btnSendComment.isEnabled = false
+            }
+        }
+    }
+
+    private fun getToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityDetailCommentBinding =

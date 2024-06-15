@@ -25,7 +25,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mToolbar"
-        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+        app:shapeAppearanceOverlay="@style/RoundedSquare"
+        tools:ignore="ImageContrastCheck" />
 
 
     <TextView
@@ -70,7 +71,8 @@
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email" />
+        app:layout_constraintTop_toBottomOf="@id/email"
+        tools:ignore="RtlHardcoded,VisualLintButtonSize" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_info_app"
@@ -91,7 +93,8 @@
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_update_profile" />
+        app:layout_constraintTop_toBottomOf="@id/btn_update_profile"
+        tools:ignore="RtlHardcoded,VisualLintButtonSize" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_logout"
@@ -100,6 +103,7 @@
         android:text="@string/logout_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_info_app" />
+        app:layout_constraintTop_toBottomOf="@id/btn_info_app"
+        tools:ignore="VisualLintButtonSize" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

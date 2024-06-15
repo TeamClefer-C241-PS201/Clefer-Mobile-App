@@ -56,4 +56,18 @@
     <string name="community">Komunitas</string>
     <string name="question">Ajukan Pertanyaan</string>
     <string name="comment_detail">Komentar</string>
+    <string name="disease_analyze">Disease Analyze</string>
+    <string name="corn_leaf">Corn Leaf</string>
+    <string name="mulai_pemindaian_tanaman_anda">Mulai Pemindaian Tanaman Anda</string>
+    <string name="pilihan_lanjutan">Pilihan Lanjutan</string>
+    <string name="temukan_informasi_terbaru">Temukan Informasi Terbaru</string>
+    <string name="btn_update_profile">Ganti Foto Profile</string>
+    <string name="informasi_akun">Informasi Akun</string>
+    <string name="tulis_komentar">Tulis Komentar</string>
+    <string name="komentar_postingan">Komentar Postingan</string>
+    <string name="about">Selamat datang di aplikasi CLEFER - Analisis Penyakit Daun Jagung. CLEFER adalah solusi inovatif yang mengintegrasikan teknologi untuk mendeteksi dan menganalisis penyakit pada tanaman jagung secara cepat dan akurat. Aplikasi ini dirancang oleh tim ahli kami di bidang pertanian dan teknologi untuk memberikan kemudahan dalam mengidentifikasi serta mengelola penyakit tanaman jagung. Dengan CLEFER, Anda dapat melakukan:</string>
+    <string name="about_2">1. Pemindaian Penyakit: Mendeteksi penyakit pada tanaman jagung melalui pemindaian visual menggunakan kamera ponsel Anda.\n2. Analisis Detail: Menganalisis gejala penyakit secara rinci dan mendapatkan rekomendasi perawatan yang tepat.\n3. Riwayat Pemindaian: Melacak riwayat pemindaian penyakit untuk memantau perkembangan dan memperbaiki kondisi tanaman Anda.\n4. Komunitas: Bergabung dengan komunitas petani dan pakar pertanian untuk berbagi pengalaman dan pengetahuan.</string>
+    <string name="about_3">CLEFER didukung oleh teknologi canggih untuk memastikan keakuratan dan kehandalan dalam analisis penyakit tanaman jagung. Kami berkomitmen untuk memberikan solusi yang dapat meningkatkan produktivitas pertanian Anda.</string>
+    <string name="like_text">Suka</string>
+    <string name="comment_text">Komentar</string>
 </resources>

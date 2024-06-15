@@ -1,11 +1,11 @@
 package com.jimbonlemu.clefer.source.remote
 
 import com.jimbonlemu.clefer.source.remote.network.ApiService
+import com.jimbonlemu.clefer.source.remote.request.CommentRequest
 import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
 import com.jimbonlemu.clefer.source.remote.request.LoginRequest
 import com.jimbonlemu.clefer.source.remote.request.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
-import com.jimbonlemu.clefer.source.remote.response.CommentDiscussionResponseItem
 
 class RemoteDataSource (private val api: ApiService) {
     suspend fun getAllArticles(
@@ -32,4 +32,6 @@ class RemoteDataSource (private val api: ApiService) {
     suspend fun getDiscussionById(postId: Int) = api.getDiscussionById(postId)
 
    suspend fun getCommentDiscussionById(postId: Int) = api.getCommentsByPostId(postId)
+
+    suspend fun createCommentDiscussionById(postId: Int, commentRequest: CommentRequest) = api.createComment(postId, commentRequest)
 }

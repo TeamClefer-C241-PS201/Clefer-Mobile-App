@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="12dp"
@@ -20,7 +21,7 @@
             android:id="@+id/tv_name"
             style="@style/BoldHeadlineStyle"
             android:layout_width="0dp"
-            android:text="Imam Farrhouk"
+            android:text=""
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +32,7 @@
             style="@style/RegularSubHeadline"
             android:layout_width="0dp"
             android:layout_marginTop="4dp"
-            android:text="20 Aug 2022"
+            android:text=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_name" />
@@ -42,7 +43,7 @@
             android:layout_width="0dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="We are facing a serious business dilemma, with Facebook taking away a good chunk of traffic to news and content sites, and ad blockers eating into what’s left of it while slashing ad revenues."
+            android:text=""
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,37 +56,59 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:src="@drawable/ic_favorite_border"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_desc"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tv_like_count"
             style="@style/RegularSubHeadline"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="8dp"
-            android:text="123 likes"
+            android:layout_marginTop="10dp"
+            android:text=""
             android:textColor="@android:color/black"
             app:layout_constraintStart_toEndOf="@id/iv_like"
             app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />
 
+        <TextView
+            android:id="@+id/tv_like_text"
+            style="@style/RegularSubHeadline"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/like_text"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@id/tv_like_count"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />
+
         <ImageView
             android:id="@+id/iv_comment"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/asset_ic_comment"
-        app:layout_constraintStart_toEndOf="@id/tv_like_count"
-        app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />
+            app:layout_constraintStart_toEndOf="@id/tv_like_text"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_desc"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tv_comment_count"
             style="@style/RegularSubHeadline"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="8dp"
-            android:text="45 comments"
+            android:layout_marginTop="10dp"
+            android:text=""
             android:textColor="@android:color/black"
             app:layout_constraintStart_toEndOf="@id/iv_comment"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />
+
+        <TextView
+            android:id="@+id/tv_comment_text"
+            style="@style/RegularSubHeadline"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/comment_text"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@id/tv_comment_count"
             app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,20 +48,16 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
     private fun setupRecyclerView() {
         binding.rvItems.layoutManager = LinearLayoutManager(this)
         binding.rvItems.adapter = listCommunityAdapter
+        communityViewModel.getAllDiscussions()
     }
 
     private fun observeData() {
-        communityViewModel.getAllDiscussions()
         communityViewModel.getAllDiscussions.observe(this) { response ->
             when (response) {
                 is ResponseState.Loading -> {
                     // Response loading
                 }
                 is ResponseState.Success -> {
-                    response.data.forEach { item ->
-
-                    }
-
                     listCommunityAdapter.updateItems(response.data)
                 }
                 is ResponseState.Error -> {

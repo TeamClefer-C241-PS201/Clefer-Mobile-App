@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import com.jimbonlemu.clefer.source.local.LocalDataSource
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.source.remote.RemoteDataSource
+import com.jimbonlemu.clefer.source.remote.request.CommentRequest
 import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
 import com.jimbonlemu.clefer.source.remote.request.LoginRequest
 import com.jimbonlemu.clefer.source.remote.request.RegisterRequest
@@ -140,6 +141,17 @@ class AppRepository(
             val response = remoteDataSource.getCommentDiscussionById(postId)
             emit(ResponseState.Success(response))
         }catch (e: Exception){
+            e.printStackTrace()
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
+
+    fun createCommentById(postId: Int, commentRequest: CommentRequest, ): Flow<ResponseState<CommentDiscussionResponseItem>> = flow {
+        try {
+            emit(ResponseState.Loading)
+            val response = remoteDataSource.createCommentDiscussionById(postId, commentRequest)
+            emit(ResponseState.Success(response))
+        } catch (e: Exception) {
             e.printStackTrace()
             emit(ResponseState.Error(e.message.toString()))
         }

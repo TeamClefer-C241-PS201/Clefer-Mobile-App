@@ -62,16 +62,13 @@ class QuestionActivity : CoreActivity<ActivityQuestionBinding>() {
 
                 is ResponseState.Success -> {
                     enabledComponent(true)
-                    Toast.makeText(
-                        this@QuestionActivity,
-                        "Question posted successfully", Toast.LENGTH_SHORT
-                    ).show()
+                    getToast("Question posted successfully")
                     finish()
                 }
 
                 is ResponseState.Error -> {
                     enabledComponent(true)
-                    Toast.makeText(this@QuestionActivity, response.errorMessage, Toast.LENGTH_SHORT).show()
+                    getToast(response.errorMessage)
                 }
 
                 else -> main.isGone = true

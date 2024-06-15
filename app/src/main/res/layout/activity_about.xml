@@ -45,7 +45,7 @@
                 style="@style/RegularHeadline"
                 android:justificationMode="inter_word"
                 android:textColor="@color/black"
-                android:text="Selamat datang di aplikasi CLEFER - Analisis Penyakit Daun Jagung. CLEFER adalah solusi inovatif yang mengintegrasikan teknologi untuk mendeteksi dan menganalisis penyakit pada tanaman jagung secara cepat dan akurat. Aplikasi ini dirancang oleh tim ahli kami di bidang pertanian dan teknologi untuk memberikan kemudahan dalam mengidentifikasi serta mengelola penyakit tanaman jagung. Dengan CLEFER, Anda dapat melakukan:" />
+                android:text="@string/about" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                 style="@style/RegularHeadline"
                 android:justificationMode="inter_word"
                 android:textColor="@color/black"
-                android:text="1. Pemindaian Penyakit: Mendeteksi penyakit pada tanaman jagung melalui pemindaian visual menggunakan kamera ponsel Anda.\n2. Analisis Detail: Menganalisis gejala penyakit secara rinci dan mendapatkan rekomendasi perawatan yang tepat.\n3. Riwayat Pemindaian: Melacak riwayat pemindaian penyakit untuk memantau perkembangan dan memperbaiki kondisi tanaman Anda.\n4. Komunitas: Bergabung dengan komunitas petani dan pakar pertanian untuk berbagi pengalaman dan pengetahuan." />
+                android:text="@string/about_2" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                 style="@style/RegularHeadline"
                 android:justificationMode="inter_word"
                 android:textColor="@color/black"
-                android:text="CLEFER didukung oleh teknologi canggih untuk memastikan keakuratan dan kehandalan dalam analisis penyakit tanaman jagung. Kami berkomitmen untuk memberikan solusi yang dapat meningkatkan produktivitas pertanian Anda." />
+                android:text="@string/about_3" />
 
 
         </LinearLayout>

@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="16dp"
-                android:text="Komentar Postingan"
+                android:text="@string/komentar_postingan"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
@@ -84,24 +84,26 @@
             app:boxCornerRadiusBottomStart="12dp"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxBackgroundColor="@android:color/white"
-            app:boxStrokeColor="@color/cleferRed">
+            app:boxStrokeColor="@color/cleferGreen">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/comment_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/tulis_komentar"
                 android:minHeight="15dp"
-                android:hint="Tulis Komentar" />
+                tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_send_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/ic_arrow_next"
             app:backgroundTint="@color/cleferGreen"
             app:tint="@android:color/white"
-            android:layout_gravity="center_vertical" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,8 +18,10 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainButton()
-        binding.setUserData()
+        binding.apply {
+            mainButton()
+            setUserData()
+        }
     }
 
     override fun setupFragmentBinding(
@@ -28,27 +30,26 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
         savedInstanceState: Bundle?,
     ): FragmentProfileBinding = FragmentProfileBinding.inflate(inflater, container, false)
 
-    private fun FragmentProfileBinding.setUserData(){
+    private fun FragmentProfileBinding.setUserData() {
         username.text = Prefs.getUsername
         email.text = Prefs.getEmail
     }
 
-    private fun mainButton() {
-        binding.apply {
-            btnInfoApp.setOnClickListener {
-                startActivity(Intent(requireContext(), AboutActivity::class.java))
-            }
-            btnUpdateProfile.setOnClickListener {
-                startActivity(Intent(requireContext(), UpdateProfileActivity::class.java))
-            }
-            btnLogout.setOnClickListener {
-                authViewModel.logout()
-                startActivity(Intent(requireActivity(), SignInActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                })
-                requireActivity().finish()
-            }
+    private fun FragmentProfileBinding.mainButton() {
+        btnInfoApp.setOnClickListener {
+            startActivity(Intent(requireContext(), AboutActivity::class.java))
         }
+        btnUpdateProfile.setOnClickListener {
+            startActivity(Intent(requireContext(), UpdateProfileActivity::class.java))
+        }
+        btnLogout.setOnClickListener {
+            authViewModel.logout()
+            startActivity(Intent(requireActivity(), SignInActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            })
+            requireActivity().finish()
+        }
+
     }
 
 }

@@ -9,5 +9,5 @@ import org.koin.dsl.module
 val viewModelModules = module {
     viewModel { ArticleViewModel(get()) }
     viewModel { AuthViewModels(get()) }
-    viewModel {CommunityViewModel(get())}
+    viewModel { CommunityViewModel(get()) }
 }

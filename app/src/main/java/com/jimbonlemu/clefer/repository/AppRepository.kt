@@ -126,7 +126,7 @@ class AppRepository(
 
     fun logout(): Boolean {
         return try {
-            Prefs.clearAllPreferences()
+            Prefs.clearAuthPrefs()
             true
         } catch (e: Exception) {
             e.printStackTrace()

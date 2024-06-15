@@ -15,7 +15,6 @@ data class AnalyzeResultResponse(
 )
 
 data class Data(
-
 	@field:SerializedName("result")
 	val result: String? = null,
 

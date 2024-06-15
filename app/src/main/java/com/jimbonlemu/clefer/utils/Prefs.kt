@@ -39,7 +39,7 @@ object Prefs {
         editor.apply()
     }
 
-    fun clearAllPreferences() {
+    fun clearAuthPrefs() {
         editor.remove(KEY_NAME)
         editor.remove(KEY_USERNAME)
         editor.remove(KEY_EMAIL)

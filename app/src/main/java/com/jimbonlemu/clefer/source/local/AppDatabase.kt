@@ -6,15 +6,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.jimbonlemu.clefer.source.local.dao.FavoriteArticleDao
+import com.jimbonlemu.clefer.source.local.dao.HistoryAnalyzedDao
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
+import com.jimbonlemu.clefer.source.local.entity.HistoryAnalyzed
 import com.jimbonlemu.clefer.utils.Constant
 
 @Database(
     entities = [
-        FavoriteArticle::class,
+        FavoriteArticle::class, HistoryAnalyzed::class
     ], version = Constant.DB_VERSION, exportSchema = false
 )
 
 abstract class AppDatabase : RoomDatabase() {
     abstract fun daoFavorite(): FavoriteArticleDao
+    abstract fun daoHistoryAnalyzed(): HistoryAnalyzedDao
 }

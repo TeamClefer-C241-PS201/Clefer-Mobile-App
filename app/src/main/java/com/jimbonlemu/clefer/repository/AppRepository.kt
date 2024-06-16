@@ -11,6 +11,7 @@ import androidx.paging.liveData
 import com.google.gson.Gson
 import com.jimbonlemu.clefer.source.local.LocalDataSource
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
+import com.jimbonlemu.clefer.source.local.entity.HistoryAnalyzed
 import com.jimbonlemu.clefer.source.remote.RemoteDataSource
 import com.jimbonlemu.clefer.source.remote.request.CommentRequest
 import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
@@ -173,18 +174,22 @@ class AppRepository(
         }
     }
 
-    fun getCommentById(postId: Int): Flow<ResponseState<List<CommentDiscussionResponseItem>>> = flow {
-        try {
-            emit(ResponseState.Loading)
-            val response = remoteDataSource.getCommentDiscussionById(postId)
-            emit(ResponseState.Success(response))
-        }catch (e: Exception){
-            e.printStackTrace()
-            emit(ResponseState.Error(e.message.toString()))
+    fun getCommentById(postId: Int): Flow<ResponseState<List<CommentDiscussionResponseItem>>> =
+        flow {
+            try {
+                emit(ResponseState.Loading)
+                val response = remoteDataSource.getCommentDiscussionById(postId)
+                emit(ResponseState.Success(response))
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emit(ResponseState.Error(e.message.toString()))
+            }
         }
-    }
 
-    fun createCommentById(postId: Int, commentRequest: CommentRequest): Flow<ResponseState<CommentDiscussionResponseItem>> = flow {
+    fun createCommentById(
+        postId: Int,
+        commentRequest: CommentRequest,
+    ): Flow<ResponseState<CommentDiscussionResponseItem>> = flow {
         try {
             emit(ResponseState.Loading)
             val response = remoteDataSource.createCommentDiscussionById(postId, commentRequest)
@@ -250,6 +255,8 @@ class AppRepository(
     }
 
     //LOCAL
+
+    //    ARTICLE
     suspend fun insertFavoriteArticle(favoriteArticle: FavoriteArticle) {
         localDataSource.insertFavoriteArticle(favoriteArticle)
     }
@@ -266,5 +273,18 @@ class AppRepository(
         localDataSource.deleteFavorite(id)
     }
 
+//    HISTORY
+
+    suspend fun insertHistoryAnalyzed(historyAnalyzed: HistoryAnalyzed) {
+        localDataSource.insertHistoryAnalyzed(historyAnalyzed)
+    }
+
+    fun getAllHistoryAnalyzedByOwner(ownerId: String): LiveData<List<HistoryAnalyzed>> {
+        return localDataSource.getAllHistoryAnalyzedByOwner(ownerId)
+    }
+
+    suspend fun deleteHistoryAnalyzed(id: String) {
+        localDataSource.deleteHistoryAnalyzed(id)
+    }
 
 }

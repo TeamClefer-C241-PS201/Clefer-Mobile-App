@@ -64,7 +64,7 @@
     </style>
 
     <!--Button style-->
-    <style name="ButtonStyle" parent="ThemeOverlay.Material3.Button">
+    <style name="ButtonStyle">
         <item name="android:layout_marginEnd">38dp</item>
         <item name="android:layout_marginStart">38dp</item>
         <item name="android:layout_width">match_parent</item>

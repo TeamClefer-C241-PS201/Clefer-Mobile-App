@@ -72,4 +72,5 @@
     <string name="comment_text">Komentar</string>
     <string name="title_result">Hasil</string>
     <string name="title_recommendation">Rekomendasi</string>
+    <string name="title_history">Riwayat</string>
 </resources>

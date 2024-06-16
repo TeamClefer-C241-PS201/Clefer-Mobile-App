@@ -89,9 +89,9 @@ class CommunityViewModel(private val repository: AppRepository) : ViewModel() {
         }
     }
 
-    fun likeComment(postId: Int ,commentId: Int) {
+    fun likeComment(postId: Int, commentId: Int) {
         viewModelScope.launch {
-            repository.likeComment(postId ,commentId).collect {
+            repository.likeComment(postId, commentId).collect {
                 _likeCommentState.value = it
             }
         }

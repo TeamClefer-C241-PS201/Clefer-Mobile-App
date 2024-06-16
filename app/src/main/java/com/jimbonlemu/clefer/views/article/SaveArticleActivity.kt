@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
+import com.jimbonlemu.clefer.databinding.ActivityDetailCommentBinding
 import com.jimbonlemu.clefer.databinding.ActivitySaveArticleBinding
 import com.jimbonlemu.clefer.views.article.adapter.ArticleAdapter
 import com.jimbonlemu.clefer.views.article.viewmodels.ArticleViewModel
@@ -21,17 +22,18 @@ class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
     }
 
     private fun setupViews() {
-        setupToolbar()
+        binding.setupToolbar()
         setupRecyclerView()
     }
 
-    @Suppress("DEPRECATION")
-    private fun setupToolbar() {
-        binding.toolbar.setupToolbar(
-            title = getString(R.string.save_article),
-            showBackButton = true,
-            backAction = { onBackPressed() }
-        )
+    private fun ActivitySaveArticleBinding.setupToolbar() {
+        setSupportActionBar(mToolbar);
+        mToolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back);
+            setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
     }
 
     private fun setupRecyclerView() {

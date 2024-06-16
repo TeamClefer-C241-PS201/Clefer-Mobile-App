@@ -24,12 +24,6 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
         observeData()
     }
 
-    private fun setupToolbar() {
-        binding.toolbar.setupToolbar(
-            title = getString(R.string.title_article),
-            showBackButton = false
-        )
-    }
 
     private fun setupRecyclerView() {
         binding.apply {
@@ -39,7 +33,6 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
     }
 
     private fun setupView() {
-        setupToolbar()
         setupRecyclerView()
     }
 

@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityDetailArticleBinding
+import com.jimbonlemu.clefer.databinding.ActivityDetailCommentBinding
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.views.article.viewmodels.ArticleViewModel
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +28,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
     }
 
     private fun setupViews() {
-        setupToolbar()
+        binding.setupToolbar()
     }
 
     private fun observeData() {
@@ -69,14 +70,15 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
         updateFavoriteUI()
     }
 
-    private fun setupToolbar() {
-        binding.toolbar.setupToolbar(
-            title = getString(R.string.detail_artikel_title),
-            showBackButton = true,
-            backAction = { onBackPressedDispatcher.onBackPressed() }
-        )
+    private fun ActivityDetailArticleBinding.setupToolbar() {
+        setSupportActionBar(mToolbar);
+        mToolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back);
+            setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
     }
-
 
     private fun deleteFavorite(id: Int) {
         detailArticleViewModel.deleteFavorite(id)

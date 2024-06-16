@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.core.view.isGone
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
+import com.jimbonlemu.clefer.databinding.ActivityAboutBinding
 import com.jimbonlemu.clefer.databinding.ActivityQuestionBinding
 import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
 import com.jimbonlemu.clefer.utils.ResponseState
@@ -22,13 +23,15 @@ class QuestionActivity : CoreActivity<ActivityQuestionBinding>() {
             setupToolbar()
         }
     }
-    @Suppress("DEPRECATION")
-    private fun setupToolbar(){
-        binding.toolbar.setupToolbar(
-            title = getString(R.string.question),
-            showBackButton = true,
-            backAction = { onBackPressed() }
-        )
+
+    private fun ActivityQuestionBinding.setupToolbar() {
+        setSupportActionBar(mToolbar);
+        mToolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back);
+            setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
     }
 
     private fun ActivityQuestionBinding.setupButton() {

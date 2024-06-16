@@ -30,13 +30,14 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(), ListCommunit
         setupRecyclerView()
     }
 
-    @Suppress("DEPRECATION")
     private fun setupToolbar() {
-        binding.toolbar.setupToolbar(
-            title = getString(R.string.community),
-            showBackButton = true,
-            backAction = { onBackPressed() }
-        )
+        setSupportActionBar(binding.mToolbar);
+        binding.mToolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back);
+            setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
     }
 
     private fun setupButton() {
@@ -90,7 +91,6 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(), ListCommunit
     override fun onLikeButtonClicked(item: AllDiscussionResponseItem) {
         communityViewModel.likeDiscussion(item.postId!!)
     }
-
 
     private fun getToast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()

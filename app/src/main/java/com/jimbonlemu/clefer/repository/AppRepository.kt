@@ -146,7 +146,7 @@ class AppRepository(
         }
     }
 
-    fun createCommentById(postId: Int, commentRequest: CommentRequest, ): Flow<ResponseState<CommentDiscussionResponseItem>> = flow {
+    fun createCommentById(postId: Int, commentRequest: CommentRequest): Flow<ResponseState<CommentDiscussionResponseItem>> = flow {
         try {
             emit(ResponseState.Loading)
             val response = remoteDataSource.createCommentDiscussionById(postId, commentRequest)

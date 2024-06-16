@@ -19,6 +19,9 @@ data class AllDiscussionResponseItem(
 	@field:SerializedName("LikerCount")
 	var likerCount: Int? = null,
 
+	@field:SerializedName("likerCount")
+	var likerCountById: Int? = null,
+
 	@field:SerializedName("postTitle")
 	val postTitle: String? = null,
 
@@ -35,5 +38,8 @@ data class AllDiscussionResponseItem(
 	val commentCount: Int? = null,
 
 	@field:SerializedName("likeStat")
-	var likeStat: Int? = null
+	var likeStat: Int? = null,
+
+	@field:SerializedName("name")
+	val name: String? = null,
 )

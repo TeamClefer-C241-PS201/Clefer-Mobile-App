@@ -64,11 +64,10 @@ interface ApiService {
     @POST("posts/{id}/like")
     suspend fun likeDiscussion(@Path("id") postId: Int): LikeDiscussionResponse
 
-    @POST("posts/{Id}/{commentId}/like")
+    @POST("posts/{id}/{commentId}/like")
     suspend fun likeComment(
         @Path("id") postId: Int,
         @Path("commentId") commentId: Int
     ): LikeCommentResponse
-
 
 }

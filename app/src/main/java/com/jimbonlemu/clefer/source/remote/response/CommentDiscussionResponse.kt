@@ -20,13 +20,16 @@ data class CommentDiscussionResponseItem(
 	val commentId: Int? = null,
 
 	@field:SerializedName("likerCount")
-	val likerCount: Int? = null,
+	var likerCount: Int? = null,
 
 	@field:SerializedName("postId")
 	val postId: Int? = null,
 
 	@field:SerializedName("userId")
 	val userId: Int? = null,
+
+	@field:SerializedName("likeStat")
+	var likeStat: Int? = null,
 
 )
 

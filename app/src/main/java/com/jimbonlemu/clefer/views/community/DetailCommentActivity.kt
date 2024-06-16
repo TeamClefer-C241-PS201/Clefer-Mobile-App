@@ -9,13 +9,14 @@ import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityDetailCommentBinding
 import com.jimbonlemu.clefer.utils.ResponseState
+import com.jimbonlemu.clefer.utils.toTime
 import com.jimbonlemu.clefer.views.community.adapter.ListCommentAdapter
 import com.jimbonlemu.clefer.views.community.viewmodel.CommunityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
+class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListCommentAdapter.OnCommentLikeButtonClickListener {
     private val detailCommunityViewModel: CommunityViewModel by viewModel()
-    private val listCommentAdapter = ListCommentAdapter()
+    private val listCommentAdapter = ListCommentAdapter(this)
     private var postId: Int = 0
 
     companion object {
@@ -31,16 +32,18 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
     }
 
     private fun setupViews() {
-        setupToolbar()
+        binding.setupToolbar()
         setupRecyclerView()
     }
 
-    private fun setupToolbar() {
-        binding.toolbar.setupToolbar(
-            title = getString(R.string.comment_detail),
-            showBackButton = true,
-            backAction = { onBackPressedDispatcher.onBackPressed() }
-        )
+    private fun ActivityDetailCommentBinding.setupToolbar() {
+        setSupportActionBar(mToolbar);
+        mToolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back);
+            setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
     }
 
     private fun setupRecyclerView() {
@@ -95,6 +98,24 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
                 else -> binding.main.isGone = true
             }
         }
+
+        detailCommunityViewModel.likeCommentState.observe(this) { responseState ->
+            when (responseState) {
+                is ResponseState.Loading -> {
+                    // response loading
+                }
+                is ResponseState.Success -> {
+                    //response success
+                }
+                is ResponseState.Error -> {
+                    // response error
+                }
+            }
+        }
+    }
+
+    override fun onCommentLikeButtonClicked(postId: Int, commentId: Int) {
+        detailCommunityViewModel.likeComment(postId, commentId)
     }
 
     private fun observeData() {
@@ -109,11 +130,11 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
                     val discussion = responseState.data
                     binding.itemCommunity.tvName.text = discussion.postTitle
                     binding.itemCommunity.tvItemDesc.text = discussion.postDesc
-                    binding.itemCommunity.tvDate.text = discussion.postDate
-                    binding.itemCommunity.tvLikeCount.text = discussion.likerCount.toString()
+                    binding.itemCommunity.tvDate.text = discussion.postDate?.toTime()
+                    binding.itemCommunity.tvLikeCount.text = discussion.likerCountById.toString()
                     binding.itemCommunity.tvCommentCount.text = discussion.commentCount.toString()
                     binding.itemCommunity.btnLike.setImageResource(
-                        if (discussion.likerCount == 0) R.drawable.ic_favorite_border else R.drawable.ic_favorite
+                        if (discussion.likerCountById == 0) R.drawable.ic_favorite_border else R.drawable.ic_favorite
                     )
                 }
                 is ResponseState.Error -> {
@@ -122,7 +143,6 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
             }
         }
     }
-
 
     private fun enabledComponent(isComponentEnabled: Boolean) {
         binding.apply {

@@ -1,5 +1,7 @@
 package com.jimbonlemu.clefer.repository
 
+import android.net.Uri
+import androidx.core.net.toFile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.Pager
@@ -22,12 +24,17 @@ import com.jimbonlemu.clefer.source.remote.response.DataItemItem
 import com.jimbonlemu.clefer.source.remote.response.LikeCommentResponse
 import com.jimbonlemu.clefer.source.remote.response.LikeDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
+import com.jimbonlemu.clefer.source.remote.response.PredictResponse
 import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
 import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.utils.ResponseState
+import com.jimbonlemu.clefer.utils.compressed
 import com.jimbonlemu.clefer.views.article.paging.ArticlePaging
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
@@ -57,11 +64,15 @@ class AppRepository(
         try {
             emit(ResponseState.Loading)
             val response = remoteDataSource.login(loginDto)
-            val loginResult = response.user
-            if (loginResult != null) {
-                Prefs.setLoginPrefs(loginResult)
+            if (response.error == true) {
+                emit(ResponseState.Error(response.message.toString()))
+            } else {
+                val loginResult = response.user
+                if (loginResult != null) {
+                    Prefs.setLoginPrefs(loginResult)
+                }
+                emit(ResponseState.Success(response))
             }
-            emit(ResponseState.Success(response))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
             val errorMessage = if (!errorBody.isNullOrEmpty()) {
@@ -77,11 +88,12 @@ class AppRepository(
         }
     }
 
+
     fun register(registerDTO: RegisterRequest): Flow<ResponseState<RegisterResponse>> = flow {
         try {
             emit(ResponseState.Loading)
             val response = remoteDataSource.register(registerDTO)
-            if (response.message.toBoolean()) {
+            if (response.error == true) {
                 emit(ResponseState.Error(response.message.toString()))
             } else {
                 emit(ResponseState.Success(response))
@@ -90,6 +102,32 @@ class AppRepository(
             val errorBody = e.response()?.errorBody()?.string()
             val errorMessage = if (!errorBody.isNullOrEmpty()) {
                 val errorResponse = Gson().fromJson(errorBody, RegisterResponse::class.java)
+                errorResponse.message
+            } else {
+                e.message()
+            }
+            emit(ResponseState.Error(errorMessage.toString()))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
+
+    fun predictImage(fileName: Uri): Flow<ResponseState<PredictResponse>> = flow {
+        try {
+            emit(ResponseState.Loading)
+            val image = fileName.toFile().compressed()
+            val requestBody = image.asRequestBody("image/*".toMediaType())
+            val response = remoteDataSource.predictImage(image.name, requestBody)
+            if (response.error == true) {
+                emit(ResponseState.Error(response.message.toString()))
+            } else {
+                emit(ResponseState.Success(response))
+            }
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = if (!errorBody.isNullOrEmpty()) {
+                val errorResponse = Gson().fromJson(errorBody, PredictResponse::class.java)
                 errorResponse.message
             } else {
                 e.message()

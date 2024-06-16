@@ -2,10 +2,13 @@ package com.jimbonlemu.clefer.source.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class AnalyzeResultResponse(
+data class PredictResponse(
 
 	@field:SerializedName("data")
-	val data: Data? = null,
+	val data: PredictResult? = null,
+
+	@field:SerializedName("error")
+	val error: Boolean? = null,
 
 	@field:SerializedName("message")
 	val message: String? = null,
@@ -14,7 +17,8 @@ data class AnalyzeResultResponse(
 	val status: String? = null
 )
 
-data class Data(
+data class PredictResult(
+
 	@field:SerializedName("result")
 	val result: String? = null,
 

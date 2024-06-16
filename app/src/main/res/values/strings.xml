@@ -70,4 +70,6 @@
     <string name="about_3">CLEFER didukung oleh teknologi canggih untuk memastikan keakuratan dan kehandalan dalam analisis penyakit tanaman jagung. Kami berkomitmen untuk memberikan solusi yang dapat meningkatkan produktivitas pertanian Anda.</string>
     <string name="like_text">Suka</string>
     <string name="comment_text">Komentar</string>
+    <string name="title_result">Hasil</string>
+    <string name="title_recommendation">Rekomendasi</string>
 </resources>

@@ -1,21 +1,28 @@
 package com.jimbonlemu.clefer.views.dashboard
 
 import android.app.Activity
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityPreviewImageBinding
+import com.jimbonlemu.clefer.utils.ResponseState
+import com.jimbonlemu.clefer.views.dashboard.viewmodels.PredictViewModel
 import com.yalantis.ucrop.UCrop
+import org.koin.android.ext.android.inject
 import java.io.File
 import java.util.Date
 
 class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
 
     private lateinit var currentUriValue: Uri
+    private val predictViewModel: PredictViewModel by inject()
 
     private val uCropLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -25,7 +32,7 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
                     currentUriValue = resultUri
                     updateImage(currentUriValue)
                 }
-            }else{
+            } else {
                 onBackPressedDispatcher.onBackPressed()
             }
         }
@@ -37,11 +44,71 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
             setContentView(root)
             setupToolbar()
             launchUCrop(currentUriValue)
+
+            btnStartAnalyze.setOnClickListener {
+                predictViewModel.predictImage(currentUriValue)
+            }
+            initObserver()
         }
     }
 
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityPreviewImageBinding =
         ActivityPreviewImageBinding.inflate(layoutInflater)
+
+    private fun initObserver() {
+        predictViewModel.predictState.observe(this@PreviewImageActivity) { state ->
+            when (state) {
+                is ResponseState.Loading -> {
+                    binding.btnStartAnalyze.apply {
+                        text = "Loading..."
+                        isEnabled = false
+                    }
+                }
+
+                is ResponseState.Success -> {
+                    binding.btnStartAnalyze.apply {
+                        text = getString(R.string.title_start_analyze)
+                        isEnabled = true
+                    }
+                    startActivity(
+                        Intent(
+                            this@PreviewImageActivity,
+                            AnalyzeActivity::class.java
+                        ).apply {
+                            state.data.data?.apply {
+                                putExtra(AnalyzeActivity.PASSED_IMAGE, currentUriValue.toString())
+                                putExtra(AnalyzeActivity.PASSED_RESULT, result)
+                                putExtra(AnalyzeActivity.PASSED_DESC, description)
+                                putExtra(AnalyzeActivity.PASSED_SUGGESTION, suggestion)
+                            }
+                        })
+                    Toast.makeText(
+                        this@PreviewImageActivity,
+                        "Prediction successful: ${state.data.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+//                    state.data.data?.apply {
+//                        Log.d(
+//                            "IMAGE SCANNED RESULT",
+//                            "$result \n $description \n $suggestion"
+//                        )
+//                    }
+                }
+
+                is ResponseState.Error -> {
+                    binding.btnStartAnalyze.apply {
+                        text = getString(R.string.title_start_analyze)
+                        isEnabled = true
+                    }
+                    Toast.makeText(
+                        this@PreviewImageActivity,
+                        "Error: ${state.errorMessage}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
 
     private fun ActivityPreviewImageBinding.setupToolbar() {
         setSupportActionBar(mToolbar);

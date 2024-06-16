@@ -11,12 +11,17 @@ import com.jimbonlemu.clefer.source.remote.response.CreateDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.LikeCommentResponse
 import com.jimbonlemu.clefer.source.remote.response.LikeDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
+import com.jimbonlemu.clefer.source.remote.response.PredictResponse
 import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -33,6 +38,12 @@ interface ApiService {
 
     @POST("register")
     suspend fun register(@Body registerRequest: RegisterRequest): RegisterResponse
+
+    @Multipart
+    @POST("predict")
+    suspend fun predictImage(
+        @Part image: MultipartBody.Part,
+    ): PredictResponse
 
     @GET("articles/{id}")
      fun getArticleById(

@@ -100,4 +100,9 @@
         <item name="backgroundTint">@android:color/transparent</item>
         <item name="android:textColor">@color/cleferButtonTextColor</item>
     </style>
+
+<!--    Card Style-->
+    <style name="CircleCard" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

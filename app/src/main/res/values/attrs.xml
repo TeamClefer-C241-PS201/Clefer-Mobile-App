@@ -16,6 +16,17 @@
         <attr name="title" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="CircleCanvasView">
+        <attr name="circleColor" format="color" />
+        <attr name="circleText" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomAnalyzeTitle">
+        <attr name="itemCircleColor" format="color" />
+        <attr name="itemCircleText" format="string" />
+        <attr name="android:text" />
+    </declare-styleable>
+
     <style name="RoundedSquare">
         <item name="cornerSize">10%</item>
     </style>

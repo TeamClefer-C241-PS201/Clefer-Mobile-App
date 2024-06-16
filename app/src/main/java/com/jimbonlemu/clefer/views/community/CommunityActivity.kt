@@ -8,14 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityCommunityBinding
+import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.community.adapter.ListCommunityAdapter
 import com.jimbonlemu.clefer.views.community.viewmodel.CommunityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+class CommunityActivity : CoreActivity<ActivityCommunityBinding>(), ListCommunityAdapter.OnLikeButtonClickListener {
 
-class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
     private val communityViewModel: CommunityViewModel by viewModel()
-    private lateinit var listCommunityAdapter: ListCommunityAdapter
+    private val listCommunityAdapter = ListCommunityAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +48,6 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
     }
 
     private fun setupRecyclerView() {
-        listCommunityAdapter = ListCommunityAdapter { postId, isLiked ->
-            communityViewModel.likeDiscussion(postId)
-        }
         binding.rvItems.layoutManager = LinearLayoutManager(this)
         binding.rvItems.adapter = listCommunityAdapter
         communityViewModel.getAllDiscussions()
@@ -64,7 +62,6 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
 
                 is ResponseState.Success -> {
                     listCommunityAdapter.updateItems(response.data)
-                    getToast(response.data.size.toString())
                 }
 
                 is ResponseState.Error -> {
@@ -72,6 +69,7 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
                 }
             }
         }
+
         communityViewModel.likeDiscussionState.observe(this) { response ->
             when (response) {
                 is ResponseState.Loading -> {
@@ -85,12 +83,14 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
                 is ResponseState.Error -> {
                     // Handle error
                 }
-
             }
         }
-
-
     }
+
+    override fun onLikeButtonClicked(item: AllDiscussionResponseItem) {
+        communityViewModel.likeDiscussion(item.postId!!)
+    }
+
 
     private fun getToast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
@@ -99,5 +99,6 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityCommunityBinding =
         ActivityCommunityBinding.inflate(layoutInflater)
 }
+
 
 

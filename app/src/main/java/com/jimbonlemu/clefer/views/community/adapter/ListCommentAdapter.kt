@@ -20,6 +20,7 @@ class ListCommentAdapter : RecyclerView.Adapter<ListCommentAdapter.ViewHolder>()
                 tvItemDesc.text = itemComment.commentBody
                 tvDate.text = itemComment.commentDate?.toTime()
                 tvLikeCount.text = itemComment.likerCount?.toString()
+
             }
         }
     }

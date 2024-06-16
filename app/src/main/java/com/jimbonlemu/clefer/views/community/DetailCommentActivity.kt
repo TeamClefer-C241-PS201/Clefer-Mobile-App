@@ -44,6 +44,7 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
     }
 
     private fun setupRecyclerView() {
+
         binding.rvComments.layoutManager = LinearLayoutManager(this)
         binding.rvComments.adapter = listCommentAdapter
         postId = intent.getIntExtra(POST_ID, 0)

@@ -1,7 +1,9 @@
 package com.jimbonlemu.clefer.views.community
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
@@ -13,14 +15,13 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
     private val communityViewModel: CommunityViewModel by viewModel()
-    private val listCommunityAdapter = ListCommunityAdapter()
+    private lateinit var listCommunityAdapter: ListCommunityAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupViews()
         observeData()
         setupButton()
-
     }
 
     private fun setupViews() {
@@ -46,6 +47,9 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
     }
 
     private fun setupRecyclerView() {
+        listCommunityAdapter = ListCommunityAdapter { postId, isLiked ->
+            communityViewModel.likeDiscussion(postId)
+        }
         binding.rvItems.layoutManager = LinearLayoutManager(this)
         binding.rvItems.adapter = listCommunityAdapter
         communityViewModel.getAllDiscussions()
@@ -55,19 +59,45 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>() {
         communityViewModel.getAllDiscussions.observe(this) { response ->
             when (response) {
                 is ResponseState.Loading -> {
-                    // Response loading
+                    // Handle loading
                 }
+
                 is ResponseState.Success -> {
                     listCommunityAdapter.updateItems(response.data)
+                    getToast(response.data.size.toString())
                 }
+
                 is ResponseState.Error -> {
-                    // Response error
+                    // Handle error
                 }
             }
         }
+        communityViewModel.likeDiscussionState.observe(this) { response ->
+            when (response) {
+                is ResponseState.Loading -> {
+                    // Handle loading
+                }
+
+                is ResponseState.Success -> {
+                    // Handle success
+                }
+
+                is ResponseState.Error -> {
+                    // Handle error
+                }
+
+            }
+        }
+
+
+    }
+
+    private fun getToast(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityCommunityBinding =
         ActivityCommunityBinding.inflate(layoutInflater)
 }
+
 

@@ -10,6 +10,8 @@ import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CommentDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CreateDiscussionResponse
+import com.jimbonlemu.clefer.source.remote.response.LikeCommentResponse
+import com.jimbonlemu.clefer.source.remote.response.LikeDiscussionResponse
 import com.jimbonlemu.clefer.utils.ResponseState
 import kotlinx.coroutines.launch
 
@@ -31,6 +33,12 @@ class CommunityViewModel(private val repository: AppRepository) : ViewModel() {
 
     private val _createComment = MutableLiveData<ResponseState<CommentDiscussionResponseItem>>()
     val createComment: LiveData<ResponseState<CommentDiscussionResponseItem>> by lazy { _createComment }
+
+    private val _likeDiscussionState = MutableLiveData<ResponseState<LikeDiscussionResponse>>()
+    val likeDiscussionState: LiveData<ResponseState<LikeDiscussionResponse>> = _likeDiscussionState
+
+    private val _likeCommentState = MutableLiveData<ResponseState<LikeCommentResponse>>()
+    val likeCommentState: LiveData<ResponseState<LikeCommentResponse>> = _likeCommentState
 
     fun getAllDiscussions() {
         viewModelScope.launch {
@@ -72,4 +80,22 @@ class CommunityViewModel(private val repository: AppRepository) : ViewModel() {
             }
         }
     }
+
+    fun likeDiscussion(postId: Int) {
+        viewModelScope.launch {
+            repository.likeDiscussion(postId).collect {
+                _likeDiscussionState.value = it
+            }
+        }
+    }
+
+    fun likeComment(postId: Int ,commentId: Int) {
+        viewModelScope.launch {
+            repository.likeComment(postId ,commentId).collect {
+                _likeCommentState.value = it
+            }
+        }
+    }
+
+
 }

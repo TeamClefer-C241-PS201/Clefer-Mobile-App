@@ -2,7 +2,6 @@ package com.jimbonlemu.clefer.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -16,11 +15,12 @@ import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
 import com.jimbonlemu.clefer.source.remote.request.LoginRequest
 import com.jimbonlemu.clefer.source.remote.request.RegisterRequest
 import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
-import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CommentDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CreateDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.DataItemItem
+import com.jimbonlemu.clefer.source.remote.response.LikeCommentResponse
+import com.jimbonlemu.clefer.source.remote.response.LikeDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
 import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
 import com.jimbonlemu.clefer.utils.Prefs
@@ -187,6 +187,28 @@ class AppRepository(
                 _detail.value = null
             }
         })
+    }
+
+    fun likeDiscussion(postId: Int): Flow<ResponseState<LikeDiscussionResponse>> = flow {
+        try {
+            emit(ResponseState.Loading)
+            val response = remoteDataSource.likeDiscussion(postId)
+            emit(ResponseState.Success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
+
+    fun likeComment(postId: Int, commentId: Int): Flow<ResponseState<LikeCommentResponse>> = flow {
+        try {
+            emit(ResponseState.Loading)
+            val response = remoteDataSource.likeComment(postId, commentId)
+            emit(ResponseState.Success(response))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(ResponseState.Error(e.message.toString()))
+        }
     }
 
     //LOCAL

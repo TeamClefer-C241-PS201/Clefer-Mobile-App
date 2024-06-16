@@ -111,6 +111,9 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
                     binding.itemCommunity.tvDate.text = discussion.postDate
                     binding.itemCommunity.tvLikeCount.text = discussion.likerCount.toString()
                     binding.itemCommunity.tvCommentCount.text = discussion.commentCount.toString()
+                    binding.itemCommunity.btnLike.setImageResource(
+                        if (discussion.likerCount == 0) R.drawable.ic_favorite_border else R.drawable.ic_favorite
+                    )
                 }
                 is ResponseState.Error -> {
                     // Response error
@@ -118,6 +121,7 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>() {
             }
         }
     }
+
 
     private fun enabledComponent(isComponentEnabled: Boolean) {
         binding.apply {

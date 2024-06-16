@@ -8,6 +8,8 @@ import com.jimbonlemu.clefer.source.remote.response.AllArticleResponse
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CommentDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.CreateDiscussionResponse
+import com.jimbonlemu.clefer.source.remote.response.LikeCommentResponse
+import com.jimbonlemu.clefer.source.remote.response.LikeDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
 import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
 import retrofit2.Call
@@ -59,7 +61,14 @@ interface ApiService {
         @Body commentRequest: CommentRequest
     ): CommentDiscussionResponseItem
 
+    @POST("posts/{id}/like")
+    suspend fun likeDiscussion(@Path("id") postId: Int): LikeDiscussionResponse
 
+    @POST("posts/{Id}/{commentId}/like")
+    suspend fun likeComment(
+        @Path("id") postId: Int,
+        @Path("commentId") commentId: Int
+    ): LikeCommentResponse
 
 
 }

@@ -28,3 +28,17 @@ data class CommentDiscussionResponseItem(
 	@field:SerializedName("userId")
 	val userId: Int? = null
 )
+
+data class LikeCommentResponse(
+	@field:SerializedName("error")
+	val error: Boolean? = null,
+
+	@field:SerializedName("commentLikeId")
+	val commentLikeId: Int? = null,
+
+	@field:SerializedName("userId")
+	val userId: Int? = null,
+
+	@field:SerializedName("commentId")
+	val commentId: Int? = null
+)

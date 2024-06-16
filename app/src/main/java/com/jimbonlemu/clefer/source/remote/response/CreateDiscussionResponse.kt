@@ -19,3 +19,16 @@ data class CreateDiscussionResponse(
 	@field:SerializedName("userId")
 	val userId: Int? = null
 )
+
+data class LikeDiscussionResponse(
+	@field:SerializedName("error")
+	val error: Boolean? = null,
+
+	@field:SerializedName("postLikeId")
+	val postLikeId: Int? = null,
+
+	@field:SerializedName("userId")
+	val userId: Int? = null,
+
+	@field:SerializedName("commentId")
+	val commentId: Int? = null)

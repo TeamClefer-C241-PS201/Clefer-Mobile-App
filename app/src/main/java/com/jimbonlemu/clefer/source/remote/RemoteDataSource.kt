@@ -34,4 +34,9 @@ class RemoteDataSource (private val api: ApiService) {
    suspend fun getCommentDiscussionById(postId: Int) = api.getCommentsByPostId(postId)
 
     suspend fun createCommentDiscussionById(postId: Int, commentRequest: CommentRequest) = api.createComment(postId, commentRequest)
+
+    suspend fun likeDiscussion(postId: Int) = api.likeDiscussion(postId)
+
+    suspend fun likeComment(postId: Int, commentId: Int) = api.likeComment(postId ,commentId)
+
 }

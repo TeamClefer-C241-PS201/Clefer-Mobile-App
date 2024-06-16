@@ -12,6 +12,8 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
+import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentDashboardBinding
 import com.jimbonlemu.clefer.utils.Prefs
@@ -37,7 +39,10 @@ class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupButtonAction()
-        binding.tvUserName.text = Prefs.getName
+        binding.apply {
+            tvUserName.text = Prefs.getName
+            Glide.with(requireActivity()).load(Prefs.getPhoto?.toUri()).into(ivUserProfile)
+        }
 
     }
 

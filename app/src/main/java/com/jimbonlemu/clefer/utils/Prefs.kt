@@ -17,6 +17,8 @@ object Prefs {
     }
 
     //Login Result
+    private const val KEY_ID = "key_id"
+    private const val KEY_PHOTO = "key_photo"
     private const val KEY_NAME = "key_name"
     private const val KEY_USERNAME = "key_username"
     private const val KEY_EMAIL = "key_email"
@@ -24,18 +26,24 @@ object Prefs {
 
     val getName: String?
         get() = prefs.getString(KEY_NAME, "")
-    val getUsername:String?
-        get() = prefs.getString(KEY_USERNAME,"")
-    val getEmail:String?
-        get() = prefs.getString(KEY_EMAIL,"")
+    val getUsername: String?
+        get() = prefs.getString(KEY_USERNAME, "")
+    val getEmail: String?
+        get() = prefs.getString(KEY_EMAIL, "")
     val getToken: String?
         get() = prefs.getString(KEY_TOKEN, "")
+    val getUserId: String?
+        get() = prefs.getString(KEY_ID, "")
+    val getPhoto: String?
+        get() = prefs.getString(KEY_PHOTO, "")
 
     fun setLoginPrefs(loginResult: LoginResult) {
         editor.putString(KEY_NAME, loginResult.name)
         editor.putString(KEY_USERNAME, loginResult.username)
         editor.putString(KEY_EMAIL, loginResult.email)
         editor.putString(KEY_TOKEN, loginResult.token)
+        editor.putString(KEY_ID, loginResult.userId)
+        editor.putString(KEY_PHOTO, loginResult.userPhoto)
         editor.apply()
     }
 
@@ -44,6 +52,8 @@ object Prefs {
         editor.remove(KEY_USERNAME)
         editor.remove(KEY_EMAIL)
         editor.remove(KEY_TOKEN)
+        editor.remove(KEY_ID)
+        editor.remove(KEY_PHOTO)
         editor.apply()
     }
 

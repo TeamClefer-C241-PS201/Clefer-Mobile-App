@@ -23,8 +23,8 @@ class ArticleViewModel(private val repository: AppRepository) : ViewModel() {
         }
     }
 
-    suspend fun checkFavoriteById(id: Int): Int {
-        return repository.checkFavoriteById(id)
+    suspend fun checkFavoriteById(ownerId : String): String {
+        return repository.checkFavoriteById(ownerId)
     }
 
     fun deleteFavorite(id: Int) {
@@ -33,8 +33,8 @@ class ArticleViewModel(private val repository: AppRepository) : ViewModel() {
         }
     }
 
-    fun getAllFavoriteArticles(): LiveData<List<FavoriteArticle>> {
-        return repository.getAllFavoriteArticles()
+    fun getAllFavoriteArticles(ownerId: String): LiveData<List<FavoriteArticle>> {
+        return repository.getAllFavoriteArticles(ownerId)
     }
 
 }

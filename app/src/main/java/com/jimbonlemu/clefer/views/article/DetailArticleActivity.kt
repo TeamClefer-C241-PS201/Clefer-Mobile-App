@@ -9,6 +9,7 @@ import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityDetailArticleBinding
 import com.jimbonlemu.clefer.databinding.ActivityDetailCommentBinding
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
+import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.views.article.viewmodels.ArticleViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,7 +43,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
                 Glide.with(this@DetailArticleActivity)
                     .load(article.articleImg)
                     .into(binding.ivItemPhotoDetail)
-                checkFavorite(articleId)
+                checkFavorite(Prefs.getUserId.toString())
             }
         }
 
@@ -60,6 +61,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
 
     private fun addFavorite(id: Int) {
         val favoriteArticle = FavoriteArticle(
+            ownerId = Prefs.getUserId.toString(),
             id = id,
             articleTitle = binding.tvTitleDetail.text.toString(),
             articleDesc = binding.tvDescDetail.text.toString(),
@@ -86,11 +88,11 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
         updateFavoriteUI()
     }
 
-    private fun checkFavorite(id: Int) {
+    private fun checkFavorite(ownerId : String) {
         lifecycleScope.launch(Dispatchers.IO) {
-            val count = detailArticleViewModel.checkFavoriteById(id)
+            val count = detailArticleViewModel.checkFavoriteById(ownerId)
             withContext(Dispatchers.Main) {
-                isFavorite = count > 0
+                isFavorite = count > Prefs.getUserId.toString()
                 updateFavoriteUI()
             }
         }

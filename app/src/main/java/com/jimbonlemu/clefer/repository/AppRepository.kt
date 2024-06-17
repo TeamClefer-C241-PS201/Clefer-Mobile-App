@@ -34,7 +34,6 @@ import com.jimbonlemu.clefer.views.article.paging.ArticlePaging
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -261,12 +260,12 @@ class AppRepository(
         localDataSource.insertFavoriteArticle(favoriteArticle)
     }
 
-    fun getAllFavoriteArticles(): LiveData<List<FavoriteArticle>> {
-        return localDataSource.getAllFavoriteArticles()
+    fun getAllFavoriteArticles(ownerId: String): LiveData<List<FavoriteArticle>> {
+        return localDataSource.getAllFavoriteArticles(ownerId)
     }
 
-    suspend fun checkFavoriteById(id: Int): Int {
-        return localDataSource.checkFavoriteById(id)
+    suspend fun checkFavoriteById(ownerId: String): String {
+        return localDataSource.checkFavoriteById(ownerId)
     }
 
     suspend fun deleteFavorite(id: Int) {

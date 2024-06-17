@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -80,6 +79,7 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
                                 putExtra(AnalyzeActivity.PASSED_RESULT, result)
                                 putExtra(AnalyzeActivity.PASSED_DESC, description)
                                 putExtra(AnalyzeActivity.PASSED_SUGGESTION, suggestion)
+                                putExtra(AnalyzeActivity.IS_VIEWING_HISTORY, false)
                             }
                         })
                     Toast.makeText(

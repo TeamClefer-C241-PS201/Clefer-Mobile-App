@@ -13,83 +13,115 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Bookmarks Artikel"
+        app:title="@string/community"
         app:titleTextAppearance="@style/ToolbarTextAppearance" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/mToolbar"
         app:layout_constraintBottom_toTopOf="@id/btn_post"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mToolbar">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_desc"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="23dp"
-            android:layout_marginEnd="23dp"
-            app:cardBackgroundColor="#FFFEE0"
-            app:cardCornerRadius="15dp"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="23dp"
+                app:cardBackgroundColor="#FFFEE0"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    style="@style/ToolbarTextAppearance"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="13dp"
-                    android:text="@string/title_community"
-                    android:textSize="20sp" />
+                    android:orientation="vertical">
 
-                <TextView
-                    style="@style/RegularSubHeadline"
+                    <TextView
+                        style="@style/ToolbarTextAppearance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="13dp"
+                        android:text="@string/title_community"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        style="@style/RegularSubHeadline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginBottom="15dp"
+                        android:text="@string/desc_community"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/card_desc"
+                tools:visibility="visible">
+
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="18dp"
-                    android:layout_marginBottom="15dp"
-                    android:text="@string/desc_community"
-                    android:textColor="@color/black" />
+                    android:layout_height="match_parent">
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:ignore="UselessLeaf">
 
-        </com.google.android.material.card.MaterialCardView>
+                        <include layout="@layout/shimmer_item_community" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_items"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginHorizontal="12dp"
-            app:layout_constraintTop_toBottomOf="@id/card_desc"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/item_community" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <include layout="@layout/shimmer_item_community" />
 
-</androidx.core.widget.NestedScrollView>
+                        <include layout="@layout/shimmer_item_community" />
 
-<com.google.android.material.button.MaterialButton
-android:id="@+id/btn_post"
-style="@style/ButtonStyle"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_margin="16dp"
-android:text="@string/ajukan_post"
-app:layout_constraintBottom_toBottomOf="parent"
-app:layout_constraintEnd_toEndOf="parent"
-app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <include layout="@layout/shimmer_item_community" />
+
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_items"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_desc"
+                tools:listitem="@layout/item_community" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_post"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/ajukan_post"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

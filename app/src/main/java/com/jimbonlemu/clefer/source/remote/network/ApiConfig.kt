@@ -6,10 +6,10 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.jimbonlemu.clefer.BuildConfig
+import com.jimbonlemu.clefer.utils.Prefs
 import java.util.concurrent.TimeUnit
 
 object ApiConfig {
-
     private val client: Retrofit
         get() {
             val gson = GsonBuilder()
@@ -26,6 +26,12 @@ object ApiConfig {
 
             val client: OkHttpClient = OkHttpClient.Builder()
                 .addInterceptor(interceptor)
+                .addInterceptor { chain ->
+                    chain.proceed(
+                        chain.request().newBuilder()
+                            .header("token-auth", Prefs.getToken ?: "").build()
+                    )
+                }
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)

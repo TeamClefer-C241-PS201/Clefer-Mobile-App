@@ -5,6 +5,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
@@ -28,15 +31,40 @@ class AnalyzeActivity : CoreActivity<ActivityAnalyzeBinding>() {
     private lateinit var resultPassed: String
     private lateinit var descPassed: String
     private lateinit var suggestionPassed: String
+    private var isViewingHistory: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initPassedValue()
+        isViewingHistory = intent.getBooleanExtra(IS_VIEWING_HISTORY, false)
         binding.apply {
+            initViewingStatus(isViewingHistory)
             setupToolbar()
             setupAnalyzedResult()
             setupButtonAction()
         }
-        onBackPressedDispatcher.addCallback(this@AnalyzeActivity) {
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                initBackAction()
+            }
+        })
+    }
+
+
+    private fun ActivityAnalyzeBinding.initViewingStatus(isViewing: Boolean) {
+        if (isViewing) {
+            btnSave.visibility = View.GONE
+            btnBack.visibility = View.GONE
+        } else {
+            btnSave.visibility = View.VISIBLE
+            btnBack.visibility = View.VISIBLE
+        }
+    }
+
+    private fun initBackAction() {
+        if (isViewingHistory) {
+            finish()
+        } else {
             intentBackToBottomNavbar()
         }
     }
@@ -91,7 +119,7 @@ class AnalyzeActivity : CoreActivity<ActivityAnalyzeBinding>() {
         mToolbar.apply {
             setNavigationIcon(R.drawable.ic_arrow_back);
             setNavigationOnClickListener {
-                intentBackToBottomNavbar()
+                initBackAction()
             }
         }
     }
@@ -106,5 +134,6 @@ class AnalyzeActivity : CoreActivity<ActivityAnalyzeBinding>() {
         const val PASSED_RESULT = "passed_result"
         const val PASSED_DESC = "passed_desc"
         const val PASSED_SUGGESTION = "passed_suggestion"
+        const val IS_VIEWING_HISTORY = "is_viewing_history"
     }
 }

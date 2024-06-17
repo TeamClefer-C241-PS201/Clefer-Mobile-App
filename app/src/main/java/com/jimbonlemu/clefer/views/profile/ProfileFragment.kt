@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
+import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentProfileBinding
 import com.jimbonlemu.clefer.utils.Prefs
@@ -33,6 +35,7 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
     private fun FragmentProfileBinding.setUserData() {
         username.text = Prefs.getUsername
         email.text = Prefs.getEmail
+        Glide.with(requireActivity()).load(Prefs.getPhoto?.toUri()).into(profileImage)
     }
 
     private fun FragmentProfileBinding.mainButton() {

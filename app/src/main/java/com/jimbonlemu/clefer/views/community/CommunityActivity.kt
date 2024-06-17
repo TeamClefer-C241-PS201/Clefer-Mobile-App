@@ -3,6 +3,7 @@ package com.jimbonlemu.clefer.views.community
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
@@ -13,7 +14,9 @@ import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.community.adapter.ListCommunityAdapter
 import com.jimbonlemu.clefer.views.community.viewmodel.CommunityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
-class CommunityActivity : CoreActivity<ActivityCommunityBinding>(), ListCommunityAdapter.OnLikeButtonClickListener {
+
+class CommunityActivity : CoreActivity<ActivityCommunityBinding>(),
+    ListCommunityAdapter.OnLikeButtonClickListener {
 
     private val communityViewModel: CommunityViewModel by viewModel()
     private val listCommunityAdapter = ListCommunityAdapter(this)
@@ -26,8 +29,8 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(), ListCommunit
     }
 
     private fun setupViews() {
-        setupToolbar()
         setupRecyclerView()
+        setupToolbar()
     }
 
     private fun setupToolbar() {
@@ -55,35 +58,40 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(), ListCommunit
     }
 
     private fun observeData() {
-        communityViewModel.getAllDiscussions.observe(this) { response ->
-            when (response) {
-                is ResponseState.Loading -> {
-                    // Handle loading
-                }
+        binding.apply {
+            communityViewModel.getAllDiscussions.observe(this@CommunityActivity) { response ->
+                when (response) {
+                    is ResponseState.Loading -> {
+                        setShimmerEnable(true)
+                    }
 
-                is ResponseState.Success -> {
-                    listCommunityAdapter.updateItems(response.data)
-                }
+                    is ResponseState.Success -> {
+                        setShimmerEnable(false)
+                        listCommunityAdapter.updateItems(response.data)
+                    }
 
-                is ResponseState.Error -> {
-                    // Handle error
+                    is ResponseState.Error -> {
+                        setShimmerEnable(false)
+                    }
                 }
             }
         }
+    }
 
-        communityViewModel.likeDiscussionState.observe(this) { response ->
-            when (response) {
-                is ResponseState.Loading -> {
-                    // Handle loading
+    private fun setShimmerEnable(shimmerEnable: Boolean) {
+        binding.apply {
+            if (shimmerEnable) {
+                shimmerLayout.apply {
+                    visibility = View.VISIBLE
+                    startShimmer()
                 }
-
-                is ResponseState.Success -> {
-                    // Handle success
+                rvItems.visibility = View.INVISIBLE
+            } else {
+                shimmerLayout.apply {
+                    visibility = View.GONE
+                    startShimmer()
                 }
-
-                is ResponseState.Error -> {
-                    // Handle error
-                }
+                rvItems.visibility = View.VISIBLE
             }
         }
     }
@@ -99,6 +107,3 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(), ListCommunit
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityCommunityBinding =
         ActivityCommunityBinding.inflate(layoutInflater)
 }
-
-
-

@@ -46,9 +46,12 @@
         <TextView
             android:id="@+id/tv_disease_result"
             style="@style/BoldHeadlineStyle"
+            android:layout_width="0dp"
             android:text="Nama Penyakit"
+            android:layout_marginEnd="3dp"
             android:textColor="@color/black"
             android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_delete_history"
             app:layout_constraintStart_toStartOf="@id/tv_headline_result"
             app:layout_constraintTop_toBottomOf="@id/tv_headline_result" />
 

@@ -1,5 +1,6 @@
 package com.jimbonlemu.clefer.views.dashboard.viewmodels
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jimbonlemu.clefer.repository.AppRepository
@@ -13,8 +14,8 @@ class HistoryViewModel(private val repository: AppRepository) : ViewModel() {
         }
     }
 
-    fun getAllHistoryByOwner(ownerId: String) {
-        repository.getAllHistoryAnalyzedByOwner(ownerId)
+    fun getAllHistoryByOwner(ownerId: String) : LiveData<List<HistoryAnalyzed>> {
+       return repository.getAllHistoryAnalyzedByOwner(ownerId)
     }
 
     fun deleteHistoryAnalyzed(historyId: String) {

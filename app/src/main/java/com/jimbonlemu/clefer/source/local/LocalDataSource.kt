@@ -1,5 +1,6 @@
 package com.jimbonlemu.clefer.source.local
 
+import androidx.lifecycle.LiveData
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.source.local.entity.HistoryAnalyzed
 
@@ -25,7 +26,9 @@ class LocalDataSource(private val db: AppDatabase) {
     fun getAllHistoryAnalyzedByOwner(ownerId: String) =
         db.daoHistoryAnalyzed().getAllHistoryAnalyzedByOwner(ownerId)
 
-    suspend fun deleteHistoryAnalyzed(id: String) = db.daoHistoryAnalyzed().deleteHistoryAnalyzed(id)
+
+    suspend fun deleteHistoryAnalyzed(id: String) =
+        db.daoHistoryAnalyzed().deleteHistoryAnalyzed(id)
 
 
 }

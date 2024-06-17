@@ -72,7 +72,7 @@ class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
             }
 
             cardHistory.setOnClickListener {
-
+                startActivity(Intent(requireActivity(), HistoryActivity::class.java))
             }
 
         }

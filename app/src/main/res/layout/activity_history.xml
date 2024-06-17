@@ -57,6 +57,7 @@
     </com.google.android.material.card.MaterialCardView>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
+        android:id="@+id/rv_history_analyzed"
         app:layout_constraintTop_toBottomOf="@id/cv_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_history"

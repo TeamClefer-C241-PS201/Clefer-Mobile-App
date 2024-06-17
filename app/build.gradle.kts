@@ -68,6 +68,8 @@ dependencies {
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
+    implementation (libs.fancytoast.android)
+    implementation(libs.shimmer)
 
 //  Android Architecture Components Library
     implementation(platform(libs.koin.bom))

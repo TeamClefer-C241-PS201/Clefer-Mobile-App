@@ -21,6 +21,7 @@
             android:id="@+id/tv_date"
             style="@style/RegularSubHeadline"
             android:layout_width="0dp"
+            android:background="@color/shimmerColor"
             android:text=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,17 +29,20 @@
 
         <TextView
             android:id="@+id/tv_item_name"
-            style="@style/SemiBoldSubHeadline"
+            style="@style/LightHeadline"
             android:layout_width="0dp"
+            android:background="@color/shimmerColor"
             android:text=""
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_date" />
+
         <TextView
             android:id="@+id/tv_item_desc"
             style="@style/LightHeadline"
             android:layout_width="0dp"
+            android:background="@color/shimmerColor"
             android:text=""
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,9 +54,9 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="8dp"
+            android:background="@color/shimmerColor"
             android:layout_marginEnd="8dp"
             android:importantForAccessibility="no"
-            android:src="@drawable/ic_favorite_border"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />
 
@@ -62,6 +66,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="10dp"
             android:text=""
+            android:background="@color/shimmerColor"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toEndOf="@id/btn_like"
             app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />
@@ -71,7 +76,8 @@
             style="@style/RegularSubHeadline"
             android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
-            android:text="@string/like_text"
+            android:text=""
+            android:background="@color/shimmerColor"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toEndOf="@id/tv_like_count"
             app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />

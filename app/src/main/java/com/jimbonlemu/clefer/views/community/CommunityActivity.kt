@@ -13,12 +13,12 @@ import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.community.adapter.ListCommunityAdapter
 import com.jimbonlemu.clefer.views.community.viewmodel.CommunityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.android.ext.android.inject
 
 class CommunityActivity : CoreActivity<ActivityCommunityBinding>(),
     ListCommunityAdapter.OnLikeButtonClickListener {
 
-    private val communityViewModel: CommunityViewModel by viewModel()
+    private val communityViewModel: CommunityViewModel by inject()
     private val listCommunityAdapter = ListCommunityAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +31,11 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(),
     private fun setupViews() {
         setupRecyclerView()
         setupToolbar()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        communityViewModel.getAllDiscussions()
     }
 
     private fun setupToolbar() {
@@ -54,7 +59,6 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(),
     private fun setupRecyclerView() {
         binding.rvItems.layoutManager = LinearLayoutManager(this)
         binding.rvItems.adapter = listCommunityAdapter
-        communityViewModel.getAllDiscussions()
     }
 
     private fun observeData() {

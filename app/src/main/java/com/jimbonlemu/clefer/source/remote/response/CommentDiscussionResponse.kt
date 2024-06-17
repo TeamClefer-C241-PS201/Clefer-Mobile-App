@@ -31,6 +31,9 @@ data class CommentDiscussionResponseItem(
 	@field:SerializedName("likeStat")
 	var likeStat: Int? = null,
 
+	@field:SerializedName("name")
+	val name: String? = null,
+
 )
 
 data class LikeCommentResponse(

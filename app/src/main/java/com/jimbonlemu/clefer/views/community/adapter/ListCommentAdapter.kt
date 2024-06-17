@@ -21,6 +21,7 @@ class ListCommentAdapter(private val listener: OnCommentLikeButtonClickListener?
             itemBinding.apply {
                 tvItemDesc.text = itemComment.commentBody
                 tvDate.text = itemComment.commentDate?.toTime()
+                tvItemName.text = itemComment.name
                 tvLikeCount.text = itemComment.likerCount?.toString()
                 updateLikeIcon(itemComment.likeStat == 1)
                 btnLike.setOnClickListener {

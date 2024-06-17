@@ -2,6 +2,7 @@ package com.jimbonlemu.clefer.views.community
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -70,13 +71,14 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListC
         detailCommunityViewModel.getCommentById.observe(this) { responseState ->
             when (responseState) {
                 is ResponseState.Loading -> {
-                    // Response loading
+                   setShimmerEnable(true)
                 }
                 is ResponseState.Success -> {
                     listCommentAdapter.updateItems(responseState.data)
+                    setShimmerEnable(false)
                 }
                 is ResponseState.Error -> {
-                    // Response error
+                   setShimmerEnable(false)
                 }
             }
         }
@@ -110,6 +112,24 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListC
                 is ResponseState.Error -> {
                     // response error
                 }
+            }
+        }
+    }
+
+    private fun setShimmerEnable(shimmerEnable: Boolean) {
+        binding.apply {
+            if (shimmerEnable) {
+                shimmerLayout.apply {
+                    visibility = View.VISIBLE
+                    startShimmer()
+                }
+                rvComments.visibility = View.INVISIBLE
+            } else {
+                shimmerLayout.apply {
+                    visibility = View.GONE
+                    startShimmer()
+                }
+                rvComments.visibility = View.VISIBLE
             }
         }
     }

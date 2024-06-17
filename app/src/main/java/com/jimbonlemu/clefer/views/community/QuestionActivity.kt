@@ -11,10 +11,11 @@ import com.jimbonlemu.clefer.databinding.ActivityQuestionBinding
 import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.community.viewmodel.CommunityViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class QuestionActivity : CoreActivity<ActivityQuestionBinding>() {
-    private val questionViewModel: CommunityViewModel by viewModel()
+    private val questionViewModel: CommunityViewModel by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.apply {
@@ -67,6 +68,7 @@ class QuestionActivity : CoreActivity<ActivityQuestionBinding>() {
                     enabledComponent(true)
                     getToast("Question posted successfully")
                     finish()
+                    questionViewModel.getAllDiscussions()
                 }
 
                 is ResponseState.Error -> {

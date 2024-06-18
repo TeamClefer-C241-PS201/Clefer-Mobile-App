@@ -2,7 +2,6 @@ package com.jimbonlemu.clefer.utils
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
 import com.jimbonlemu.clefer.source.remote.response.LoginResult
 
 object Prefs {
@@ -24,18 +23,18 @@ object Prefs {
     private const val KEY_EMAIL = "key_email"
     private const val KEY_TOKEN = "key_token"
 
-    val getName: String?
-        get() = prefs.getString(KEY_NAME, "")
-    val getUsername: String?
-        get() = prefs.getString(KEY_USERNAME, "")
-    val getEmail: String?
-        get() = prefs.getString(KEY_EMAIL, "")
-    val getToken: String?
-        get() = prefs.getString(KEY_TOKEN, "")
-    val getUserId: String?
-        get() = prefs.getString(KEY_ID, "")
-    val getPhoto: String?
-        get() = prefs.getString(KEY_PHOTO, "")
+    val getName: String
+        get() = prefs.getString(KEY_NAME, "") ?: ""
+    val getUsername: String
+        get() = prefs.getString(KEY_USERNAME, "") ?: ""
+    val getEmail: String
+        get() = prefs.getString(KEY_EMAIL, "") ?: ""
+    val getToken: String
+        get() = prefs.getString(KEY_TOKEN, "") ?: ""
+    val getUserId: String
+        get() = prefs.getString(KEY_ID, "") ?: ""
+    val getPhoto: String
+        get() = prefs.getString(KEY_PHOTO, "") ?: ""
 
     fun setLoginPrefs(loginResult: LoginResult) {
         editor.putString(KEY_NAME, loginResult.name)
@@ -47,6 +46,15 @@ object Prefs {
         editor.apply()
     }
 
+    fun setUserPref(userItem: LoginResult) {
+        userItem.apply {
+            editor.putString(KEY_NAME, name)
+            editor.putString(KEY_EMAIL, email)
+            editor.putString(KEY_PHOTO, userPhoto)
+            editor.putString(KEY_USERNAME, username)
+            editor.apply()
+        }
+    }
     fun clearAuthPrefs() {
         editor.remove(KEY_NAME)
         editor.remove(KEY_USERNAME)

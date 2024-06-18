@@ -29,7 +29,7 @@ object ApiConfig {
                 .addInterceptor { chain ->
                     chain.proceed(
                         chain.request().newBuilder()
-                            .header("token-auth", Prefs.getToken ?: "").build()
+                            .header("token-auth", Prefs.getToken).build()
                     )
                 }
                 .connectTimeout(60, TimeUnit.SECONDS)

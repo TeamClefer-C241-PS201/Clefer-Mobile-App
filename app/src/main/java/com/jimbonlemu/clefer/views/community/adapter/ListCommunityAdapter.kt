@@ -26,7 +26,7 @@ class ListCommunityAdapter(private val listener: OnLikeButtonClickListener? = nu
                 tvName.text = item.postTitle
                 tvItemDesc.text = item.postDesc
                 tvDate.text = item.postDate?.toTime()
-                tvLikeCount.text = item.likerCount?.toString()
+                tvLikeCount.text = item.likerCountById?.toString()
                 tvCommentCount.text = item.commentCount?.toString()
                 updateLikeIcon(item.likeStat == 1)
                 btnLike.setOnClickListener {
@@ -44,14 +44,14 @@ class ListCommunityAdapter(private val listener: OnLikeButtonClickListener? = nu
         private fun handleLikeClick(item: AllDiscussionResponseItem) {
             if (item.likeStat == 1) {
                 item.likeStat = 0
-                item.likerCount = item.likerCount?.minus(1)
+                item.likerCountById = item.likerCountById?.minus(1)
                 updateLikeIcon(false)
             } else {
                 item.likeStat = 1
-                item.likerCount = item.likerCount?.plus(1)
+                item.likerCountById = item.likerCountById?.plus(1)
                 updateLikeIcon(true)
             }
-            itemBinding.tvLikeCount.text = item.likerCount?.toString()
+            itemBinding.tvLikeCount.text = item.likerCountById?.toString()
             listener?.onLikeButtonClicked(item)
             notifyItemChanged(adapterPosition)
         }

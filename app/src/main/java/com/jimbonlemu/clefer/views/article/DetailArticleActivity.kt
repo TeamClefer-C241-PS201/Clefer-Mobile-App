@@ -8,6 +8,7 @@ import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityDetailArticleBinding
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
+import com.jimbonlemu.clefer.utils.CleferToast
 import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.views.article.viewmodels.ArticleViewModel
 import kotlinx.coroutines.Dispatchers
@@ -69,6 +70,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
         detailArticleViewModel.insertFavoriteArticle(favoriteArticle)
         isFavorite = true
         updateFavoriteUI()
+        CleferToast.successToast("Berhasil menambahkan ke favorit" , this)
     }
 
     private fun ActivityDetailArticleBinding.setupToolbar() {
@@ -85,6 +87,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
         detailArticleViewModel.deleteFavorite(id)
         isFavorite = false
         updateFavoriteUI()
+        CleferToast.successToast("Berhasil menghapus dari favorit" , this)
     }
 
     private fun checkFavorite(ownerId : String) {

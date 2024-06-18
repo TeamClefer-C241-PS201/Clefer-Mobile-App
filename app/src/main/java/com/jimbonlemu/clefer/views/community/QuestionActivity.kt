@@ -9,6 +9,7 @@ import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityAboutBinding
 import com.jimbonlemu.clefer.databinding.ActivityQuestionBinding
 import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
+import com.jimbonlemu.clefer.utils.CleferToast
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.community.viewmodel.CommunityViewModel
 import org.koin.android.ext.android.inject
@@ -41,11 +42,12 @@ class QuestionActivity : CoreActivity<ActivityQuestionBinding>() {
             val descriptionField = edtDescription.inputText.trim()
 
             if (titleField.isEmpty() || descriptionField.isEmpty()) {
-                getToast(
+                CleferToast.informToast(
                     when {
-                        titleField.isEmpty() -> "Please fill in the title"
-                        else -> "Please fill in the description"
-                    }
+                        titleField.isEmpty() -> "Jangan biarkan judul kosong"
+                        else -> "Jangan biarkan deskripsi kosong"
+                    },
+                    this@QuestionActivity
                 )
             } else {
                 val discussionRequest = DiscussionRequest(
@@ -66,14 +68,14 @@ class QuestionActivity : CoreActivity<ActivityQuestionBinding>() {
 
                 is ResponseState.Success -> {
                     enabledComponent(true)
-                    getToast("Question posted successfully")
+                    CleferToast.successToast("Pertanyaan berhasil diposting", this@QuestionActivity)
                     finish()
                     questionViewModel.getAllDiscussions()
                 }
 
                 is ResponseState.Error -> {
                     enabledComponent(true)
-                    getToast(response.errorMessage)
+                    CleferToast.errorToast(response.errorMessage, this@QuestionActivity)
                 }
 
                 else -> main.isGone = true
@@ -96,7 +98,4 @@ class QuestionActivity : CoreActivity<ActivityQuestionBinding>() {
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityQuestionBinding =
         ActivityQuestionBinding.inflate(layoutInflater)
 
-    private fun getToast(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-    }
 }

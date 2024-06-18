@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentArticleBinding
+import com.jimbonlemu.clefer.utils.CleferToast
 import com.jimbonlemu.clefer.views.article.adapter.ArticleAdapter
 import com.jimbonlemu.clefer.views.article.viewmodels.ArticleViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
@@ -44,7 +46,15 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
 
     private fun observeData() {
         articleViewModel.getAllArticles.observe(viewLifecycleOwner) { pagingData ->
-            articleAdapter.submitData(lifecycle, pagingData)
+            lifecycleScope.launch {
+                articleAdapter.submitData(lifecycle, pagingData)
+                val isEmpty = articleAdapter.itemCount == 0
+                if (isEmpty) {
+                    CleferToast.successToast("Berhasil Memuat Artikel" , requireContext())
+                } else {
+                   CleferToast.errorToast("Gagal Memuat Artikel" , requireContext())
+                }
+            }
         }
     }
 

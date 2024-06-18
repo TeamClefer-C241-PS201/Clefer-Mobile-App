@@ -9,13 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityDetailCommentBinding
+import com.jimbonlemu.clefer.utils.CleferToast
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.utils.toTime
 import com.jimbonlemu.clefer.views.community.adapter.ListCommentAdapter
 import com.jimbonlemu.clefer.views.community.viewmodel.CommunityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListCommentAdapter.OnCommentLikeButtonClickListener {
+class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),
+    ListCommentAdapter.OnCommentLikeButtonClickListener {
     private val detailCommunityViewModel: CommunityViewModel by viewModel()
     private val listCommentAdapter = ListCommentAdapter(this)
     private var postId: Int = 0
@@ -62,7 +64,7 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListC
                 detailCommunityViewModel.createComment(postId, commentBody)
                 binding.commentInput.text?.clear()
             } else {
-                getToast("Please fill in the comment")
+                CleferToast.informToast("Harap isi komentar terlebih dahulu", this)
             }
         }
     }
@@ -71,14 +73,18 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListC
         detailCommunityViewModel.getCommentById.observe(this) { responseState ->
             when (responseState) {
                 is ResponseState.Loading -> {
-                   setShimmerEnable(true)
+                    setShimmerEnable(true)
                 }
+
                 is ResponseState.Success -> {
                     listCommentAdapter.updateItems(responseState.data)
                     setShimmerEnable(false)
+                    CleferToast.successToast("Berhasil memuat komentar", this)
                 }
+
                 is ResponseState.Error -> {
-                   setShimmerEnable(false)
+                    setShimmerEnable(false)
+                    CleferToast.errorToast("Gagal memuat komentar", this)
                 }
             }
         }
@@ -88,15 +94,19 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListC
                 is ResponseState.Loading -> {
                     enabledComponent(false)
                 }
+
                 is ResponseState.Success -> {
                     enabledComponent(true)
-                    getToast("Comment posted successfully")
                     detailCommunityViewModel.getCommentByPostId(postId)
+                    CleferToast.successToast("Komentar berhasil dibuat", this)
                 }
+
                 is ResponseState.Error -> {
                     enabledComponent(true)
-                    getToast(responseState.errorMessage)
+                    CleferToast.errorToast("Komentar gagal dibuat", this)
+
                 }
+
                 else -> binding.main.isGone = true
             }
         }
@@ -106,9 +116,11 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListC
                 is ResponseState.Loading -> {
                     // response loading
                 }
+
                 is ResponseState.Success -> {
                     //response success
                 }
+
                 is ResponseState.Error -> {
                     // response error
                 }
@@ -146,6 +158,7 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListC
                 is ResponseState.Loading -> {
                     // Response loading
                 }
+
                 is ResponseState.Success -> {
                     val discussion = responseState.data
                     binding.itemCommunity.tvName.text = discussion.postTitle
@@ -157,6 +170,7 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListC
                         if (discussion.likerCountById == 0) R.drawable.ic_favorite_border else R.drawable.ic_favorite
                     )
                 }
+
                 is ResponseState.Error -> {
                     // Response error
                 }
@@ -174,10 +188,6 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),ListC
                 btnSendComment.isEnabled = false
             }
         }
-    }
-
-    private fun getToast(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityDetailCommentBinding =

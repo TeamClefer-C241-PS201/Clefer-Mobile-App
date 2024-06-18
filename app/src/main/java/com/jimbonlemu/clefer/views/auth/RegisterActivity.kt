@@ -63,7 +63,7 @@ class RegisterActivity : CoreActivity<ActivityRegisterBinding>() {
                     edtEmail.inputText = ""
                     isComponentEnabled(true)
                     CleferToast.successToast(
-                        "Suskses melakukan registrasi pengguna lakukan Login!",
+                        "Sukses melakukan registrasi pengguna lakukan Login!",
                         this@RegisterActivity
                     )
                     startActivity(Intent(this@RegisterActivity, SignInActivity::class.java))

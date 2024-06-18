@@ -10,6 +10,7 @@ import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityCommunityBinding
 import com.jimbonlemu.clefer.source.remote.response.AllDiscussionResponseItem
+import com.jimbonlemu.clefer.utils.CleferToast
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.community.adapter.ListCommunityAdapter
 import com.jimbonlemu.clefer.views.community.viewmodel.CommunityViewModel
@@ -72,10 +73,12 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(),
                     is ResponseState.Success -> {
                         setShimmerEnable(false)
                         listCommunityAdapter.updateItems(response.data)
+                        CleferToast.successToast("Berhasil memuat data", this@CommunityActivity)
                     }
 
                     is ResponseState.Error -> {
                         setShimmerEnable(false)
+                        CleferToast.errorToast("Gagal memuat data", this@CommunityActivity)
                     }
                 }
             }
@@ -102,10 +105,6 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(),
 
     override fun onLikeButtonClicked(item: AllDiscussionResponseItem) {
         communityViewModel.likeDiscussion(item.postId!!)
-    }
-
-    private fun getToast(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityCommunityBinding =

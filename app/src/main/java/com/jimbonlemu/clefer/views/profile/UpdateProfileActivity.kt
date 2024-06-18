@@ -32,6 +32,7 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
             Prefs.apply {
                 setUserData(getPhoto, getName, getEmail, getUsername)
             }
+
             btnSaveProfile.setOnClickListener {
                 profileViewModel.updateUser(
                     name = edtUserName.inputText,
@@ -39,7 +40,6 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
                     username = edtUsername.inputText,
                     email = edtEmail.inputText
                 )
-
             }
 
             editProfileText.setOnClickListener {

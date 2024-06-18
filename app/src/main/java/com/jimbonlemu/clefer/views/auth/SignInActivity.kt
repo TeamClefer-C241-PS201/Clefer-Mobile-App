@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.core.view.isGone
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivitySignInBinding
+import com.jimbonlemu.clefer.utils.CleferToast
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.BottomNavigationBarActivity
 import com.jimbonlemu.clefer.views.auth.viewmodels.AuthViewModels
@@ -19,8 +20,8 @@ class SignInActivity : CoreActivity<ActivitySignInBinding>() {
         binding.apply {
             setupButtonAction()
             initObservers()
-            edtEmail.inputText = "tianmetal@gmail.com"
-            edtPassword.inputText = "tianbesi"
+            edtEmail.inputText = "tianmetalis@jgrp.org"
+            edtPassword.inputText = "tianmetalis"
         }
     }
 
@@ -33,10 +34,10 @@ class SignInActivity : CoreActivity<ActivitySignInBinding>() {
             val passField = edtPassword.inputText.trim()
 
             if (emailField.isEmpty()) {
-                getToast("Don't left email empty")
+                getInformToast("Don't left email empty")
             }
             if (passField.isEmpty()) {
-                getToast("Don't left password empty")
+                getInformToast("Don't left password empty")
             }
             if (emailField.isNotEmpty() && passField.isNotEmpty()) {
                 authViewModel.login(emailField, passField)
@@ -49,26 +50,24 @@ class SignInActivity : CoreActivity<ActivitySignInBinding>() {
             when (response) {
                 is ResponseState.Loading -> {
                     enabledComponent(false)
+                    getInformToast("Memproses dan memeriksa akun...")
                 }
 
                 is ResponseState.Success -> {
                     enabledComponent(true)
-                    Toast.makeText(
-                        this@SignInActivity,
-                        "Sukses Login", Toast.LENGTH_SHORT
-                    ).show()
+                    CleferToast.successToast(
+                        "Berhasil Masuk!",
+                        this@SignInActivity
+                    )
                     startActivity(Intent(this@SignInActivity, BottomNavigationBarActivity::class.java))
                     finish()
                 }
 
                 is ResponseState.Error -> {
                     enabledComponent(true)
-                    Toast.makeText(this@SignInActivity, response.errorMessage, Toast.LENGTH_SHORT).show()
+                    CleferToast.errorToast( response.errorMessage, this@SignInActivity)
                 }
-
-                else -> root.isGone = true
             }
-
         }
     }
 
@@ -87,8 +86,8 @@ class SignInActivity : CoreActivity<ActivitySignInBinding>() {
     override fun setupBinding(layoutInflater: LayoutInflater): ActivitySignInBinding =
         ActivitySignInBinding.inflate(layoutInflater)
 
-    private fun getToast(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    private fun getInformToast(msg: String) {
+        CleferToast.informToast( msg, this)
     }
 
 }

@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityCameraBinding
+import com.jimbonlemu.clefer.utils.CleferToast
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -90,8 +91,8 @@ class CameraActivity : CoreActivity<ActivityCameraBinding>() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = outputFileResults.savedUri ?: Uri.fromFile(photoFile)
-                    val message = "Photo capture succeeded: $savedUri"
-                    Snackbar.make(viewFinder, message, Snackbar.LENGTH_LONG).show()
+                    val message = "Photo capture succeeded"
+                    CleferToast.successToast(message,this@CameraActivity)
                     startActivity(
                         Intent(
                             this@CameraActivity,

@@ -42,7 +42,7 @@ class SplashActivity : CoreActivity<ActivitySplashBinding>() {
     private fun splashScreenTransition() {
         lifecycleScope.launch {
             delay(Constant.SPLASH_SCREEN_DURATION.seconds)
-            if (Prefs.getToken.isNullOrEmpty()) {
+            if (Prefs.getToken.isEmpty()) {
                 startActivity(Intent(this@SplashActivity, SignInActivity::class.java))
                 finish()
             } else {

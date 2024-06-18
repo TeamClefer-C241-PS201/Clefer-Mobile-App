@@ -1,24 +1,20 @@
 package com.jimbonlemu.clefer.views.dashboard
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.window.OnBackInvokedDispatcher
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityAnalyzeBinding
 import com.jimbonlemu.clefer.source.local.entity.HistoryAnalyzed
+import com.jimbonlemu.clefer.utils.CleferToast
 import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.views.BottomNavigationBarActivity
 import com.jimbonlemu.clefer.views.dashboard.viewmodels.HistoryViewModel
-import com.jimbonlemu.clefer.views.dashboard.viewmodels.PredictViewModel
 import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -96,21 +92,21 @@ class AnalyzeActivity : CoreActivity<ActivityAnalyzeBinding>() {
         }
 
         btnSave.setOnClickListener {
-            Prefs.apply {
-                historyViewModel.insertHistoryAnalyzed(
-                    HistoryAnalyzed(
-                        ownerId = getUserId.toString(),
-                        image = imagePassed,
-                        diseaseResult = resultPassed,
-                        diseaseDesc = descPassed,
-                        diseaseSuggestion = suggestionPassed,
-                        date = SimpleDateFormat(
-                            "dd/MM/yyyy",
-                            Locale.getDefault()
-                        ).format(Calendar.getInstance().time),
-                    )
+            historyViewModel.insertHistoryAnalyzed(
+                HistoryAnalyzed(
+                    ownerId = Prefs.getUserId,
+                    image = imagePassed,
+                    diseaseResult = resultPassed,
+                    diseaseDesc = descPassed,
+                    diseaseSuggestion = suggestionPassed,
+                    date = SimpleDateFormat(
+                        "dd/MM/yyyy",
+                        Locale.getDefault()
+                    ).format(Calendar.getInstance().time),
                 )
-            }
+            )
+            CleferToast.successToast("Sukses Tersimpan di Riwayat", this@AnalyzeActivity)
+            it.isEnabled = false
         }
     }
 

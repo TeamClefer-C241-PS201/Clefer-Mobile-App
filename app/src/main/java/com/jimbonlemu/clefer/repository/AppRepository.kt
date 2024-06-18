@@ -9,6 +9,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.google.gson.Gson
+import com.jimbonlemu.clefer.di.modules.KoinModules
 import com.jimbonlemu.clefer.source.local.LocalDataSource
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.source.local.entity.HistoryAnalyzed
@@ -25,6 +26,7 @@ import com.jimbonlemu.clefer.source.remote.response.DataItemItem
 import com.jimbonlemu.clefer.source.remote.response.LikeCommentResponse
 import com.jimbonlemu.clefer.source.remote.response.LikeDiscussionResponse
 import com.jimbonlemu.clefer.source.remote.response.LoginResponse
+import com.jimbonlemu.clefer.source.remote.response.LoginResult
 import com.jimbonlemu.clefer.source.remote.response.PredictResponse
 import com.jimbonlemu.clefer.source.remote.response.RegisterResponse
 import com.jimbonlemu.clefer.utils.Prefs
@@ -34,11 +36,15 @@ import com.jimbonlemu.clefer.views.article.paging.ArticlePaging
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
 import retrofit2.Response
+import java.io.File
 
 
 class AppRepository(
@@ -70,6 +76,7 @@ class AppRepository(
                 val loginResult = response.user
                 if (loginResult != null) {
                     Prefs.setLoginPrefs(loginResult)
+                    KoinModules.reloadModule()
                 }
                 emit(ResponseState.Success(response))
             }
@@ -139,6 +146,71 @@ class AppRepository(
         }
     }
 
+    fun updateUser(
+        name: String,
+        userPhotoUri: Uri?,
+        username: String,
+        email: String,
+    ): Flow<ResponseState<LoginResponse>> = flow {
+        try {
+            emit(ResponseState.Loading)
+            val nameBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
+            val usernameBody = username.toRequestBody("text/plain".toMediaTypeOrNull())
+            val emailBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
+
+            val userPhotoPart = userPhotoUri?.let { uri ->
+                val file = File(uri.path ?: "")
+                if (file.exists()) {
+                    val userPhotoBody = file.asRequestBody("image/*".toMediaTypeOrNull())
+                    MultipartBody.Part.createFormData("userPhoto", file.name, userPhotoBody)
+                } else {
+                    null
+                }
+            }
+            val response =
+                remoteDataSource.updateUser(nameBody, userPhotoPart, usernameBody, emailBody)
+
+            emit(ResponseState.Success(response))
+
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = if (!errorBody.isNullOrEmpty()) {
+                val errorResponse = Gson().fromJson(errorBody, LoginResponse::class.java)
+                errorResponse.message
+            } else {
+                e.message()
+            }
+            emit(ResponseState.Error(errorMessage.toString()))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
+
+    fun getUserData(): Flow<ResponseState<LoginResult>> = flow {
+        try {
+            emit(ResponseState.Loading)
+            val response = remoteDataSource.getUserData()
+            Prefs.setUserPref(response)
+            KoinModules.reloadModule()
+            emit(ResponseState.Success(response))
+
+        } catch (e: Exception) {
+            if (e is HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val errorMessage = if (!errorBody.isNullOrEmpty()) {
+                    val errorResponse = Gson().fromJson(errorBody, LoginResponse::class.java)
+                    errorResponse.message
+                } else {
+                    e.message()
+                }
+                emit(ResponseState.Error(errorMessage.toString()))
+            }
+            e.printStackTrace()
+            emit(ResponseState.Error(e.message.toString()))
+        }
+    }
+
     fun getAllDiscussion(): Flow<ResponseState<List<AllDiscussionResponseItem>>> = flow {
         try {
             emit(ResponseState.Loading)
@@ -202,6 +274,7 @@ class AppRepository(
     fun logout(): Boolean {
         return try {
             Prefs.clearAuthPrefs()
+            KoinModules.reloadModule()
             true
         } catch (e: Exception) {
             e.printStackTrace()

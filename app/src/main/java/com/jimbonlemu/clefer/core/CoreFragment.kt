@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.jimbonlemu.clefer.utils.Prefs
 
 abstract class CoreFragment<VB : ViewBinding> : Fragment() {
 
@@ -17,6 +18,7 @@ abstract class CoreFragment<VB : ViewBinding> : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Prefs.init(requireContext())
         _binding = setupFragmentBinding(inflater, container, savedInstanceState)
         return _binding?.root
     }

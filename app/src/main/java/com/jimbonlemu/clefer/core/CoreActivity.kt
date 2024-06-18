@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.jimbonlemu.clefer.utils.Prefs
 
 abstract class CoreActivity<viewBinding:ViewBinding> : AppCompatActivity() {
     private var _binding: viewBinding? = null
@@ -12,6 +13,7 @@ abstract class CoreActivity<viewBinding:ViewBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = setupBinding(layoutInflater)
         setContentView(binding.root)
+        Prefs.init(this)
     }
 
     override fun onDestroy() {

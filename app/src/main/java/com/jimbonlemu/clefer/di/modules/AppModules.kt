@@ -21,8 +21,7 @@ val AppModules = module {
             androidContext(),
             AppDatabase::class.java,
             Constant.DB_NAME
-        ).allowMainThreadQueries().build()
+        ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
     }
-
     single { Prefs.init(get()) }
 }

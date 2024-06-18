@@ -28,7 +28,7 @@ class HistoryActivity : CoreActivity<ActivityHistoryBinding>() {
 
     private fun ActivityHistoryBinding.loadHistoryData() {
         historyViewModel.apply {
-            getAllHistoryByOwner(Prefs.getUserId.toString())
+            getAllHistoryByOwner(Prefs.getUserId)
                 .observe(this@HistoryActivity) {
                     rvHistoryAnalyzed.layoutManager = LinearLayoutManager(this@HistoryActivity)
                     rvHistoryAnalyzed.adapter = HistoryAdapter(

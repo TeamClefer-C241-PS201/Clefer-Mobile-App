@@ -73,4 +73,6 @@
     <string name="title_result">Hasil</string>
     <string name="title_recommendation">Rekomendasi</string>
     <string name="title_history">Riwayat</string>
+    <string name="hint_input_name">Masukkan nama lengkap anda...</string>
+    <string name="title_name">Nama</string>
 </resources>

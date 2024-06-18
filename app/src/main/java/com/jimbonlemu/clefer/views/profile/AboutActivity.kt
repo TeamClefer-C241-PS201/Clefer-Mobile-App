@@ -7,11 +7,9 @@ import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityAboutBinding
 
 class AboutActivity : CoreActivity<ActivityAboutBinding>() {
-
-
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //add toolbar
         binding.apply {
             setupToolbar()
         }

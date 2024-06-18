@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityDetailArticleBinding
-import com.jimbonlemu.clefer.databinding.ActivityDetailCommentBinding
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.views.article.viewmodels.ArticleViewModel
@@ -43,7 +42,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
                 Glide.with(this@DetailArticleActivity)
                     .load(article.articleImg)
                     .into(binding.ivItemPhotoDetail)
-                checkFavorite(Prefs.getUserId.toString())
+                checkFavorite(Prefs.getUserId)
             }
         }
 
@@ -61,7 +60,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
 
     private fun addFavorite(id: Int) {
         val favoriteArticle = FavoriteArticle(
-            ownerId = Prefs.getUserId.toString(),
+            ownerId = Prefs.getUserId,
             id = id,
             articleTitle = binding.tvTitleDetail.text.toString(),
             articleDesc = binding.tvDescDetail.text.toString(),
@@ -92,7 +91,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
         lifecycleScope.launch(Dispatchers.IO) {
             val count = detailArticleViewModel.checkFavoriteById(ownerId)
             withContext(Dispatchers.Main) {
-                isFavorite = count > Prefs.getUserId.toString()
+                isFavorite = count > Prefs.getUserId
                 updateFavoriteUI()
             }
         }

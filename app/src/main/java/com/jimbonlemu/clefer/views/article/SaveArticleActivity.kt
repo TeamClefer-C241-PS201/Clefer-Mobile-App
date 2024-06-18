@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
-import com.jimbonlemu.clefer.databinding.ActivityDetailCommentBinding
 import com.jimbonlemu.clefer.databinding.ActivitySaveArticleBinding
 import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.views.article.adapter.ArticleAdapter
@@ -15,7 +14,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
     private val saveArticleViewModel: ArticleViewModel by viewModel()
     private val articleAdapter = ArticleAdapter(ArticleAdapter.AdapterType.FAVORITE)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupViews()
@@ -45,7 +43,7 @@ class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
     }
 
     private fun observeData() {
-        saveArticleViewModel.getAllFavoriteArticles(Prefs.getUserId.toString()).observe(this) { articles ->
+        saveArticleViewModel.getAllFavoriteArticles(Prefs.getUserId).observe(this) { articles ->
             articles?.let {
                 articleAdapter.setFavoriteArticles(it)
             }

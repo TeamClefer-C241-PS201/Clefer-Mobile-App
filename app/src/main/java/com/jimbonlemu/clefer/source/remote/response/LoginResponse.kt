@@ -11,7 +11,7 @@ data class LoginResponse(
 	val message: String? = null,
 
 	@field:SerializedName("user")
-	val user: LoginResult? = null
+	val user: LoginResult? = null,
 )
 
 data class LoginResult(
@@ -32,6 +32,6 @@ data class LoginResult(
 	val username: String? = null,
 
 	@field:SerializedName("token")
-	val token: String? = null
+	val token: String? = null,
 )
 

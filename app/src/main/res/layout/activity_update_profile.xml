@@ -8,6 +8,7 @@
     tools:context=".views.profile.UpdateProfileActivity"
     tools:ignore="VisualLintTextFieldSize">
 
+
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/mToolbar"
         style="@style/ToolbarTextAppearance"
@@ -16,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/data_pengguna_title"
         app:titleTextAppearance="@style/ToolbarTextAppearance" />
+
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_image"
@@ -52,47 +54,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_profile_text" />
 
-    <TextView
-        android:id="@+id/profile_text"
-        style="@style/BoldHeadlineStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/informasi_akun"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-    <com.jimbonlemu.clefer.components.CustomViewEditText
-        android:id="@+id/edt_username"
-        style="@style/DefinedEditTextLayoutSize"
-        android:layout_marginTop="6dp"
-        app:hintText="@string/hint_input_username"
-        app:labelText="@string/title_username"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_text" />
+        app:layout_constraintTop_toBottomOf="@id/divider">
 
-    <com.jimbonlemu.clefer.components.CustomViewEditText
-        android:id="@+id/edt_email"
-        style="@style/DefinedEditTextLayoutSize"
-        android:layout_marginTop="8dp"
-        app:hintText="@string/hint_input_email"
-        app:labelText="@string/title_email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edt_username" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_logout"
-        style="@style/ButtonStyle"
-        android:layout_marginTop="28dp"
-        android:text="@string/simpan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edt_email"
-        tools:ignore="VisualLintButtonSize" />
+            <TextView
+                android:id="@+id/profile_text"
+                style="@style/BoldHeadlineStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/informasi_akun"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.jimbonlemu.clefer.components.CustomViewEditText
+                android:id="@+id/edt_user_name"
+                style="@style/DefinedEditTextLayoutSize"
+                android:layout_marginTop="6dp"
+                app:hintText="@string/hint_input_name"
+                app:labelText="@string/title_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_text" />
+
+            <com.jimbonlemu.clefer.components.CustomViewEditText
+                android:id="@+id/edt_username"
+                style="@style/DefinedEditTextLayoutSize"
+                android:layout_marginTop="6dp"
+                app:hintText="@string/hint_input_username"
+                app:labelText="@string/title_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_user_name" />
+
+            <com.jimbonlemu.clefer.components.CustomViewEditText
+                android:id="@+id/edt_email"
+                style="@style/DefinedEditTextLayoutSize"
+                android:layout_marginTop="8dp"
+                app:hintText="@string/hint_input_email"
+                app:labelText="@string/title_email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_username" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_save_profile"
+                style="@style/ButtonStyle"
+                android:layout_marginTop="28dp"
+                android:text="@string/simpan"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edt_email"
+                tools:ignore="VisualLintButtonSize" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

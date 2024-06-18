@@ -3,9 +3,9 @@ package com.jimbonlemu.clefer.views.auth
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Toast
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityRegisterBinding
+import com.jimbonlemu.clefer.utils.CleferToast
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.auth.viewmodels.AuthViewModels
 import org.koin.android.ext.android.inject
@@ -32,16 +32,16 @@ class RegisterActivity : CoreActivity<ActivityRegisterBinding>() {
             val passwordField = edtPassword.inputText.trim()
 
             if (nameField.isEmpty()) {
-                getToast("Jangan biarkan kolom Nama kosong")
+                getInformToast("Jangan biarkan kolom Nama kosong")
             }
             if (usernameField.isEmpty()) {
-                getToast("Jangan biarkan kolom Nama Pengguna / username kosong")
+                getInformToast("Jangan biarkan kolom Nama Pengguna / username kosong")
             }
             if (emailField.isEmpty()) {
-                getToast("Jangan biarkan kolom Email kosong")
+                getInformToast("Jangan biarkan kolom Email kosong")
             }
             if (passwordField.isEmpty()) {
-                getToast("Jangan biarkan kolom Kata Sandi kosong")
+                getInformToast("Jangan biarkan kolom Kata Sandi kosong")
             }
             if (nameField.isNotEmpty() && usernameField.isNotEmpty() && emailField.isNotEmpty() && passwordField.isNotEmpty()) {
                 authViewModel.register(nameField, emailField, usernameField, passwordField)
@@ -49,27 +49,30 @@ class RegisterActivity : CoreActivity<ActivityRegisterBinding>() {
         }
     }
 
-    private fun ActivityRegisterBinding.setupObserver(){
-        authViewModel.registerResult.observe(this@RegisterActivity){response->
+    private fun ActivityRegisterBinding.setupObserver() {
+        authViewModel.registerResult.observe(this@RegisterActivity) { response ->
             when (response) {
                 is ResponseState.Loading -> {
                     isComponentEnabled(false)
                 }
 
                 is ResponseState.Success -> {
-                    edtUserName.inputText =""
+                    edtUserName.inputText = ""
                     edtUsername.inputText = ""
                     edtPassword.inputText = ""
                     edtEmail.inputText = ""
                     isComponentEnabled(true)
-                    getToast("Suskses melakukan registrasi pengguna lakukan Login!")
+                    CleferToast.successToast(
+                        "Suskses melakukan registrasi pengguna lakukan Login!",
+                        this@RegisterActivity
+                    )
                     startActivity(Intent(this@RegisterActivity, SignInActivity::class.java))
                     finish()
                 }
 
                 is ResponseState.Error -> {
                     isComponentEnabled(true)
-                    getToast(response.errorMessage)
+                    CleferToast.errorToast(response.errorMessage, this@RegisterActivity)
                 }
             }
         }
@@ -93,8 +96,9 @@ class RegisterActivity : CoreActivity<ActivityRegisterBinding>() {
         finish()
     }
 
-    private fun getToast(msg: String) {
-        Toast.makeText(this@RegisterActivity, msg, Toast.LENGTH_SHORT).show()
+    private fun getInformToast(msg: String) {
+        CleferToast.informToast(msg, this@RegisterActivity)
     }
+
 
 }

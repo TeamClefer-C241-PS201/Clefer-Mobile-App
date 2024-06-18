@@ -10,6 +10,54 @@
         android:layout_width="match_parent"
         android:layout_height="0dp">
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_layout"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_shimmer"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/shimmerColor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tv_greeting_shimmer"
+                    style="@style/MediumHeadline"
+                    android:visibility="invisible"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintStart_toEndOf="@id/iv_shimmer"
+                    app:layout_constraintTop_toTopOf="@id/iv_shimmer" />
+
+                <TextView
+                    android:id="@+id/tv_user_name_shimmer"
+                    style="@style/SemiBoldSubHeadline"
+                    android:layout_width="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="100dp"
+                    android:background="@color/shimmerColor"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_shimmer"
+                    app:layout_constraintStart_toStartOf="@id/tv_greeting_shimmer"
+                    app:layout_constraintTop_toBottomOf="@id/tv_greeting_shimmer" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_user_profile"
             android:layout_width="42dp"
@@ -19,6 +67,7 @@
             android:src="@drawable/clefer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/tv_greeting"

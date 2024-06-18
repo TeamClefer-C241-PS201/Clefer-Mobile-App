@@ -64,9 +64,11 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
         profileViewModel.getUserState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ResponseState.Loading -> {
+                    setupShimmerStatus(true)
                 }
 
                 is ResponseState.Success -> {
+                    setupShimmerStatus(false)
                     state.data.apply {
                         setUserData(
                             name.toString(),
@@ -77,12 +79,26 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
                 }
 
                 is ResponseState.Error -> {
+                    setupShimmerStatus(false)
                     binding.apply {
                         Prefs.apply {
                             setUserData(getName, getEmail, getPhoto)
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private fun setupShimmerStatus(isEnable: Boolean) {
+        binding.apply {
+            if (isEnable) {
+                shimmerProfile.startShimmer()
+                shimmerProfile.visibility = View.VISIBLE
+            }
+            else{
+                shimmerProfile.startShimmer()
+                shimmerProfile.visibility = View.INVISIBLE
             }
         }
     }

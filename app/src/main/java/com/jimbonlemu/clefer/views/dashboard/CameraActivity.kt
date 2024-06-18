@@ -11,7 +11,6 @@ import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import com.google.android.material.snackbar.Snackbar
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityCameraBinding
 import com.jimbonlemu.clefer.utils.CleferToast
@@ -21,7 +20,6 @@ import java.util.Date
 import java.util.Locale
 
 class CameraActivity : CoreActivity<ActivityCameraBinding>() {
-
 
     private var imageCapture: ImageCapture? = null
     private var cameraProvider: ProcessCameraProvider? = null
@@ -79,7 +77,7 @@ class CameraActivity : CoreActivity<ActivityCameraBinding>() {
         }
     }
 
-    private fun ActivityCameraBinding.takePhoto() {
+    private fun takePhoto() {
         val imageCapture = imageCapture ?: return
 
         val photoFile = createFile()
@@ -91,8 +89,7 @@ class CameraActivity : CoreActivity<ActivityCameraBinding>() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = outputFileResults.savedUri ?: Uri.fromFile(photoFile)
-                    val message = "Photo capture succeeded"
-                    CleferToast.successToast(message,this@CameraActivity)
+                    CleferToast.successToast("Foto berhasil diambil",this@CameraActivity)
                     startActivity(
                         Intent(
                             this@CameraActivity,
@@ -102,8 +99,7 @@ class CameraActivity : CoreActivity<ActivityCameraBinding>() {
                 }
 
                 override fun onError(exception: ImageCaptureException) {
-                    val message = "Photo capture failed: ${exception.message}"
-                    Snackbar.make(viewFinder, message, Snackbar.LENGTH_LONG).show()
+                    CleferToast.errorToast( "Foto gagal diambil: ${exception.message}",this@CameraActivity)
                 }
             }
         )

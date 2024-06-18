@@ -53,6 +53,7 @@ class RegisterActivity : CoreActivity<ActivityRegisterBinding>() {
         authViewModel.registerResult.observe(this@RegisterActivity) { response ->
             when (response) {
                 is ResponseState.Loading -> {
+                    CleferToast.informToast("Memproses informasi registrasi akun...", this@RegisterActivity)
                     isComponentEnabled(false)
                 }
 
@@ -63,7 +64,7 @@ class RegisterActivity : CoreActivity<ActivityRegisterBinding>() {
                     edtEmail.inputText = ""
                     isComponentEnabled(true)
                     CleferToast.successToast(
-                        "Sukses melakukan registrasi pengguna lakukan Login!",
+                        "Suskses melakukan registrasi pengguna !",
                         this@RegisterActivity
                     )
                     startActivity(Intent(this@RegisterActivity, SignInActivity::class.java))
@@ -81,6 +82,7 @@ class RegisterActivity : CoreActivity<ActivityRegisterBinding>() {
     private fun ActivityRegisterBinding.isComponentEnabled(isEnable: Boolean) {
         btnRegister.isEnabled = isEnable
         edtUserName.isEnabled = isEnable
+        tvBtnSignIn.isEnabled = isEnable
         edtUsername.isEnabled = isEnable
         edtEmail.isEnabled = isEnable
         edtPassword.isEnabled = isEnable

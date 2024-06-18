@@ -3,8 +3,6 @@ package com.jimbonlemu.clefer.views.auth
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Toast
-import androidx.core.view.isGone
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivitySignInBinding
 import com.jimbonlemu.clefer.utils.CleferToast
@@ -59,35 +57,35 @@ class SignInActivity : CoreActivity<ActivitySignInBinding>() {
                         "Berhasil Masuk!",
                         this@SignInActivity
                     )
-                    startActivity(Intent(this@SignInActivity, BottomNavigationBarActivity::class.java))
+                    startActivity(
+                        Intent(
+                            this@SignInActivity,
+                            BottomNavigationBarActivity::class.java
+                        )
+                    )
                     finish()
                 }
 
                 is ResponseState.Error -> {
                     enabledComponent(true)
-                    CleferToast.errorToast( response.errorMessage, this@SignInActivity)
+                    CleferToast.errorToast(response.errorMessage, this@SignInActivity)
                 }
             }
         }
     }
 
     private fun ActivitySignInBinding.enabledComponent(isComponentEnabled: Boolean) {
-        if (isComponentEnabled) {
-            edtEmail.isEnabled = true
-            edtPassword.isEnabled = true
-            btnSignIn.isEnabled = true
-        } else {
-            edtEmail.isEnabled = false
-            edtPassword.isEnabled = false
-            btnSignIn.isEnabled = false
-        }
+        edtEmail.isEnabled = isComponentEnabled
+        edtPassword.isEnabled = isComponentEnabled
+        btnSignIn.isEnabled = isComponentEnabled
+        tvBtnRegister.isEnabled = isComponentEnabled
     }
 
     override fun setupBinding(layoutInflater: LayoutInflater): ActivitySignInBinding =
         ActivitySignInBinding.inflate(layoutInflater)
 
     private fun getInformToast(msg: String) {
-        CleferToast.informToast( msg, this)
+        CleferToast.informToast(msg, this)
     }
 
 }

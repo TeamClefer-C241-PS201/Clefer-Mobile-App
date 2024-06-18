@@ -98,9 +98,11 @@ class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
         profileViewModel.getUserState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is ResponseState.Loading -> {
+                    setupShimmerStatus(true)
                 }
 
                 is ResponseState.Success -> {
+                    setupShimmerStatus(false)
                     state.data.apply {
                         setUserData(
                             name = name.toString(),
@@ -110,12 +112,27 @@ class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
                 }
 
                 is ResponseState.Error -> {
-                    binding.apply {
-                        Prefs.apply {
-                            setUserData(name = getName, photo = getPhoto)
-                        }
+                    setupShimmerStatus(false)
+                    Prefs.apply {
+                        setUserData(name = getName, photo = getPhoto)
                     }
                 }
+            }
+        }
+    }
+
+    private fun setupShimmerStatus(isEnable: Boolean) {
+        binding.apply {
+            if (isEnable) {
+                shimmerLayout.startShimmer()
+                shimmerLayout.visibility = View.VISIBLE
+                tvUserName.visibility = View.INVISIBLE
+                ivUserProfile.visibility = View.INVISIBLE
+            } else {
+                shimmerLayout.stopShimmer()
+                shimmerLayout.visibility = View.GONE
+                tvUserName.visibility = View.VISIBLE
+                ivUserProfile.visibility = View.VISIBLE
             }
         }
     }

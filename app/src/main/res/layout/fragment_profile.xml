@@ -15,13 +15,57 @@
         app:title="Profile"
         app:titleTextAppearance="@style/ToolbarTextAppearance" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:visibility="invisible"
+        android:id="@+id/shimmer_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/mToolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="39dp"
+                android:background="@color/shimmerColor"
+                android:scaleType="centerCrop"
+                tools:ignore="ImageContrastCheck" />
+
+
+            <TextView
+                style="@style/MediumHeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/title_username"
+                android:textColor="@color/shimmerColor"
+                android:background="@color/shimmerColor"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/MediumHeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/shimmerColor"
+                android:layout_marginTop="2dp"
+                android:background="@color/shimmerColor"
+                android:text="@string/jgrp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="39dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mToolbar"
@@ -35,7 +79,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="@string/title_username"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +89,6 @@
         style="@style/MediumHeadline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_email"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

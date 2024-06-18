@@ -18,6 +18,28 @@
         app:title="@string/data_pengguna_title"
         app:titleTextAppearance="@style/ToolbarTextAppearance" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shimmer_profile"
+        android:visibility="invisible"
+        android:layout_marginTop="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mToolbar">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:background="@color/shimmerColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mToolbar"
+            app:shapeAppearanceOverlay="@style/RoundedSquare"
+            tools:ignore="ImageContrastCheck" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_image"
@@ -25,7 +47,7 @@
         android:layout_height="150dp"
         android:layout_marginTop="34dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_profile"
+        android:background="@color/shimmerColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mToolbar"

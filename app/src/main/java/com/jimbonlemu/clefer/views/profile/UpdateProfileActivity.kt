@@ -4,6 +4,7 @@ import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
@@ -81,16 +82,25 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
             updateUserState.observe(this@UpdateProfileActivity) { state ->
                 when (state) {
                     is ResponseState.Loading -> {
-                        CleferToast.informToast("Memproses perubahan....", this@UpdateProfileActivity)
+                        CleferToast.informToast(
+                            "Memproses perubahan....",
+                            this@UpdateProfileActivity
+                        )
                     }
 
                     is ResponseState.Success -> {
-                        CleferToast.successToast("Profil Berhasil Diperbarui", this@UpdateProfileActivity)
+                        CleferToast.successToast(
+                            "Profil Berhasil Diperbarui",
+                            this@UpdateProfileActivity
+                        )
                         getUserData()
                     }
 
                     is ResponseState.Error -> {
-                        CleferToast.errorToast("Terjadi kesalahan: Profil gagal diperbarui", this@UpdateProfileActivity)
+                        CleferToast.errorToast(
+                            "Terjadi kesalahan, Profil gagal diperbarui",
+                            this@UpdateProfileActivity
+                        )
                     }
                 }
             }
@@ -101,6 +111,7 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
         profileViewModel.getUserState.observe(this@UpdateProfileActivity) { state ->
             when (state) {
                 is ResponseState.Loading -> {
+                    setShimmerStatus(true)
                 }
 
                 is ResponseState.Success -> {
@@ -112,11 +123,26 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
                             username.toString()
                         )
                     }
+                    setShimmerStatus(false)
                 }
 
                 is ResponseState.Error -> {
-
+                    setShimmerStatus(false)
                 }
+            }
+        }
+    }
+
+    private fun setShimmerStatus(isEnable: Boolean) {
+        binding.apply {
+            if (isEnable) {
+                shimmerProfile.startShimmer()
+                shimmerProfile.visibility = View.VISIBLE
+                profileImage.visibility = View.INVISIBLE
+            } else {
+                shimmerProfile.stopShimmer()
+                shimmerProfile.visibility = View.GONE
+                profileImage.visibility = View.VISIBLE
             }
         }
     }

@@ -28,6 +28,11 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        profileViewModel.getUserData()
+    }
+
     override fun setupFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,

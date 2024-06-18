@@ -1,6 +1,5 @@
 package com.jimbonlemu.clefer.source.remote
 
-import android.net.Uri
 import com.jimbonlemu.clefer.source.remote.network.ApiService
 import com.jimbonlemu.clefer.source.remote.request.CommentRequest
 import com.jimbonlemu.clefer.source.remote.request.DiscussionRequest
@@ -30,6 +29,15 @@ class RemoteDataSource(private val api: ApiService) {
         MultipartBody.Part.createFormData("image", fileName, body),
     )
 
+    suspend fun updateUser(
+        name: RequestBody,
+        userPhoto: MultipartBody.Part?,
+        username: RequestBody,
+        email: RequestBody
+    ) = api.updateUser( name, userPhoto, username, email)
+
+    suspend fun getUserData() = api.getUserData()
+
     suspend fun getAllDiscussion(): List<AllDiscussionResponseItem> {
         return api.getAllDiscussion()
     }
@@ -41,10 +49,11 @@ class RemoteDataSource(private val api: ApiService) {
 
     suspend fun getCommentDiscussionById(postId: Int) = api.getCommentsByPostId(postId)
 
-    suspend fun createCommentDiscussionById(postId: Int, commentRequest: CommentRequest) = api.createComment(postId, commentRequest)
+    suspend fun createCommentDiscussionById(postId: Int, commentRequest: CommentRequest) =
+        api.createComment(postId, commentRequest)
 
     suspend fun likeDiscussion(postId: Int) = api.likeDiscussion(postId)
 
-    suspend fun likeComment(postId: Int, commentId: Int) = api.likeComment(postId ,commentId)
+    suspend fun likeComment(postId: Int, commentId: Int) = api.likeComment(postId, commentId)
 
 }

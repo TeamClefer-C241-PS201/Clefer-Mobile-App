@@ -4,7 +4,6 @@ import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
@@ -12,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityUpdateProfileBinding
+import com.jimbonlemu.clefer.utils.CleferToast
 import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.profile.viewmodels.ProfileViewModel
@@ -81,25 +81,16 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
             updateUserState.observe(this@UpdateProfileActivity) { state ->
                 when (state) {
                     is ResponseState.Loading -> {
-                        Toast.makeText(this@UpdateProfileActivity, "Memproses perubahan", Toast.LENGTH_SHORT)
-                            .show()
+                        CleferToast.informToast("Memproses perubahan....", this@UpdateProfileActivity)
                     }
 
                     is ResponseState.Success -> {
-                        Toast.makeText(
-                            this@UpdateProfileActivity,
-                            "Profil Berhasil Diperbarui",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        CleferToast.successToast("Profil Berhasil Diperbarui", this@UpdateProfileActivity)
                         getUserData()
                     }
 
                     is ResponseState.Error -> {
-                        Toast.makeText(
-                            this@UpdateProfileActivity,
-                            "Terjadi kesalahan: Profil gagal diperbarui",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        CleferToast.errorToast("Terjadi kesalahan: Profil gagal diperbarui", this@UpdateProfileActivity)
                     }
                 }
             }

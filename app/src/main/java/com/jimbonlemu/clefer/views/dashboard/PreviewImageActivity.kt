@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityPreviewImageBinding
+import com.jimbonlemu.clefer.utils.CleferToast
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.dashboard.viewmodels.PredictViewModel
 import com.yalantis.ucrop.UCrop
@@ -82,11 +83,10 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
                                 putExtra(AnalyzeActivity.IS_VIEWING_HISTORY, false)
                             }
                         })
-                    Toast.makeText(
+                    CleferToast.successToast(
+                        "Gambar berhasil di deteksi",
                         this@PreviewImageActivity,
-                        "${state.data.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    )
                 }
 
                 is ResponseState.Error -> {
@@ -94,11 +94,9 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
                         text = getString(R.string.title_start_analyze)
                         isEnabled = true
                     }
-                    Toast.makeText(
-                        this@PreviewImageActivity,
+                    CleferToast.errorToast(
                         "Error: ${state.errorMessage}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        this@PreviewImageActivity,)
                 }
             }
         }

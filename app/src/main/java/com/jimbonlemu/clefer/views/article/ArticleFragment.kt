@@ -21,7 +21,7 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupView()
+        setupRecyclerView()
         setupMainButton()
         observeData()
     }
@@ -34,10 +34,6 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
         }
     }
 
-    private fun setupView() {
-        setupRecyclerView()
-    }
-
     private fun setupMainButton() {
         binding.btnBookmark.setOnClickListener {
             startActivity(Intent(requireContext(), SaveArticleActivity::class.java))
@@ -45,14 +41,18 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
     }
 
     private fun observeData() {
-        articleViewModel.getAllArticles.observe(viewLifecycleOwner) { pagingData ->
-            lifecycleScope.launch {
-                articleAdapter.submitData(lifecycle, pagingData)
-                val isEmpty = articleAdapter.itemCount == 0
-                if (isEmpty) {
-                    CleferToast.successToast("Berhasil Memuat Artikel" , requireContext())
-                } else {
-                   CleferToast.errorToast("Gagal Memuat Artikel" , requireContext())
+        binding.apply {
+            shimmerLayout.visibility = View.VISIBLE
+            articleViewModel.getAllArticles.observe(viewLifecycleOwner) { pagingData ->
+                lifecycleScope.launch {
+                    articleAdapter.submitData(lifecycle, pagingData)
+                    shimmerLayout.visibility = View.GONE
+                    val isEmpty = articleAdapter.itemCount == 0
+                    if (isEmpty) {
+                        CleferToast.successToast("Berhasil Memuat Artikel", requireContext())
+                    } else {
+                        CleferToast.errorToast("Gagal Memuat Artikel", requireContext())
+                    }
                 }
             }
         }

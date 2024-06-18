@@ -84,15 +84,9 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
                         })
                     Toast.makeText(
                         this@PreviewImageActivity,
-                        "Prediction successful: ${state.data.message}",
+                        "${state.data.message}",
                         Toast.LENGTH_SHORT
                     ).show()
-//                    state.data.data?.apply {
-//                        Log.d(
-//                            "IMAGE SCANNED RESULT",
-//                            "$result \n $description \n $suggestion"
-//                        )
-//                    }
                 }
 
                 is ResponseState.Error -> {

@@ -10,19 +10,21 @@ import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentProfileBinding
 import com.jimbonlemu.clefer.utils.Prefs
+import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.auth.SignInActivity
 import com.jimbonlemu.clefer.views.auth.viewmodels.AuthViewModels
+import com.jimbonlemu.clefer.views.profile.viewmodels.ProfileViewModel
 import org.koin.android.ext.android.inject
-
 
 class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
     private val authViewModel: AuthViewModels by inject()
-
+    private val profileViewModel: ProfileViewModel by inject()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             mainButton()
-            setUserData()
+            profileViewModel.getUserData()
+            initObserverGetUserData()
         }
     }
 
@@ -32,10 +34,13 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
         savedInstanceState: Bundle?,
     ): FragmentProfileBinding = FragmentProfileBinding.inflate(inflater, container, false)
 
-    private fun FragmentProfileBinding.setUserData() {
-        username.text = Prefs.getUsername
-        email.text = Prefs.getEmail
-        Glide.with(requireActivity()).load(Prefs.getPhoto?.toUri()).into(profileImage)
+    private fun setUserData(nameValue: String, emailValue: String, photoValue: String) {
+        binding.apply {
+            username.text = nameValue
+            email.text = emailValue
+            Glide.with(requireActivity()).load(photoValue.toUri()).into(profileImage)
+
+        }
     }
 
     private fun FragmentProfileBinding.mainButton() {
@@ -53,6 +58,33 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
             requireActivity().finish()
         }
 
+    }
+
+    private fun initObserverGetUserData() {
+        profileViewModel.getUserState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is ResponseState.Loading -> {
+                }
+
+                is ResponseState.Success -> {
+                    state.data.apply {
+                        setUserData(
+                            name.toString(),
+                            email.toString(),
+                            userPhoto.toString(),
+                        )
+                    }
+                }
+
+                is ResponseState.Error -> {
+                    binding.apply {
+                        Prefs.apply {
+                            setUserData(getName, getEmail, getPhoto)
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

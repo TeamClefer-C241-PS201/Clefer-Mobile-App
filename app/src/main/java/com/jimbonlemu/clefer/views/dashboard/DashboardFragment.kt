@@ -16,14 +16,19 @@ import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentDashboardBinding
+import com.jimbonlemu.clefer.di.modules.KoinModules
 import com.jimbonlemu.clefer.utils.Prefs
+import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.community.CommunityActivity
+import com.jimbonlemu.clefer.views.profile.viewmodels.ProfileViewModel
+import org.koin.android.ext.android.inject
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 
 class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
 
+    private val profileViewModel: ProfileViewModel by inject()
     private var cameraExecutor: ExecutorService? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +44,9 @@ class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupButtonAction()
-        binding.apply {
-            tvUserName.text = Prefs.getName
-            Glide.with(requireActivity()).load(Prefs.getPhoto?.toUri()).into(ivUserProfile)
-        }
-
+        profileViewModel.getUserData()
+        KoinModules.reloadModule()
+        initObserverGetUserData()
     }
 
     private fun setupButtonAction() {
@@ -91,6 +94,38 @@ class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
         }
     }
 
+    private fun initObserverGetUserData() {
+        profileViewModel.getUserState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is ResponseState.Loading -> {
+                }
+
+                is ResponseState.Success -> {
+                    state.data.apply {
+                        setUserData(
+                            name = name.toString(),
+                            photo = userPhoto.toString(),
+                        )
+                    }
+                }
+
+                is ResponseState.Error -> {
+                    binding.apply {
+                        Prefs.apply {
+                            setUserData(name = getName, photo = getPhoto)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setUserData(name: String, photo: String) {
+        binding.apply {
+            tvUserName.text = name
+            Glide.with(requireActivity()).load(photo.toUri()).into(ivUserProfile)
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

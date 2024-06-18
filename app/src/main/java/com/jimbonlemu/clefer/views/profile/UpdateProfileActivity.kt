@@ -23,7 +23,7 @@ import java.util.Date
 
 class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
     private val profileViewModel: ProfileViewModel by inject()
-    private var currentUriValue: Uri? = null
+    private var currentUriValue: Uri? = Prefs.getPhoto.toUri()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,15 +32,22 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
             setupToolbar()
             Prefs.apply {
                 setUserData(getPhoto, getName, getEmail, getUsername)
-            }
-
-            btnSaveProfile.setOnClickListener {
-                profileViewModel.updateUser(
-                    name = edtUserName.inputText,
-                    userPhotoUri = currentUriValue,
-                    username = edtUsername.inputText,
-                    email = edtEmail.inputText
-                )
+                btnSaveProfile.setOnClickListener {
+                    val userName = edtUserName.inputText
+                    val photo = currentUriValue
+                    val username = edtUsername.inputText
+                    val email = edtEmail.inputText
+                    if (userName != getName || photo != getPhoto.toUri() || username != getUsername || email != getEmail) {
+                        profileViewModel.updateUser(
+                            name = edtUserName.inputText,
+                            userPhotoUri = currentUriValue,
+                            username = edtUsername.inputText,
+                            email = edtEmail.inputText
+                        )
+                    }else{
+                        CleferToast.informToast("Tidak ada perubahan yang dilakukan", this@UpdateProfileActivity)
+                    }
+                }
             }
 
             editProfileText.setOnClickListener {
@@ -86,6 +93,7 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
                             "Memproses perubahan....",
                             this@UpdateProfileActivity
                         )
+                        setEnableComponent(false)
                     }
 
                     is ResponseState.Success -> {
@@ -94,6 +102,7 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
                             this@UpdateProfileActivity
                         )
                         getUserData()
+                        setEnableComponent(true)
                     }
 
                     is ResponseState.Error -> {
@@ -101,6 +110,7 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
                             "Terjadi kesalahan, Profil gagal diperbarui",
                             this@UpdateProfileActivity
                         )
+                        setEnableComponent(true)
                     }
                 }
             }
@@ -130,6 +140,16 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
                     setShimmerStatus(false)
                 }
             }
+        }
+    }
+
+    private fun setEnableComponent(isEnable: Boolean) {
+        binding.apply {
+            btnSaveProfile.isEnabled = isEnable
+            edtUserName.isEnabled = isEnable
+            edtUsername.isEnabled = isEnable
+            edtEmail.isEnabled = isEnable
+            editProfileText.isEnabled = isEnable
         }
     }
 

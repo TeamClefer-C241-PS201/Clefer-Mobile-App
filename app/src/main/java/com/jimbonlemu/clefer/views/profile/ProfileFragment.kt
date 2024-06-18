@@ -102,7 +102,7 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
                 shimmerProfile.visibility = View.VISIBLE
             }
             else{
-                shimmerProfile.startShimmer()
+                shimmerProfile.stopShimmer()
                 shimmerProfile.visibility = View.INVISIBLE
             }
         }

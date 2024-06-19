@@ -75,4 +75,6 @@
     <string name="title_history">Riwayat</string>
     <string name="hint_input_name">Masukkan nama lengkap anda...</string>
     <string name="title_name">Nama</string>
+    <string name="title_empty_data">Data kosong</string>
+    <string name="title_processing_image">Sedang memproses gambar ...</string>
 </resources>

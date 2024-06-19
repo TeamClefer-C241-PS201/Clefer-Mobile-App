@@ -3,7 +3,6 @@ package com.jimbonlemu.clefer.views.community
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
@@ -28,29 +27,14 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupViews()
+        setupRecyclerView()
+        setupToolbar(binding.mToolbar)
         observeData()
         observeComments()
         setupPostCommentButton()
     }
 
-    private fun setupViews() {
-        binding.setupToolbar()
-        setupRecyclerView()
-    }
-
-    private fun ActivityDetailCommentBinding.setupToolbar() {
-        setSupportActionBar(mToolbar);
-        mToolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back);
-            setNavigationOnClickListener {
-                onBackPressedDispatcher.onBackPressed()
-            }
-        }
-    }
-
     private fun setupRecyclerView() {
-
         binding.rvComments.layoutManager = LinearLayoutManager(this)
         binding.rvComments.adapter = listCommentAdapter
         postId = intent.getIntExtra(POST_ID, 0)
@@ -74,17 +58,23 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),
             when (responseState) {
                 is ResponseState.Loading -> {
                     setShimmerEnable(true)
+                    isEnableEmptyLayout(false)
                 }
-
                 is ResponseState.Success -> {
-                    listCommentAdapter.updateItems(responseState.data)
+                    val comments = responseState.data
+                    listCommentAdapter.updateItems(comments)
                     setShimmerEnable(false)
+                    if (comments.isEmpty()) {
+                        isEnableEmptyLayout(true)
+                    } else {
+                        isEnableEmptyLayout(false)
+                    }
                     CleferToast.successToast("Berhasil memuat komentar", this)
                 }
 
                 is ResponseState.Error -> {
                     setShimmerEnable(false)
-                    CleferToast.errorToast("Gagal memuat komentar", this)
+                    isEnableEmptyLayout(true)
                 }
             }
         }
@@ -186,6 +176,25 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),
             } else {
                 commentInput.isEnabled = false
                 btnSendComment.isEnabled = false
+            }
+        }
+    }
+
+    private fun isEnableEmptyLayout(isEnable: Boolean) {
+        binding.apply {
+            if (isEnable) {
+                emptyCommentLayout.apply {
+                    root.visibility = View.VISIBLE
+                    tvEmptyTitle.text = "Belum ada postingan komentar"
+                }
+                rvComments.visibility = View.INVISIBLE
+
+            } else {
+                emptyCommentLayout.apply {
+                    root.visibility = View.GONE
+                    tvEmptyTitle.text = getString(R.string.title_empty_data)
+                }
+                rvComments.visibility = View.VISIBLE
             }
         }
     }

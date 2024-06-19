@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
@@ -68,16 +67,23 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(),
                 when (response) {
                     is ResponseState.Loading -> {
                         setShimmerEnable(true)
+                        isEnableEmptyLayout(false)
                     }
 
                     is ResponseState.Success -> {
                         setShimmerEnable(false)
+                        if (response.data.isEmpty()) {
+                            isEnableEmptyLayout(true)
+                        } else {
+                            isEnableEmptyLayout(false)
+                        }
                         listCommunityAdapter.updateItems(response.data)
                         CleferToast.successToast("Berhasil memuat data", this@CommunityActivity)
                     }
 
                     is ResponseState.Error -> {
                         setShimmerEnable(false)
+                        isEnableEmptyLayout(false)
                         CleferToast.errorToast("Gagal memuat data", this@CommunityActivity)
                     }
                 }
@@ -99,6 +105,23 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(),
                     startShimmer()
                 }
                 rvItems.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun isEnableEmptyLayout(isEnable: Boolean) {
+        binding.apply {
+            if (isEnable) {
+                emptyLayoutCommunity.apply {
+                    root.visibility = View.VISIBLE
+                    tvEmptyTitle.text = "Belum ada postingan pertanyaan"
+                }
+
+            } else {
+                emptyLayoutCommunity.apply {
+                    root.visibility = View.GONE
+                    tvEmptyTitle.text = getString(R.string.title_empty_data)
+                }
             }
         }
     }

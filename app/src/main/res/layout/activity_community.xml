@@ -92,6 +92,15 @@
 
                     </LinearLayout>
             </com.facebook.shimmer.ShimmerFrameLayout>
+            <include
+                android:id="@+id/empty_layout_community"
+                app:layout_constraintTop_toBottomOf="@id/card_desc"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                layout="@layout/layout_empty_item"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_items"

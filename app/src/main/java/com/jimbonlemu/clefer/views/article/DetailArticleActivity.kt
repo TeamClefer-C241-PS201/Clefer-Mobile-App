@@ -30,20 +30,21 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
 
 
     private fun observeData() {
-        val extraArticle = intent.getIntExtra(EXTRA_ARTICLE, 0)
-        articleId = extraArticle
-        detailArticleViewModel.getDetail(extraArticle)
-        detailArticleViewModel.detail.observe(this) { article ->
-            if (article != null) {
-                binding.tvTitleDetail.text = article.articleTitle
-                binding.tvDescDetail.text = article.articleDesc
-                Glide.with(this@DetailArticleActivity)
-                    .load(article.articleImg)
-                    .into(binding.ivItemPhotoDetail)
-                checkFavorite(Prefs.getUserId, articleId.toString())
+        detailArticleViewModel.apply {
+            val extraArticle = intent.getIntExtra(EXTRA_ARTICLE, 0)
+            articleId = extraArticle
+            getDetail(extraArticle)
+            detail.observe(this@DetailArticleActivity) { article ->
+                if (article != null) {
+                    binding.tvTitleDetail.text = article.articleTitle
+                    binding.tvDescDetail.text = article.articleDesc
+                    Glide.with(this@DetailArticleActivity)
+                        .load(article.articleImg)
+                        .into(binding.ivItemPhotoDetail)
+                    checkFavorite(Prefs.getUserId, articleId.toString())
+                }
             }
         }
-
     }
 
     private fun setupFavoriteButton() {
@@ -57,17 +58,19 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
     }
 
     private fun addFavorite(id: Int) {
-        val favoriteArticle = FavoriteArticle(
-            ownerId = Prefs.getUserId,
-            id = id,
-            articleTitle = binding.tvTitleDetail.text.toString(),
-            articleDesc = binding.tvDescDetail.text.toString(),
-            articleImg = detailArticleViewModel.detail.value?.articleImg ?: ""
-        )
-        detailArticleViewModel.insertFavoriteArticle(favoriteArticle)
-        isFavorite = true
-        updateFavoriteUI()
-        CleferToast.successToast("Berhasil menambahkan ke favorit", this)
+        binding.apply {
+            val favoriteArticle = FavoriteArticle(
+                ownerId = Prefs.getUserId,
+                id = id,
+                articleTitle = tvTitleDetail.text.toString(),
+                articleDesc = tvDescDetail.text.toString(),
+                articleImg = detailArticleViewModel.detail.value?.articleImg ?: ""
+            )
+            detailArticleViewModel.insertFavoriteArticle(favoriteArticle)
+            isFavorite = true
+            updateFavoriteUI()
+            CleferToast.successToast("Berhasil menambahkan ke favorit", this@DetailArticleActivity)
+        }
     }
 
     private fun deleteFavorite(id: Int) {

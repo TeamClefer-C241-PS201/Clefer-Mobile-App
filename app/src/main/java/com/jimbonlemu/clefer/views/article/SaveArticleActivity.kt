@@ -22,9 +22,6 @@ class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
         observeData()
     }
 
-
-
-
     private fun setupRecyclerView() {
         binding.rvItems.apply {
             layoutManager = LinearLayoutManager(this@SaveArticleActivity)

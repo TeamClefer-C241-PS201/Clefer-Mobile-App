@@ -83,6 +83,7 @@
             style="@style/RegularSubHeadline"
             android:layout_marginTop="17dp"
             android:text="@string/sub_headline_or"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_register" />
@@ -91,6 +92,7 @@
             android:id="@+id/btn_login_google"
             style="@style/ButtonStyle.Secondary.WithIcon"
             android:layout_marginTop="17dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_sub_headline_or" />

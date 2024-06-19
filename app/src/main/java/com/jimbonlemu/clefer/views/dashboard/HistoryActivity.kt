@@ -53,20 +53,19 @@ class HistoryActivity : CoreActivity<ActivityHistoryBinding>(),
     }
 
     private fun ActivityHistoryBinding.stopShimmer() {
-        shimmerHistory.stopShimmer()
-        shimmerHistory.visibility = View.GONE
+        shimmerHistory.apply {
+            stopShimmer()
+            visibility = View.GONE
+        }
     }
 
     private fun ActivityHistoryBinding.isEmptyLayoutEnable(isEnable: Boolean) {
-        if (isEnable) {
-            emptyLayout.apply {
+        emptyLayout.apply {
+            if (isEnable) {
                 root.visibility = View.VISIBLE
-                tvEmptyTitle.text = "Belum ada riwayat pemindaian"
-            }
-        } else {
-            emptyLayout.apply {
+                tvEmptyTitle.text = getString(R.string.title_empty_history_analyzed)
+            } else {
                 root.visibility = View.GONE
-                tvEmptyTitle.text = getString(R.string.title_empty_data)
             }
         }
     }

@@ -14,8 +14,8 @@ interface FavoriteArticleDao {
     @Query("SELECT * FROM favorite_article WHERE favorite_article.ownerId = :ownerId")
     fun getAllFavoriteArticles(ownerId: String): LiveData<List<FavoriteArticle>>
 
-    @Query("SELECT count(*) from favorite_article WHERE favorite_article.ownerId = :ownerId")
-    suspend fun checkFavoriteById(ownerId : String) : String
+    @Query("SELECT count(*) from favorite_article WHERE favorite_article.ownerId = :ownerId AND favorite_article.id=:articleId")
+    suspend fun checkFavoriteById(ownerId : String, articleId:String) : String
 
     @Query("DELETE FROM favorite_article WHERE favorite_article.id = :id")
     suspend fun deleteFavorite(id: Int) : Int

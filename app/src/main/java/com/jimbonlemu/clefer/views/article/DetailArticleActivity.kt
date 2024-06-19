@@ -43,7 +43,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
                 Glide.with(this@DetailArticleActivity)
                     .load(article.articleImg)
                     .into(binding.ivItemPhotoDetail)
-                checkFavorite(Prefs.getUserId)
+                checkFavorite(Prefs.getUserId, articleId.toString())
             }
         }
 
@@ -70,7 +70,7 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
         detailArticleViewModel.insertFavoriteArticle(favoriteArticle)
         isFavorite = true
         updateFavoriteUI()
-        CleferToast.successToast("Berhasil menambahkan ke favorit" , this)
+        CleferToast.successToast("Berhasil menambahkan ke favorit", this)
     }
 
     private fun ActivityDetailArticleBinding.setupToolbar() {
@@ -87,14 +87,14 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
         detailArticleViewModel.deleteFavorite(id)
         isFavorite = false
         updateFavoriteUI()
-        CleferToast.successToast("Berhasil menghapus dari favorit" , this)
+        CleferToast.successToast("Berhasil menghapus dari favorit", this)
     }
 
-    private fun checkFavorite(ownerId : String) {
+    private fun checkFavorite(ownerId: String, articleId: String) {
         lifecycleScope.launch(Dispatchers.IO) {
-            val count = detailArticleViewModel.checkFavoriteById(ownerId)
+            val count = detailArticleViewModel.checkFavoriteById(ownerId, articleId)
             withContext(Dispatchers.Main) {
-                isFavorite = count > Prefs.getUserId
+                isFavorite = count.toInt() == 1
                 updateFavoriteUI()
             }
         }

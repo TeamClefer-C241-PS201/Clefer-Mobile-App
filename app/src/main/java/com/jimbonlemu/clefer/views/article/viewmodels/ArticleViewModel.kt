@@ -23,8 +23,8 @@ class ArticleViewModel(private val repository: AppRepository) : ViewModel() {
         }
     }
 
-    suspend fun checkFavoriteById(ownerId : String): String {
-        return repository.checkFavoriteById(ownerId)
+    suspend fun checkFavoriteById(ownerId : String, articleId:String): String {
+        return repository.checkFavoriteById(ownerId, articleId)
     }
 
     fun deleteFavorite(id: Int) {

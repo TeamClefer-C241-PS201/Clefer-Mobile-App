@@ -337,8 +337,8 @@ class AppRepository(
         return localDataSource.getAllFavoriteArticles(ownerId)
     }
 
-    suspend fun checkFavoriteById(ownerId: String): String {
-        return localDataSource.checkFavoriteById(ownerId)
+    suspend fun checkFavoriteById(ownerId: String, articleId: String): String {
+        return localDataSource.checkFavoriteById(ownerId, articleId)
     }
 
     suspend fun deleteFavorite(id: Int) {

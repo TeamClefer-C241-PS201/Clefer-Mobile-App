@@ -13,7 +13,7 @@ class LocalDataSource(private val db: AppDatabase) {
 
     fun getAllFavoriteArticles(ownerId: String) = db.daoFavorite().getAllFavoriteArticles(ownerId)
 
-    suspend fun checkFavoriteById(ownerId: String) = db.daoFavorite().checkFavoriteById(ownerId)
+    suspend fun checkFavoriteById(ownerId: String, articleId:String) = db.daoFavorite().checkFavoriteById(ownerId, articleId)
 
     suspend fun deleteFavorite(id: Int) = db.daoFavorite().deleteFavorite(id)
 

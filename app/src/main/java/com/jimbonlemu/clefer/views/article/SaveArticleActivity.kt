@@ -2,6 +2,7 @@ package com.jimbonlemu.clefer.views.article
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
@@ -45,7 +46,27 @@ class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
     private fun observeData() {
         saveArticleViewModel.getAllFavoriteArticles(Prefs.getUserId).observe(this) { articles ->
             articles?.let {
-                articleAdapter.setFavoriteArticles(it)
+                if (it.isEmpty()) {
+                    isEmptyLayoutEnable(true)
+                } else {
+                    isEmptyLayoutEnable(false)
+                    articleAdapter.setFavoriteArticles(it)
+                }
+            }
+        }
+    }
+
+    private fun isEmptyLayoutEnable(isEnable: Boolean) {
+        binding.apply {
+            emptyLayoutFavouriteArticle.apply {
+                if (isEnable) {
+                    root.visibility = View.VISIBLE
+                    tvEmptyTitle.text = getString(R.string.title_empty_favorite_articles)
+                    rvItems.visibility = View.GONE
+                } else {
+                    root.visibility = View.GONE
+                    rvItems.visibility = View.VISIBLE
+                }
             }
         }
     }

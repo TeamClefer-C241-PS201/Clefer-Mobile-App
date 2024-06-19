@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentArticleBinding
 import com.jimbonlemu.clefer.utils.CleferToast
@@ -58,10 +59,23 @@ class ArticleFragment : CoreFragment<FragmentArticleBinding>() {
         }
     }
 
+    private fun isEmptyLayoutArticleEnable(isEnable: Boolean) {
+        binding.apply {
+            emptyLayoutArticle.apply {
+                if (isEnable) {
+                    root.visibility = View.VISIBLE
+                    tvEmptyTitle.text = getString(R.string.title_no_posted_articles)
+                } else {
+                    root.visibility = View.GONE
+                }
+            }
+        }
+    }
+
     override fun setupFragmentBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): FragmentArticleBinding = FragmentArticleBinding.inflate(inflater, container, false)
 
 }

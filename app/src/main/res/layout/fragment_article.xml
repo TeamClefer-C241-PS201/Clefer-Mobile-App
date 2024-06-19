@@ -81,6 +81,13 @@
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
             </com.facebook.shimmer.ShimmerFrameLayout>
+            <include
+                android:id="@+id/empty_layout_article"
+                layout="@layout/layout_empty_item"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_article"

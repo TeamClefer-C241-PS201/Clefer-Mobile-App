@@ -151,7 +151,8 @@ class DetailCommentActivity : CoreActivity<ActivityDetailCommentBinding>(),
 
                 is ResponseState.Success -> {
                     val discussion = responseState.data
-                    binding.itemCommunity.tvName.text = discussion.postTitle
+                    binding.itemCommunity.tvName.text = discussion.name
+                    binding.itemCommunity.tvItemTitle.text = discussion.postTitle
                     binding.itemCommunity.tvItemDesc.text = discussion.postDesc
                     binding.itemCommunity.tvDate.text = discussion.postDate?.toTime()
                     binding.itemCommunity.tvLikeCount.text = discussion.likerCountById.toString()

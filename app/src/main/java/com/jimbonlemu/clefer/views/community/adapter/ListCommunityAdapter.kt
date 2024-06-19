@@ -23,7 +23,8 @@ class ListCommunityAdapter(private val listener: OnLikeButtonClickListener? = nu
         @SuppressLint("SetTextI18n")
         fun bind(item: AllDiscussionResponseItem) {
             itemBinding.apply {
-                tvName.text = item.postTitle
+                tvName.text = item.name
+                tvItemTitle.text = item.postTitle
                 tvItemDesc.text = item.postDesc
                 tvDate.text = item.postDate?.toTime()
                 tvLikeCount.text = item.likerCountById?.toString()

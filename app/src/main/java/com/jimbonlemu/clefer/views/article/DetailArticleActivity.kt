@@ -24,13 +24,10 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeData()
-        setupViews()
+        setupToolbar(binding.mToolbar)
         setupFavoriteButton()
     }
 
-    private fun setupViews() {
-        binding.setupToolbar()
-    }
 
     private fun observeData() {
         val extraArticle = intent.getIntExtra(EXTRA_ARTICLE, 0)
@@ -71,16 +68,6 @@ class DetailArticleActivity : CoreActivity<ActivityDetailArticleBinding>() {
         isFavorite = true
         updateFavoriteUI()
         CleferToast.successToast("Berhasil menambahkan ke favorit", this)
-    }
-
-    private fun ActivityDetailArticleBinding.setupToolbar() {
-        setSupportActionBar(mToolbar);
-        mToolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back);
-            setNavigationOnClickListener {
-                onBackPressedDispatcher.onBackPressed()
-            }
-        }
     }
 
     private fun deleteFavorite(id: Int) {

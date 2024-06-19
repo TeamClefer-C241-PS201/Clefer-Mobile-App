@@ -17,24 +17,13 @@ class SaveArticleActivity : CoreActivity<ActivitySaveArticleBinding>() {
     private val articleAdapter = ArticleAdapter(ArticleAdapter.AdapterType.FAVORITE)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupViews()
+        setupRecyclerView()
+        setupToolbar(binding.mToolbar)
         observeData()
     }
 
-    private fun setupViews() {
-        binding.setupToolbar()
-        setupRecyclerView()
-    }
 
-    private fun ActivitySaveArticleBinding.setupToolbar() {
-        setSupportActionBar(mToolbar);
-        mToolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back);
-            setNavigationOnClickListener {
-                onBackPressedDispatcher.onBackPressed()
-            }
-        }
-    }
+
 
     private fun setupRecyclerView() {
         binding.rvItems.apply {

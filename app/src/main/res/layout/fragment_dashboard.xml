@@ -12,9 +12,9 @@
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/shimmer_layout"
-            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -36,8 +36,8 @@
                 <TextView
                     android:id="@+id/tv_greeting_shimmer"
                     style="@style/MediumHeadline"
-                    android:visibility="invisible"
                     android:layout_marginStart="10dp"
+                    android:visibility="invisible"
                     app:layout_constraintStart_toEndOf="@id/iv_shimmer"
                     app:layout_constraintTop_toTopOf="@id/iv_shimmer" />
 
@@ -45,12 +45,12 @@
                     android:id="@+id/tv_user_name_shimmer"
                     style="@style/SemiBoldSubHeadline"
                     android:layout_width="0dp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="100dp"
                     android:background="@color/shimmerColor"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_shimmer"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_greeting_shimmer"
                     app:layout_constraintTop_toBottomOf="@id/tv_greeting_shimmer" />
 
@@ -87,58 +87,18 @@
             app:layout_constraintStart_toStartOf="@id/tv_greeting"
             app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_layout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_slider"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginEnd="22dp"
-            app:cardBackgroundColor="@color/cleferGreen"
-            app:cardCornerRadius="15dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_user_name">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/iv_card_plant"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="27dp"
-                    android:layout_marginBottom="15dp"
-                    android:src="@drawable/img_corn_plant"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="ContentDescription" />
-
-                <TextView
-                    android:id="@+id/tv_card_main_headline"
-                    style="@style/BoldHeadlineStyle"
-                    android:layout_marginStart="26dp"
-                    android:layout_marginTop="38dp"
-                    android:text="@string/corn_leaf"
-                    android:textColor="@color/white"
-                    android:textSize="25sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/iv_card_plant" />
-
-                <TextView
-                    android:id="@+id/tv_card_sub_headline"
-                    style="@style/LightHeadline"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginBottom="38dp"
-                    android:text="@string/disease_analyze"
-                    app:layout_constraintBottom_toBottomOf="@id/iv_card_plant"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_card_main_headline" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
+            app:layout_constraintTop_toBottomOf="@id/tv_user_name"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_dashboard_slider" />
 
         <TextView
             android:id="@+id/tv_headline_1"
@@ -148,7 +108,7 @@
             android:text="@string/mulai_pemindaian_tanaman_anda"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_layout" />
+            app:layout_constraintTop_toBottomOf="@id/rv_slider" />
 
         <com.jimbonlemu.clefer.components.CustomCardDashboard
             android:id="@+id/card_camera"

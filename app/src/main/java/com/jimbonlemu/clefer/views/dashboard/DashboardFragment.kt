@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.core.CoreFragment
 import com.jimbonlemu.clefer.databinding.FragmentDashboardBinding
@@ -20,8 +21,12 @@ import com.jimbonlemu.clefer.di.modules.KoinModules
 import com.jimbonlemu.clefer.utils.Prefs
 import com.jimbonlemu.clefer.utils.ResponseState
 import com.jimbonlemu.clefer.views.community.CommunityActivity
+import com.jimbonlemu.clefer.views.dashboard.adapters.SliderAdapter
+import com.jimbonlemu.clefer.views.dashboard.viewmodels.SliderViewModel
 import com.jimbonlemu.clefer.views.profile.viewmodels.ProfileViewModel
 import org.koin.android.ext.android.inject
+import java.util.Timer
+import java.util.TimerTask
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -29,7 +34,13 @@ import java.util.concurrent.Executors
 class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
 
     private val profileViewModel: ProfileViewModel by inject()
+    private val sliderViewModel: SliderViewModel by inject()
     private var cameraExecutor: ExecutorService? = null
+    private val adapterSlider = SliderAdapter()
+    private lateinit var autoScrollTimer: Timer
+    private var currentPosition = 0
+    private val scrollInterval: Long = 3000
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -47,6 +58,8 @@ class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
         profileViewModel.getUserData()
         KoinModules.reloadModule()
         initObserverGetUserData()
+        initObserverGetSlider()
+        setUpAdapter()
     }
 
     private fun setupButtonAction() {
@@ -92,6 +105,30 @@ class DashboardFragment : CoreFragment<FragmentDashboardBinding>() {
                 )
             )
         }
+    }
+
+    private fun setUpAdapter() {
+        binding.rvSlider.adapter = adapterSlider
+        autoScrollTimer = Timer()
+        autoScrollTimer.schedule(object : TimerTask() {
+            override fun run() {
+                activity?.runOnUiThread {
+                    if (currentPosition == adapterSlider.itemCount) {
+                        currentPosition = 0
+                    }
+                    binding.rvSlider.smoothScrollToPosition(currentPosition)
+                    currentPosition++
+                }
+            }
+        }, scrollInterval, scrollInterval)
+    }
+
+
+    private fun initObserverGetSlider() {
+        sliderViewModel.listSlider.observe(requireActivity()) {
+            adapterSlider.addItems(it)
+        }
+
     }
 
     private fun initObserverGetUserData() {

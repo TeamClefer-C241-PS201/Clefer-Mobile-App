@@ -23,29 +23,16 @@ class CommunityActivity : CoreActivity<ActivityCommunityBinding>(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupViews()
+        setupRecyclerView()
+        setupToolbar(binding.mToolbar)
+
         observeData()
         setupButton()
-    }
-
-    private fun setupViews() {
-        setupRecyclerView()
-        setupToolbar()
     }
 
     override fun onResume() {
         super.onResume()
         communityViewModel.getAllDiscussions()
-    }
-
-    private fun setupToolbar() {
-        setSupportActionBar(binding.mToolbar);
-        binding.mToolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back);
-            setNavigationOnClickListener {
-                onBackPressedDispatcher.onBackPressed()
-            }
-        }
     }
 
     private fun setupButton() {

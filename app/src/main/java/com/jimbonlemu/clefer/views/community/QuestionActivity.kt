@@ -22,19 +22,11 @@ class QuestionActivity : CoreActivity<ActivityQuestionBinding>() {
         binding.apply {
             setupButton()
             initObservers()
-            setupToolbar()
+            setupToolbar(mToolbar)
         }
     }
 
-    private fun ActivityQuestionBinding.setupToolbar() {
-        setSupportActionBar(mToolbar);
-        mToolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back);
-            setNavigationOnClickListener {
-                onBackPressedDispatcher.onBackPressed()
-            }
-        }
-    }
+
 
     private fun ActivityQuestionBinding.setupButton() {
         btnPost.setOnClickListener {

@@ -79,6 +79,7 @@
         <item name="strokeWidth">1dp</item>
         <item name="strokeColor">@color/cleferGrey</item>
         <item name="backgroundTint">@color/white</item>
+        <item name="rippleColor">@color/cleferGrey</item>
         <item name="android:textColor">@color/cleferGreen</item>
     </style>
 

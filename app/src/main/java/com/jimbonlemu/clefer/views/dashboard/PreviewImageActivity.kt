@@ -66,6 +66,10 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
                 }
 
                 is ResponseState.Success -> {
+                    CleferToast.successToast(
+                        "Gambar berhasil di deteksi",
+                        this@PreviewImageActivity,
+                    )
                     binding.btnStartAnalyze.apply {
                         text = getString(R.string.title_start_analyze)
                         isEnabled = true
@@ -83,10 +87,7 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
                                 putExtra(AnalyzeActivity.IS_VIEWING_HISTORY, false)
                             }
                         })
-                    CleferToast.successToast(
-                        "Gambar berhasil di deteksi",
-                        this@PreviewImageActivity,
-                    )
+
                 }
 
                 is ResponseState.Error -> {

@@ -20,8 +20,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:cardCornerRadius="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -30,8 +30,10 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:scaleType="fitXY"
-                tools:src="@tools:sample/backgrounds/scenic" />
+                android:background="@color/shimmerColor"
+                />
         </com.google.android.material.card.MaterialCardView>
+
 
         <TextView
             android:id="@+id/tv_disease_result"
@@ -39,6 +41,7 @@
             android:layout_width="0dp"
             android:layout_marginEnd="4dp"
             android:layout_marginStart="13dp"
+            android:background="@color/shimmerColor"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/btn_delete_history"
@@ -50,6 +53,7 @@
             android:id="@+id/tv_date_scanned"
             style="@style/ToolbarTextAppearance"
             android:layout_width="0dp"
+            android:background="@color/shimmerColor"
             app:layout_constraintEnd_toEndOf="@id/tv_disease_result"
             android:textColor="@color/black"
             android:textSize="12sp"

@@ -35,6 +35,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_date" />
+
         <TextView
             android:id="@+id/tv_item_desc"
             style="@style/LightHeadline"
@@ -45,10 +46,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_item_name" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btn_like"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:importantForAccessibility="no"
@@ -59,22 +61,21 @@
         <TextView
             android:id="@+id/tv_like_count"
             style="@style/RegularSubHeadline"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
-            android:text=""
+            android:layout_marginStart="4dp"
             android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@id/btn_like"
             app:layout_constraintStart_toEndOf="@id/btn_like"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />
+            app:layout_constraintTop_toTopOf="@id/btn_like" />
 
         <TextView
             android:id="@+id/tv_like_text"
             style="@style/RegularSubHeadline"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="10dp"
             android:text="@string/like_text"
             android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="@id/tv_like_count"
             app:layout_constraintStart_toEndOf="@id/tv_like_count"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_desc" />
+            app:layout_constraintTop_toTopOf="@id/tv_like_count" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

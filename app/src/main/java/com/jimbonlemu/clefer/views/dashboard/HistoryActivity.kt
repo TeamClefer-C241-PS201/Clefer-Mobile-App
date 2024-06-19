@@ -2,6 +2,7 @@ package com.jimbonlemu.clefer.views.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
@@ -27,6 +28,8 @@ class HistoryActivity : CoreActivity<ActivityHistoryBinding>() {
         ActivityHistoryBinding.inflate(layoutInflater)
 
     private fun ActivityHistoryBinding.loadHistoryData() {
+        shimmerHistory.visibility = View.VISIBLE
+        shimmerHistory.startShimmer()
         historyViewModel.apply {
             getAllHistoryByOwner(Prefs.getUserId)
                 .observe(this@HistoryActivity) {
@@ -42,6 +45,8 @@ class HistoryActivity : CoreActivity<ActivityHistoryBinding>() {
 
                         })
                     )
+                    shimmerHistory.stopShimmer()
+                    shimmerHistory.visibility = View.GONE
                 }
         }
     }

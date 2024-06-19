@@ -20,12 +20,12 @@
         android:id="@+id/cv_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="23dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="23dp"
         app:cardBackgroundColor="@color/cleferCardBackgroundColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mToolbar">
 
         <LinearLayout
@@ -55,13 +55,43 @@
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
-    <androidx.recyclerview.widget.RecyclerView
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_history"
         android:layout_width="match_parent"
-        android:id="@+id/rv_history_analyzed"
-        app:layout_constraintTop_toBottomOf="@id/cv_desc"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_history"
+        android:visibility="gone"
+        android:layout_height="0dp"
         android:layout_marginTop="26dp"
-        android:layout_height="0dp"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_desc">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/shimmer_item_history" />
+
+                <include layout="@layout/shimmer_item_history" />
+
+                <include layout="@layout/shimmer_item_history" />
+
+                <include layout="@layout/shimmer_item_history" />
+
+                <include layout="@layout/shimmer_item_history" />
+
+            </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_history_analyzed"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_desc"
+        tools:listitem="@layout/item_history" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

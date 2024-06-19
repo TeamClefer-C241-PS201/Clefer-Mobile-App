@@ -8,7 +8,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.utils.Prefs
 
-abstract class CoreActivity<viewBinding:ViewBinding> : AppCompatActivity() {
+abstract class CoreActivity<viewBinding : ViewBinding> : AppCompatActivity() {
     private var _binding: viewBinding? = null
     protected val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,12 +18,12 @@ abstract class CoreActivity<viewBinding:ViewBinding> : AppCompatActivity() {
         Prefs.init(this)
     }
 
-    protected fun setupToolbar(toolbar: MaterialToolbar) {
+    protected fun setupToolbar(toolbar: MaterialToolbar, onNavigationClick: (() -> Unit)? = null) {
         setSupportActionBar(toolbar)
         toolbar.apply {
             setNavigationIcon(R.drawable.ic_arrow_back)
             setNavigationOnClickListener {
-                onBackPressedDispatcher.onBackPressed()
+                onNavigationClick?.invoke() ?: onBackPressedDispatcher.onBackPressed()
             }
         }
     }

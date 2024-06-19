@@ -5,7 +5,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.jimbonlemu.clefer.R
@@ -42,7 +41,7 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
         currentUriValue = Uri.parse(intent.getStringExtra(IMAGE_URI_VALUE))
         binding.apply {
             setContentView(root)
-            setupToolbar()
+            setupToolbar(mToolbar)
             launchUCrop(currentUriValue)
 
             btnStartAnalyze.setOnClickListener {
@@ -55,24 +54,18 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityPreviewImageBinding =
         ActivityPreviewImageBinding.inflate(layoutInflater)
 
-    private fun initObserver() {
+    private fun ActivityPreviewImageBinding.initObserver() {
         predictViewModel.predictState.observe(this@PreviewImageActivity) { state ->
             when (state) {
                 is ResponseState.Loading -> {
-                    binding.btnStartAnalyze.apply {
-                        text = "Loading..."
-                        isEnabled = false
-                    }
+                    isButtonAnalyzedEnabled(false)
                 }
 
                 is ResponseState.Success -> {
-                    CleferToast.successToast(
-                        "Gambar berhasil di deteksi",
-                        this@PreviewImageActivity,
-                    )
-                    binding.btnStartAnalyze.apply {
+                    CleferToast.successToast("Gambar berhasil di deteksi!", this@PreviewImageActivity)
+                    btnStartAnalyze.apply {
                         text = getString(R.string.title_start_analyze)
-                        isEnabled = true
+                        isEnabled = false
                     }
                     startActivity(
                         Intent(
@@ -91,26 +84,17 @@ class PreviewImageActivity : CoreActivity<ActivityPreviewImageBinding>() {
                 }
 
                 is ResponseState.Error -> {
-                    binding.btnStartAnalyze.apply {
-                        text = getString(R.string.title_start_analyze)
-                        isEnabled = true
-                    }
-                    CleferToast.errorToast(
-                        "Error: ${state.errorMessage}",
-                        this@PreviewImageActivity,)
+                    CleferToast.errorToast("Gagal terdeteksi: ${state.errorMessage}", this@PreviewImageActivity)
+                    isButtonAnalyzedEnabled(true)
                 }
             }
         }
     }
 
-    private fun ActivityPreviewImageBinding.setupToolbar() {
-        setSupportActionBar(mToolbar);
-        mToolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back);
-            setNavigationOnClickListener {
-                onBackPressedDispatcher.onBackPressed()
-            }
-        }
+    private fun ActivityPreviewImageBinding.isButtonAnalyzedEnabled(isEnable: Boolean) {
+        btnStartAnalyze.isEnabled = isEnable
+        btnStartAnalyze.text =
+            if (isEnable) getString(R.string.title_start_analyze) else getString(R.string.title_processing_image)
     }
 
     private fun launchUCrop(uri: Uri) {

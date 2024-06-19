@@ -35,7 +35,7 @@ class AnalyzeActivity : CoreActivity<ActivityAnalyzeBinding>() {
         isViewingHistory = intent.getBooleanExtra(IS_VIEWING_HISTORY, false)
         binding.apply {
             initViewingStatus(isViewingHistory)
-            setupToolbar()
+            setupToolbar(mToolbar) { initBackAction() }
             setupAnalyzedResult()
             setupButtonAction()
         }
@@ -107,16 +107,6 @@ class AnalyzeActivity : CoreActivity<ActivityAnalyzeBinding>() {
             )
             CleferToast.successToast("Sukses Tersimpan di Riwayat", this@AnalyzeActivity)
             it.isEnabled = false
-        }
-    }
-
-    private fun ActivityAnalyzeBinding.setupToolbar() {
-        setSupportActionBar(mToolbar);
-        mToolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back);
-            setNavigationOnClickListener {
-                initBackAction()
-            }
         }
     }
 

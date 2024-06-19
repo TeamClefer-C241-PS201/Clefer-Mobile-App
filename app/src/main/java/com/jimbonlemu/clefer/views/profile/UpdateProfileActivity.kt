@@ -9,7 +9,6 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
-import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityUpdateProfileBinding
 import com.jimbonlemu.clefer.utils.CleferToast
@@ -29,7 +28,7 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
         super.onCreate(savedInstanceState)
         binding.apply {
             setContentView(root)
-            setupToolbar()
+            setupToolbar(mToolbar)
             Prefs.apply {
                 setUserData(getPhoto, getName, getEmail, getUsername)
                 btnSaveProfile.setOnClickListener {
@@ -72,16 +71,6 @@ class UpdateProfileActivity : CoreActivity<ActivityUpdateProfileBinding>() {
         edtUserName.inputText = name
         edtEmail.inputText = email
         edtUsername.inputText = username
-    }
-
-    private fun ActivityUpdateProfileBinding.setupToolbar() {
-        setSupportActionBar(mToolbar)
-        mToolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back)
-            setNavigationOnClickListener {
-                onBackPressedDispatcher.onBackPressed()
-            }
-        }
     }
 
     private fun initObserverUpdateUser() {

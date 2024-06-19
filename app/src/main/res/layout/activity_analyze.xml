@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".views.dashboard.AnalyzeActivity">
 
-
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/mToolbar"
         style="@style/ToolbarTextAppearance"
@@ -36,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
                 android:layout_marginTop="53dp"
+                app:cardBackgroundColor="@android:color/transparent"
                 android:layout_marginEnd="23dp"
                 app:cardCornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"

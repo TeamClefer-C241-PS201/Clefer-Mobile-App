@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.appbar.MaterialToolbar
+import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.utils.Prefs
 
 abstract class CoreActivity<viewBinding:ViewBinding> : AppCompatActivity() {
@@ -14,6 +16,16 @@ abstract class CoreActivity<viewBinding:ViewBinding> : AppCompatActivity() {
         _binding = setupBinding(layoutInflater)
         setContentView(binding.root)
         Prefs.init(this)
+    }
+
+    protected fun setupToolbar(toolbar: MaterialToolbar) {
+        setSupportActionBar(toolbar)
+        toolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back)
+            setNavigationOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
     }
 
     override fun onDestroy() {

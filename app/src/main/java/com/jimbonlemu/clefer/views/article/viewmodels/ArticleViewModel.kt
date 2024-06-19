@@ -8,7 +8,6 @@ import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.source.remote.response.DataItemItem
 import kotlinx.coroutines.launch
 
-
 class ArticleViewModel(private val repository: AppRepository) : ViewModel() {
     val detail = repository.detail
 

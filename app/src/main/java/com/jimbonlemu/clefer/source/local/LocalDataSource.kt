@@ -1,6 +1,5 @@
 package com.jimbonlemu.clefer.source.local
 
-import androidx.lifecycle.LiveData
 import com.jimbonlemu.clefer.source.local.entity.FavoriteArticle
 import com.jimbonlemu.clefer.source.local.entity.HistoryAnalyzed
 

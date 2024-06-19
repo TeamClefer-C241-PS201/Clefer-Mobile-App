@@ -7,7 +7,6 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
-import com.jimbonlemu.clefer.R
 import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityAnalyzeBinding
 import com.jimbonlemu.clefer.source.local.entity.HistoryAnalyzed

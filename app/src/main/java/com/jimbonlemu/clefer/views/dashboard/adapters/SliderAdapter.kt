@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jimbonlemu.clefer.databinding.ItemDashboardSliderBinding
 import com.jimbonlemu.clefer.source.local.Slider
 
-
 @SuppressLint("NotifyDataSetChanged")
 class SliderAdapter : RecyclerView.Adapter<SliderAdapter.viewHolder>() {
     private var data = ArrayList<Slider>()

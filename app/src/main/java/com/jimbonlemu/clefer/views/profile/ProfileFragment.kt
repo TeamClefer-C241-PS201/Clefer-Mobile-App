@@ -44,7 +44,6 @@ class ProfileFragment : CoreFragment<FragmentProfileBinding>() {
             username.text = nameValue
             email.text = emailValue
             Glide.with(requireActivity()).load(photoValue.toUri()).into(profileImage)
-
         }
     }
 

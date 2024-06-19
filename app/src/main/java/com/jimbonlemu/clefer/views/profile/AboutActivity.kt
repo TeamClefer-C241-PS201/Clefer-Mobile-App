@@ -6,12 +6,10 @@ import com.jimbonlemu.clefer.core.CoreActivity
 import com.jimbonlemu.clefer.databinding.ActivityAboutBinding
 
 class AboutActivity : CoreActivity<ActivityAboutBinding>() {
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.apply {
-            setupToolbar(mToolbar)
-        }
+        setupToolbar(binding.mToolbar)
     }
 
     override fun setupBinding(layoutInflater: LayoutInflater): ActivityAboutBinding =

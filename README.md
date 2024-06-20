@@ -35,4 +35,8 @@ git clone <repository_url>
 6. Click on the 'Run' button in Android Studio to deploy the app on your device.
 
 7. The Clefer app should now be installed and ready to use on your Android device.
+
+## Application UI Showcase
+![alt text](https://github.com/TeamClefer-C241-PS201/Clefer-Mobile-App/blob/development/UI_Showcase.png?raw=true)
+
     
